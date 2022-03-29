@@ -1,15 +1,15 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity decoder is
+entity DecoderInstruction is
   port ( opcode : in std_logic_vector(3 downto 0);
-			flagIgual : in std_logic;
+		 flagIgual : in std_logic;
          saida : out std_logic_vector(11 downto 0);
-			saidaMux: out std_logic_vector(1 downto 0)
+		 saidaMux: out std_logic_vector(1 downto 0)
   );
 end entity;
 
-architecture comportamento of decoder is
+architecture comportamento of DecoderInstruction is
 	
 	constant NOP  : std_logic_vector(3 downto 0) := "0000";
 	constant instru_NOP: std_logic_vector(11 downto 0) := "000000000000";

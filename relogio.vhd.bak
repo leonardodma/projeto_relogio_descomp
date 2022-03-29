@@ -207,7 +207,7 @@ saidaDecoderHabBloc7 <= saidaDecoderHabBloc(7);
 
 
 -- Sinais observados simulacao
-PC_OUT <= Endereco;
+PC_OUT <= Endereco;;
 saida_acumulador <= reg1UlaA;
 saida_decoder <= sinaisControle;
 out_mux4x1 <= saida_MUX4x1;
