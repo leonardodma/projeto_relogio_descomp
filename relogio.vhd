@@ -48,15 +48,31 @@ architecture arquitetura of relogio is
   signal saidaFlag : std_logic;
 
   -- NOVO
-  signal saidaDecoderHabBloc : std_logic_vector (7 downto 0);
-  signal saidaDecoderHabBloc0 : std_logic;
-  signal saidaDecoderHabBloc1 : std_logic;
-  signal saidaDecoderHabBloc2 : std_logic;
-  signal saidaDecoderHabBloc3 : std_logic;
-  signal saidaDecoderHabBloc4 : std_logic;
-  signal saidaDecoderHabBloc5 : std_logic;
-  signal saidaDecoderHabBloc6 : std_logic;
-  signal saidaDecoderHabBloc7 : std_logic;
+  signal dataAddressA5_LED : std_logic;
+  signal dataAddressA5_HEX : std_logic;
+  signal saidaAndLedR: std_logic;
+  signal saidaAndLed1: std_logic;
+  signal saidaAndLed2: std_logic;
+
+  signal blocos : std_logic_vector (7 downto 0);
+  signal bloco0 : std_logic;
+  signal bloco1 : std_logic;
+  signal bloco2 : std_logic;
+  signal bloco3 : std_logic;
+  signal bloco4 : std_logic;
+  signal bloco5 : std_logic;
+  signal bloco6 : std_logic;
+  signal bloco7 : std_logic;
+
+  signal enderecos : std_logic_vector (7 downto 0);
+  signal endereco0 : std_logic;
+  signal endereco1 : std_logic;
+  signal endereco2 : std_logic;
+  signal endereco3 : std_logic;
+  signal endereco4 : std_logic;
+  signal endereco5 : std_logic;
+  signal endereco6 : std_logic;
+  signal endereco7 : std_logic;
 
 
   -- Sinais de Controle
@@ -158,28 +174,50 @@ DecoderInstruction : entity work.DecoderInstruction
                               saida => sinaisControle,
                               saidaMux => SelMUX4x1);
 
-			 
-DecoderHabBloc : entity work.DecoderInstruction
-          port map(entrada => saidaDadosROM(6 downto 8),
-                   saida => sinaisControle
-					         );
 
-DecoderSelEnd : entity work.DecoderInstruction
-port map(entrada => saidaDadosROM(0 downto 2),
-        saida => sinaisControle
-        );
+DecoderHabBloc : entity work.DecoderAddress
+                 port map(entrada => saidaDadosROM(8 downto 6),
+                          saida => blocos);
+
+
+DecoderSelEnd : entity work.DecoderAddress
+                port map(entrada => saidaDadosROM(0 downto 2),
+                         saida => sinaisControle);
          
-
 
 MemoriaRAM : entity work.memoriaRAM   generic map (dataWidth => dadoRAM, addrWidth => tamanhoRAM)
              port map (addr => saidaDadosROM(5 downto 0), 
                        we => hab_escrita, 
                        re => hab_leitura, 
-                       habilita => saidaDecoderHabBloc0, 
+                       habilita => bloco0, 
                        dado_in => reg1UlaA, 
                        dado_out => saidaDadosRAM, 
                        clk => CLK);
 
+                       
+AndLed2 : entity work.AND_logic generic map(larguraDados => 1)
+          port map (entradaA => hab_escrita, 
+                    entradaB => bloco4, 
+                    entradaC => dataAddressA5_LED,
+                    entradaD => endereco2,
+                    saida => saidaAndLed2);
+          
+
+AndLed1 : entity work.AND_logic generic map(larguraDados => 1)
+          port map (entradaA => hab_escrita, 
+                    entradaB => bloco4, 
+                    entradaC => endereco1, 
+                    entradaD => dataAddressA5_LED,
+                    saida => saidaAndLed1);
+
+
+AndLedR : entity work.AND_logic generic map(larguraDados => 1)
+          port map (entradaA => hab_escrita, 
+                    entradaB => bloco4, 
+                    entradaC => endereco0, 
+                    entradaD => dataAddressA5_LED,
+                    saida => saidaAndLedR);
+                                     
 
 -- Sinais de Controle
 Habilita_regend <= sinaisControle(11);
@@ -194,16 +232,29 @@ habFlag <= sinaisControle(2);
 hab_leitura <= sinaisControle(1);
 hab_escrita <= sinaisControle(0);
 
+-- Sinal de Controle LEDS ou HEX
+dataAddressA5_LED <= not(saidaDadosROM(5));
+dataAddressA5_HEX <= saidaDadosROM(5);
 
 -- Sinais do Decoder Habilita Bloc 
-saidaDecoderHabBloc0 <= saidaDecoderHabBloc(0);
-saidaDecoderHabBloc1 <= saidaDecoderHabBloc(1);
-saidaDecoderHabBloc2 <= saidaDecoderHabBloc(2);
-saidaDecoderHabBloc3 <= saidaDecoderHabBloc(3);
-saidaDecoderHabBloc4 <= saidaDecoderHabBloc(4);
-saidaDecoderHabBloc5 <= saidaDecoderHabBloc(5);
-saidaDecoderHabBloc6 <= saidaDecoderHabBloc(6);
-saidaDecoderHabBloc7 <= saidaDecoderHabBloc(7);
+bloco0 <= blocos(0); --   0 ~ 63
+bloco1 <= blocos(1); --  64 ~ 127
+bloco2 <= blocos(2); -- 128 ~ 191
+bloco3 <= blocos(3); -- 192 ~ 255
+bloco4 <= blocos(4); -- 356 ~ 319
+bloco5 <= blocos(5); -- 320 ~ 383
+bloco6 <= blocos(6); -- 384 ~ 447
+bloco7 <= blocos(7); -- 448 ~ 511
+
+-- Sinais do Decoder de Enderecos
+endereco0 <= enderecos(0); 
+endereco1 <= enderecos(1); 
+endereco2 <= enderecos(2); 
+endereco3 <= enderecos(3); 
+endereco4 <= enderecos(4); 
+endereco5 <= enderecos(5); 
+endereco6 <= enderecos(6); 
+endereco7 <= enderecos(7); 
 
 
 -- Sinais observados simulacao

@@ -59,10 +59,10 @@ begin
 				instru_NOP; -- NOP para os opcodes Indefinidos
 				
 	saidaMux <= "10" when saida = instru_RET else
-					"01" when saida = instru_JMP else
-					"01" when saida = instru_JEQ and flagIgual = '1' else
-					"01" when saida = instru_JSR else
-					"00";
+				"01" when saida = instru_JMP else
+				"01" when saida = instru_JEQ and flagIgual = '1' else
+				"01" when saida = instru_JSR else
+				"00";
 	
 
 end architecture;
