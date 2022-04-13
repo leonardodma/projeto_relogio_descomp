@@ -20,32 +20,20 @@ entity relogio is
     SW: in std_logic_vector(9 downto 0);
     PC_OUT: out std_logic_vector(larguraEnderecos-1 downto 0);
     LEDR  : out std_logic_vector(9 downto 0);
-	 
-    saida_acumulador: out std_logic_vector(larguraDados-1 downto 0);
-    saida_decoder: out  std_logic_vector(11 downto 0);
-    
-    out_mux4x1: out std_logic_vector (8 downto 0);
-    out_regend: out std_logic_vector (8 downto 0)
   );
 end entity;
 
 
 architecture arquitetura of relogio is
 
-  signal CLK : std_logic;
-
-  signal proxPC : std_logic_vector (8 downto 0);
-  signal Endereco : std_logic_vector (8 downto 0);
-  signal saidaDadosRAM : std_logic_vector (7 downto 0);
-  signal saidaDadosROM : std_logic_vector (12 downto 0);
-  signal sinaisControle : std_logic_vector (11 downto 0);
-  signal saida_MUX : std_logic_vector (7 downto 0);
-  signal saida_MUX4x1 : std_logic_vector (8 downto 0);
-  signal saidaULA : std_logic_vector (7 downto 0);
-  signal saidaRegendMux4x1 : std_logic_vector (8 downto 0);
-  signal reg1UlaA : std_logic_vector (7 downto 0);
-  signal entradaFlag : std_logic;
-  signal saidaFlag : std_logic;
+  CLK: in std_logic;
+  RST: in std_logic;
+  Instruction_IN: in std_logic_vector(12 downto 0);
+  Data_IN: in std_logic_vector(7 downto 0);
+  Data_OUT: out std_logic_vector(7 downto 0);
+  Data_Address: out std_logic_vector(8 downto 0);
+  Control: out std_logic_vector(1 downto 0); --Rd(1), Wr(0)
+  ROM_Address: out std_logic_vector(8 downto 0)
 
   -- NOVO
   signal dataAddressA5_LED : std_logic;
@@ -102,99 +90,43 @@ detectorSub0: work.edgeDetector(bordaSubida)
 end generate;
 
 
-MUX1 : entity work.muxGenerico2x1  generic map (larguraDados => larguraDados)
-       port map(entradaA_MUX => saidaDadosRAM,
-                entradaB_MUX => saidaDadosROM(7 downto 0),
-                seletor_MUX => SelMUX,
-                saida_MUX => saida_MUX);
-			    
-
-REGA : entity work.registradorGenerico   generic map (larguraDados => larguraDados)
-       port map (DIN => saidaULA, 
-                 DOUT => reg1UlaA, 
-                 ENABLE => Habilita_A, 
-                 CLK => CLK, 
-                 RST => '0');
-
-
-PC : entity work.registradorGenerico   generic map (larguraDados => tamanhoROM)
-     port map (DIN => saida_MUX4x1, 
-               DOUT => Endereco, 
-               ENABLE => '1', 
-               CLK => CLK, 
-               RST => '0');
-
-
-IncrementaPC : entity work.somaConstante  generic map (larguraDados => larguraEnderecos, constante => 1)
-               port map(entrada => Endereco, 
-                        saida => proxPC);
-	
-
-reg_endretorno : entity work.registradorGenerico generic map (larguraDados => larguraEnderecos)
-                 port map (DIN => proxPC, 
-                           DOUT => saidaRegendMux4x1, 
-                           ENABLE => Habilita_regend, 
-                           CLK => CLK, 
-                           RST => '0');
-
-
-MUX4x1: entity work.muxGenerico4x1  generic map (larguraDados => larguraEnderecos)
-        port map(entradaA_MUX => proxPC,
-                 entradaB_MUX => saidaDadosROM(8 downto 0),
-                 entradaC_MUX => saidaRegendMux4x1,
-                 entradaD_MUX => "000000000",
-                 seletor_MUX => SelMUX4x1,
-                 saida_MUX => saida_MUX4x1);
-					  
-
-ULA : entity work.ULASomaSub  generic map(larguraDados => larguraDados)
-       port map (entradaA => reg1UlaA, 
-                 entradaB => saida_MUX, 
-                 saida => saidaULA, 
-                 saidaNOR => entradaFlag, 
-                 seletor => Operacao_ULA);
-		 
-
-FlagIgual : entity work.flipFlop  generic map (larguraDados => 1)
-            port map (DIN => entradaFlag, 
-                      DOUT => saidaFlag, 
-                      ENABLE => habFlag, 
-                      CLK => CLK, 
-                      RST => '0');
-
-
 ROM_instrucao : entity work.memoriaROM   generic map (dataWidth => dadoROM, addrWidth => tamanhoROM)
-                port map (Endereco => Endereco, 
-                          Dado => saidaDadosROM);          
+                port map (Endereco => ROM_Address, 
+                          Dado => Saida_ROM);
 
-			 
-DecoderInstruction : entity work.DecoderInstruction
-                     port map(opcode => saidaDadosROM(12 downto 9),
-                              flagIgual => saidaFlag,
-                              saida => sinaisControle,
-                              saidaMux => SelMUX4x1);
+
+MemoriaRAM : entity work.memoriaRAM   generic map (dataWidth => dadoRAM, addrWidth => tamanhoRAM)
+             port map (addr => Data_Address(5 downto 0), 
+                       we => Control(0), 
+                       re => Control(1), 
+                       habilita => bloco4, 
+                       dado_in => Data_OUT, 
+                       dado_out => Saida_RAM, 
+                       clk => CLK);
+
+
+Processador: entity work.processador generic map (larguraDados => larguraDados, larguraEnderecos => larguraEnderecos)
+             port map (
+              CLK => CLK,
+              RST => '0',
+              Instruction_IN => Saida_ROM,
+              Data_IN => Saida_RAM,
+              Data_OUT => Data_OUT,
+              Data_Address => Data_Address,
+              Control => Control,
+              ROM_Address => ROM_Address);        
 
 
 DecoderHabBloc : entity work.DecoderAddress
-                 port map(entrada => saidaDadosROM(8 downto 6),
+                 port map(entrada => Data_Address(8 downto 6),
                           saida => blocos);
 
 
 DecoderSelEnd : entity work.DecoderAddress
-                port map(entrada => saidaDadosROM(0 downto 2),
+                port map(entrada => Data_Address(0 downto 2),
                          saida => sinaisControle);
-         
 
-MemoriaRAM : entity work.memoriaRAM   generic map (dataWidth => dadoRAM, addrWidth => tamanhoRAM)
-             port map (addr => saidaDadosROM(5 downto 0), 
-                       we => hab_escrita, 
-                       re => hab_leitura, 
-                       habilita => bloco0, 
-                       dado_in => reg1UlaA, 
-                       dado_out => saidaDadosRAM, 
-                       clk => CLK);
 
-                       
 AndLed2 : entity work.AND_logic generic map(larguraDados => 1)
           port map (entradaA => hab_escrita, 
                     entradaB => bloco4, 
@@ -217,24 +149,11 @@ AndLedR : entity work.AND_logic generic map(larguraDados => 1)
                     entradaC => endereco0, 
                     entradaD => dataAddressA5_LED,
                     saida => saidaAndLedR);
-                                     
-
--- Sinais de Controle
-Habilita_regend <= sinaisControle(11);
-JMP <= sinaisControle(10);
-RET <= sinaisControle(9);
-JSR <= sinaisControle(8);
-JEQ <= sinaisControle(7);
-selMUX <= sinaisControle(6);
-Habilita_A <= sinaisControle(5);
-Operacao_ULA <= sinaisControle(4 downto 3);
-habFlag <= sinaisControle(2);
-hab_leitura <= sinaisControle(1);
-hab_escrita <= sinaisControle(0);
+                                    
 
 -- Sinal de Controle LEDS ou HEX
-dataAddressA5_LED <= not(saidaDadosROM(5));
-dataAddressA5_HEX <= saidaDadosROM(5);
+dataAddressA5_LED <= not(Data_Address(5));
+dataAddressA5_HEX <= Data_Address(5);
 
 -- Sinais do Decoder Habilita Bloc 
 bloco0 <= blocos(0); --   0 ~ 63
@@ -255,13 +174,5 @@ endereco4 <= enderecos(4);
 endereco5 <= enderecos(5); 
 endereco6 <= enderecos(6); 
 endereco7 <= enderecos(7); 
-
-
--- Sinais observados simulacao
-PC_OUT <= Endereco;
-saida_acumulador <= reg1UlaA;
-saida_decoder <= sinaisControle;
-out_mux4x1 <= saida_MUX4x1;
-out_regend <= saidaRegendMux4x1;
 
 end architecture;
