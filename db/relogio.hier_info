@@ -1,29 +1,25 @@
 |relogio
-CLOCK_50 => ~NO_FANOUT~
-KEY[0] => memoriaram:MemoriaRAM.clk
-KEY[0] => processador:Processador.CLK
-KEY[0] => flipflop:flipFlopLed2.CLK
-KEY[0] => flipflop:flipFlopLed1.CLK
-KEY[0] => registradorgenerico:RegistradorLedR.CLK
-KEY[0] => registradorgenerico:RegistradorHEX0.CLK
-KEY[0] => registradorgenerico:RegistradorHEX1.CLK
-KEY[0] => registradorgenerico:RegistradorHEX2.CLK
-KEY[0] => registradorgenerico:RegistradorHEX3.CLK
-KEY[0] => registradorgenerico:RegistradorHEX4.CLK
-KEY[0] => registradorgenerico:RegistradorHEX5.CLK
+CLOCK_50 => edgedetector:gravar:detectorSub0.clk
+KEY[0] => edgedetector:gravar:detectorSub0.entrada
 KEY[1] => ~NO_FANOUT~
 KEY[2] => ~NO_FANOUT~
 KEY[3] => ~NO_FANOUT~
-SW[0] => ~NO_FANOUT~
-SW[1] => ~NO_FANOUT~
-SW[2] => ~NO_FANOUT~
-SW[3] => ~NO_FANOUT~
-SW[4] => ~NO_FANOUT~
-SW[5] => ~NO_FANOUT~
-SW[6] => ~NO_FANOUT~
-SW[7] => ~NO_FANOUT~
-SW[8] => ~NO_FANOUT~
-SW[9] => ~NO_FANOUT~
+KEY0 => buffer3state_1porta:buffer3State_KEY0.entrada
+KEY1 => buffer3state_1porta:buffer3State_KEY1.entrada
+KEY2 => buffer3state_1porta:buffer3State_KEY2.entrada
+KEY3 => buffer3state_1porta:buffer3State_KEY3.entrada
+KEY3 => buffer3state_1porta:buffer3State_FPGA_RESET.entrada
+FPGA_RESET => ~NO_FANOUT~
+SW[0] => buffer3state_8portas:buffer3State_SW0_7.entrada[0]
+SW[1] => buffer3state_8portas:buffer3State_SW0_7.entrada[1]
+SW[2] => buffer3state_8portas:buffer3State_SW0_7.entrada[2]
+SW[3] => buffer3state_8portas:buffer3State_SW0_7.entrada[3]
+SW[4] => buffer3state_8portas:buffer3State_SW0_7.entrada[4]
+SW[5] => buffer3state_8portas:buffer3State_SW0_7.entrada[5]
+SW[6] => buffer3state_8portas:buffer3State_SW0_7.entrada[6]
+SW[7] => buffer3state_8portas:buffer3State_SW0_7.entrada[7]
+SW[8] => buffer3state_1porta:buffer3State_SW8.entrada
+SW[9] => buffer3state_1porta:buffer3State_SW9.entrada
 PC_OUT[0] <= comb.DB_MAX_OUTPUT_PORT_TYPE
 PC_OUT[1] <= PC_OUT[1].DB_MAX_OUTPUT_PORT_TYPE
 PC_OUT[2] <= PC_OUT[2].DB_MAX_OUTPUT_PORT_TYPE
@@ -85,6 +81,13 @@ HEX5[3] <= conversorhex7seg:decoderHEX5.saida7seg[3]
 HEX5[4] <= conversorhex7seg:decoderHEX5.saida7seg[4]
 HEX5[5] <= conversorhex7seg:decoderHEX5.saida7seg[5]
 HEX5[6] <= conversorhex7seg:decoderHEX5.saida7seg[6]
+
+
+|relogio|edgeDetector:\gravar:detectorSub0
+clk => saidaQ.CLK
+entrada => saida.IN1
+entrada => saidaQ.DATAIN
+saida <= saida.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |relogio|memoriaROM:ROM_instrucao
@@ -764,6 +767,70 @@ saida <= op_and.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |relogio|AND_logic:AndHEX5
+entradaA => op_and.IN0
+entradaB => op_and.IN1
+entradaC => op_and.IN1
+entradaD => op_and.IN1
+saida <= op_and.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|relogio|AND_logic:AndSW0_7
+entradaA => op_and.IN0
+entradaB => op_and.IN1
+entradaC => op_and.IN1
+entradaD => op_and.IN1
+saida <= op_and.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|relogio|AND_logic:AndSW8
+entradaA => op_and.IN0
+entradaB => op_and.IN1
+entradaC => op_and.IN1
+entradaD => op_and.IN1
+saida <= op_and.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|relogio|AND_logic:AndSW9
+entradaA => op_and.IN0
+entradaB => op_and.IN1
+entradaC => op_and.IN1
+entradaD => op_and.IN1
+saida <= op_and.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|relogio|AND_logic:AndKEY0
+entradaA => op_and.IN0
+entradaB => op_and.IN1
+entradaC => op_and.IN1
+entradaD => op_and.IN1
+saida <= op_and.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|relogio|AND_logic:AndKEY1
+entradaA => op_and.IN0
+entradaB => op_and.IN1
+entradaC => op_and.IN1
+entradaD => op_and.IN1
+saida <= op_and.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|relogio|AND_logic:AndKEY2
+entradaA => op_and.IN0
+entradaB => op_and.IN1
+entradaC => op_and.IN1
+entradaD => op_and.IN1
+saida <= op_and.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|relogio|AND_logic:AndKEY3
+entradaA => op_and.IN0
+entradaB => op_and.IN1
+entradaC => op_and.IN1
+entradaD => op_and.IN1
+saida <= op_and.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|relogio|AND_logic:AndKEY_RESET
 entradaA => op_and.IN0
 entradaB => op_and.IN1
 entradaC => op_and.IN1
@@ -1476,5 +1543,74 @@ saida7seg[3] <= saida7seg.DB_MAX_OUTPUT_PORT_TYPE
 saida7seg[4] <= saida7seg.DB_MAX_OUTPUT_PORT_TYPE
 saida7seg[5] <= saida7seg.DB_MAX_OUTPUT_PORT_TYPE
 saida7seg[6] <= saida7seg.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|relogio|buffer3State_8portas:buffer3State_SW0_7
+entrada[0] => saida[0].DATAIN
+entrada[1] => saida[1].DATAIN
+entrada[2] => saida[2].DATAIN
+entrada[3] => saida[3].DATAIN
+entrada[4] => saida[4].DATAIN
+entrada[5] => saida[5].DATAIN
+entrada[6] => saida[6].DATAIN
+entrada[7] => saida[7].DATAIN
+habilita => saida[0].OE
+habilita => saida[1].OE
+habilita => saida[2].OE
+habilita => saida[3].OE
+habilita => saida[4].OE
+habilita => saida[5].OE
+habilita => saida[6].OE
+habilita => saida[7].OE
+saida[0] <= saida[0].DB_MAX_OUTPUT_PORT_TYPE
+saida[1] <= saida[1].DB_MAX_OUTPUT_PORT_TYPE
+saida[2] <= saida[2].DB_MAX_OUTPUT_PORT_TYPE
+saida[3] <= saida[3].DB_MAX_OUTPUT_PORT_TYPE
+saida[4] <= saida[4].DB_MAX_OUTPUT_PORT_TYPE
+saida[5] <= saida[5].DB_MAX_OUTPUT_PORT_TYPE
+saida[6] <= saida[6].DB_MAX_OUTPUT_PORT_TYPE
+saida[7] <= saida[7].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|relogio|buffer3State_1porta:buffer3State_SW8
+entrada => saida.DATAIN
+habilita => saida.OE
+saida <= saida.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|relogio|buffer3State_1porta:buffer3State_SW9
+entrada => saida.DATAIN
+habilita => saida.OE
+saida <= saida.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|relogio|buffer3State_1porta:buffer3State_KEY0
+entrada => saida.DATAIN
+habilita => saida.OE
+saida <= saida.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|relogio|buffer3State_1porta:buffer3State_KEY1
+entrada => saida.DATAIN
+habilita => saida.OE
+saida <= saida.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|relogio|buffer3State_1porta:buffer3State_KEY2
+entrada => saida.DATAIN
+habilita => saida.OE
+saida <= saida.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|relogio|buffer3State_1porta:buffer3State_KEY3
+entrada => saida.DATAIN
+habilita => saida.OE
+saida <= saida.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|relogio|buffer3State_1porta:buffer3State_FPGA_RESET
+entrada => saida.DATAIN
+habilita => saida.OE
+saida <= saida.DB_MAX_OUTPUT_PORT_TYPE
 
 

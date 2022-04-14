@@ -1,5 +1,5 @@
 Analysis & Synthesis report for relogio
-Thu Apr 14 10:48:12 2022
+Thu Apr 14 16:30:34 2022
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -38,29 +38,45 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
  30. Parameter Settings for User Entity Instance: AND_logic:AndHEX3
  31. Parameter Settings for User Entity Instance: AND_logic:AndHEX4
  32. Parameter Settings for User Entity Instance: AND_logic:AndHEX5
- 33. Parameter Settings for User Entity Instance: flipFlop:flipFlopLed2
- 34. Parameter Settings for User Entity Instance: flipFlop:flipFlopLed1
- 35. Parameter Settings for User Entity Instance: registradorGenerico:RegistradorLedR
- 36. Parameter Settings for User Entity Instance: registradorGenerico:RegistradorHEX0
- 37. Parameter Settings for User Entity Instance: registradorGenerico:RegistradorHEX1
- 38. Parameter Settings for User Entity Instance: registradorGenerico:RegistradorHEX2
- 39. Parameter Settings for User Entity Instance: registradorGenerico:RegistradorHEX3
- 40. Parameter Settings for User Entity Instance: registradorGenerico:RegistradorHEX4
- 41. Parameter Settings for User Entity Instance: registradorGenerico:RegistradorHEX5
- 42. Port Connectivity Checks: "conversorHex7Seg:decoderHEX5"
- 43. Port Connectivity Checks: "conversorHex7Seg:decoderHEX4"
- 44. Port Connectivity Checks: "conversorHex7Seg:decoderHEX3"
- 45. Port Connectivity Checks: "conversorHex7Seg:decoderHEX2"
- 46. Port Connectivity Checks: "conversorHex7Seg:decoderHEX1"
- 47. Port Connectivity Checks: "conversorHex7Seg:decoderHEX0"
- 48. Port Connectivity Checks: "DecoderAddress:DecoderSelEnd"
- 49. Port Connectivity Checks: "DecoderAddress:DecoderHabBloc"
- 50. Port Connectivity Checks: "processador:Processador|DecoderInstruction:decoder"
- 51. Port Connectivity Checks: "processador:Processador|muxGenerico4x1:MUX4x1"
- 52. Port Connectivity Checks: "processador:Processador|registradorGenerico:PC"
- 53. Post-Synthesis Netlist Statistics for Top Partition
- 54. Elapsed Time Per Partition
- 55. Analysis & Synthesis Messages
+ 33. Parameter Settings for User Entity Instance: AND_logic:AndSW0_7
+ 34. Parameter Settings for User Entity Instance: AND_logic:AndSW8
+ 35. Parameter Settings for User Entity Instance: AND_logic:AndSW9
+ 36. Parameter Settings for User Entity Instance: AND_logic:AndKEY0
+ 37. Parameter Settings for User Entity Instance: AND_logic:AndKEY1
+ 38. Parameter Settings for User Entity Instance: AND_logic:AndKEY2
+ 39. Parameter Settings for User Entity Instance: AND_logic:AndKEY3
+ 40. Parameter Settings for User Entity Instance: AND_logic:AndKEY_RESET
+ 41. Parameter Settings for User Entity Instance: flipFlop:flipFlopLed2
+ 42. Parameter Settings for User Entity Instance: flipFlop:flipFlopLed1
+ 43. Parameter Settings for User Entity Instance: registradorGenerico:RegistradorLedR
+ 44. Parameter Settings for User Entity Instance: registradorGenerico:RegistradorHEX0
+ 45. Parameter Settings for User Entity Instance: registradorGenerico:RegistradorHEX1
+ 46. Parameter Settings for User Entity Instance: registradorGenerico:RegistradorHEX2
+ 47. Parameter Settings for User Entity Instance: registradorGenerico:RegistradorHEX3
+ 48. Parameter Settings for User Entity Instance: registradorGenerico:RegistradorHEX4
+ 49. Parameter Settings for User Entity Instance: registradorGenerico:RegistradorHEX5
+ 50. Port Connectivity Checks: "buffer3State_1porta:buffer3State_FPGA_RESET"
+ 51. Port Connectivity Checks: "buffer3State_1porta:buffer3State_KEY3"
+ 52. Port Connectivity Checks: "buffer3State_1porta:buffer3State_KEY2"
+ 53. Port Connectivity Checks: "buffer3State_1porta:buffer3State_KEY1"
+ 54. Port Connectivity Checks: "buffer3State_1porta:buffer3State_KEY0"
+ 55. Port Connectivity Checks: "buffer3State_1porta:buffer3State_SW9"
+ 56. Port Connectivity Checks: "buffer3State_1porta:buffer3State_SW8"
+ 57. Port Connectivity Checks: "buffer3State_8portas:buffer3State_SW0_7"
+ 58. Port Connectivity Checks: "conversorHex7Seg:decoderHEX5"
+ 59. Port Connectivity Checks: "conversorHex7Seg:decoderHEX4"
+ 60. Port Connectivity Checks: "conversorHex7Seg:decoderHEX3"
+ 61. Port Connectivity Checks: "conversorHex7Seg:decoderHEX2"
+ 62. Port Connectivity Checks: "conversorHex7Seg:decoderHEX1"
+ 63. Port Connectivity Checks: "conversorHex7Seg:decoderHEX0"
+ 64. Port Connectivity Checks: "DecoderAddress:DecoderSelEnd"
+ 65. Port Connectivity Checks: "DecoderAddress:DecoderHabBloc"
+ 66. Port Connectivity Checks: "processador:Processador|DecoderInstruction:decoder"
+ 67. Port Connectivity Checks: "processador:Processador|muxGenerico4x1:MUX4x1"
+ 68. Port Connectivity Checks: "processador:Processador|registradorGenerico:PC"
+ 69. Post-Synthesis Netlist Statistics for Top Partition
+ 70. Elapsed Time Per Partition
+ 71. Analysis & Synthesis Messages
 
 
 
@@ -87,14 +103,14 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu Apr 14 10:48:12 2022       ;
+; Analysis & Synthesis Status     ; Successful - Thu Apr 14 16:30:34 2022       ;
 ; Quartus Prime Version           ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                   ; relogio                                     ;
 ; Top-level Entity Name           ; relogio                                     ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 69                                          ;
-; Total pins                      ; 76                                          ;
+; Total registers                 ; 70                                          ;
+; Total pins                      ; 81                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
 ; Total DSP Blocks                ; 0                                           ;
@@ -213,53 +229,56 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                             ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                      ; Library ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------+---------+
-; ULASomaSub.vhd                   ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/ULASomaSub.vhd          ;         ;
-; somaConstante.vhd                ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/somaConstante.vhd       ;         ;
-; registradorGenerico.vhd          ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/registradorGenerico.vhd ;         ;
-; processador.vhd                  ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/processador.vhd         ;         ;
-; muxGenerico4x1.vhd               ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/muxGenerico4x1.vhd      ;         ;
-; muxGenerico2x1.vhd               ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/muxGenerico2x1.vhd      ;         ;
-; memoriaROM.vhd                   ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/memoriaROM.vhd          ;         ;
-; memoriaRAM.vhd                   ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/memoriaRAM.vhd          ;         ;
-; flipFlop.vhd                     ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/flipFlop.vhd            ;         ;
-; DecoderInstrucution.vhd          ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/DecoderInstrucution.vhd ;         ;
-; DecoderAddress.vhd               ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/DecoderAddress.vhd      ;         ;
-; conversorHex7Seg.vhd             ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/conversorHex7Seg.vhd    ;         ;
-; AND_logic.vhd                    ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/AND_logic.vhd           ;         ;
-; relogio.vhd                      ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd             ;         ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------+---------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                              ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                       ; Library ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------+---------+
+; buffer3State_8portas.vhd         ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/buffer3State_8portas.vhd ;         ;
+; buffer3State_1porta.vhd          ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/buffer3State_1porta.vhd  ;         ;
+; ULASomaSub.vhd                   ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/ULASomaSub.vhd           ;         ;
+; somaConstante.vhd                ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/somaConstante.vhd        ;         ;
+; registradorGenerico.vhd          ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/registradorGenerico.vhd  ;         ;
+; processador.vhd                  ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/processador.vhd          ;         ;
+; muxGenerico4x1.vhd               ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/muxGenerico4x1.vhd       ;         ;
+; muxGenerico2x1.vhd               ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/muxGenerico2x1.vhd       ;         ;
+; memoriaROM.vhd                   ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/memoriaROM.vhd           ;         ;
+; memoriaRAM.vhd                   ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/memoriaRAM.vhd           ;         ;
+; flipFlop.vhd                     ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/flipFlop.vhd             ;         ;
+; edgeDetector.vhd                 ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/edgeDetector.vhd         ;         ;
+; DecoderInstrucution.vhd          ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/DecoderInstrucution.vhd  ;         ;
+; DecoderAddress.vhd               ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/DecoderAddress.vhd       ;         ;
+; conversorHex7Seg.vhd             ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/conversorHex7Seg.vhd     ;         ;
+; AND_logic.vhd                    ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/AND_logic.vhd            ;         ;
+; relogio.vhd                      ; yes             ; User VHDL File  ; C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd              ;         ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------+---------+
 
 
-+------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                ;
-+---------------------------------------------+--------------+
-; Resource                                    ; Usage        ;
-+---------------------------------------------+--------------+
-; Estimate of Logic utilization (ALMs needed) ; 73           ;
-;                                             ;              ;
-; Combinational ALUT usage for logic          ; 118          ;
-;     -- 7 input functions                    ; 0            ;
-;     -- 6 input functions                    ; 14           ;
-;     -- 5 input functions                    ; 16           ;
-;     -- 4 input functions                    ; 67           ;
-;     -- <=3 input functions                  ; 21           ;
-;                                             ;              ;
-; Dedicated logic registers                   ; 69           ;
-;                                             ;              ;
-; I/O pins                                    ; 76           ;
-;                                             ;              ;
-; Total DSP Blocks                            ; 0            ;
-;                                             ;              ;
-; Maximum fan-out node                        ; KEY[0]~input ;
-; Maximum fan-out                             ; 69           ;
-; Total fan-out                               ; 823          ;
-; Average fan-out                             ; 2.43         ;
-+---------------------------------------------+--------------+
++---------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                           ;
++---------------------------------------------+-----------------------------------------+
+; Resource                                    ; Usage                                   ;
++---------------------------------------------+-----------------------------------------+
+; Estimate of Logic utilization (ALMs needed) ; 74                                      ;
+;                                             ;                                         ;
+; Combinational ALUT usage for logic          ; 120                                     ;
+;     -- 7 input functions                    ; 0                                       ;
+;     -- 6 input functions                    ; 14                                      ;
+;     -- 5 input functions                    ; 16                                      ;
+;     -- 4 input functions                    ; 67                                      ;
+;     -- <=3 input functions                  ; 23                                      ;
+;                                             ;                                         ;
+; Dedicated logic registers                   ; 70                                      ;
+;                                             ;                                         ;
+; I/O pins                                    ; 81                                      ;
+;                                             ;                                         ;
+; Total DSP Blocks                            ; 0                                       ;
+;                                             ;                                         ;
+; Maximum fan-out node                        ; edgeDetector:\gravar:detectorSub0|saida ;
+; Maximum fan-out                             ; 69                                      ;
+; Total fan-out                               ; 833                                     ;
+; Average fan-out                             ; 2.37                                    ;
++---------------------------------------------+-----------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -267,7 +286,7 @@ https://fpgasoftware.intel.com/eula.
 +------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------+---------------------+--------------+
 ; Compilation Hierarchy Node               ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                         ; Entity Name         ; Library Name ;
 +------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------+---------------------+--------------+
-; |relogio                                 ; 118 (1)             ; 69 (0)                    ; 0                 ; 0          ; 76   ; 0            ; |relogio                                                    ; relogio             ; work         ;
+; |relogio                                 ; 120 (1)             ; 70 (0)                    ; 0                 ; 0          ; 81   ; 0            ; |relogio                                                    ; relogio             ; work         ;
 ;    |AND_logic:AndHEX2|                   ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|AND_logic:AndHEX2                                  ; AND_logic           ; work         ;
 ;    |DecoderAddress:DecoderSelEnd|        ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|DecoderAddress:DecoderSelEnd                       ; DecoderAddress      ; work         ;
 ;    |conversorHex7Seg:decoderHEX0|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|conversorHex7Seg:decoderHEX0                       ; conversorHex7Seg    ; work         ;
@@ -276,6 +295,7 @@ https://fpgasoftware.intel.com/eula.
 ;    |conversorHex7Seg:decoderHEX3|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|conversorHex7Seg:decoderHEX3                       ; conversorHex7Seg    ; work         ;
 ;    |conversorHex7Seg:decoderHEX4|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|conversorHex7Seg:decoderHEX4                       ; conversorHex7Seg    ; work         ;
 ;    |conversorHex7Seg:decoderHEX5|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|conversorHex7Seg:decoderHEX5                       ; conversorHex7Seg    ; work         ;
+;    |edgeDetector:\gravar:detectorSub0|   ; 2 (2)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|edgeDetector:\gravar:detectorSub0                  ; edgeDetector        ; work         ;
 ;    |memoriaRAM:MemoriaRAM|               ; 26 (26)             ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |relogio|memoriaRAM:MemoriaRAM                              ; memoriaRAM          ; work         ;
 ;    |memoriaROM:ROM_instrucao|            ; 17 (17)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|memoriaROM:ROM_instrucao                           ; memoriaROM          ; work         ;
 ;    |processador:Processador|             ; 27 (0)              ; 13 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |relogio|processador:Processador                            ; processador         ; work         ;
@@ -811,7 +831,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 69    ;
+; Total registers                              ; 70    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 13    ;
 ; Number of registers using Asynchronous Clear ; 0     ;
@@ -841,7 +861,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; dadoROM          ; 13    ; Signed Integer                               ;
 ; tamanhoRAM       ; 6     ; Signed Integer                               ;
 ; dadoRAM          ; 8     ; Signed Integer                               ;
-; simulacao        ; true  ; Enumerated                                   ;
+; simulacao        ; false ; Enumerated                                   ;
 +------------------+-------+----------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -1050,6 +1070,86 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++-----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: AND_logic:AndSW0_7 ;
++----------------+-------+----------------------------------------+
+; Parameter Name ; Value ; Type                                   ;
++----------------+-------+----------------------------------------+
+; larguradados   ; 1     ; Signed Integer                         ;
++----------------+-------+----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: AND_logic:AndSW8 ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; larguradados   ; 1     ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: AND_logic:AndSW9 ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; larguradados   ; 1     ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: AND_logic:AndKEY0 ;
++----------------+-------+---------------------------------------+
+; Parameter Name ; Value ; Type                                  ;
++----------------+-------+---------------------------------------+
+; larguradados   ; 1     ; Signed Integer                        ;
++----------------+-------+---------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: AND_logic:AndKEY1 ;
++----------------+-------+---------------------------------------+
+; Parameter Name ; Value ; Type                                  ;
++----------------+-------+---------------------------------------+
+; larguradados   ; 1     ; Signed Integer                        ;
++----------------+-------+---------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: AND_logic:AndKEY2 ;
++----------------+-------+---------------------------------------+
+; Parameter Name ; Value ; Type                                  ;
++----------------+-------+---------------------------------------+
+; larguradados   ; 1     ; Signed Integer                        ;
++----------------+-------+---------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: AND_logic:AndKEY3 ;
++----------------+-------+---------------------------------------+
+; Parameter Name ; Value ; Type                                  ;
++----------------+-------+---------------------------------------+
+; larguradados   ; 1     ; Signed Integer                        ;
++----------------+-------+---------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: AND_logic:AndKEY_RESET ;
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; larguradados   ; 1     ; Signed Integer                             ;
++----------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +--------------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: flipFlop:flipFlopLed2 ;
 +----------------+-------+-------------------------------------------+
@@ -1140,6 +1240,78 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++-----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "buffer3State_1porta:buffer3State_FPGA_RESET"                                         ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                                                             ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; saida ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "buffer3State_1porta:buffer3State_KEY3"                                               ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                                                             ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; saida ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "buffer3State_1porta:buffer3State_KEY2"                                               ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                                                             ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; saida ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "buffer3State_1porta:buffer3State_KEY1"                                               ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                                                             ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; saida ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "buffer3State_1porta:buffer3State_KEY0"                                               ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                                                             ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; saida ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "buffer3State_1porta:buffer3State_SW9"                                                ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                                                             ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; saida ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "buffer3State_1porta:buffer3State_SW8"                                                ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                                                             ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; saida ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "buffer3State_8portas:buffer3State_SW0_7"                                             ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                                                             ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; saida ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+
+
 +----------------------------------------------------------+
 ; Port Connectivity Checks: "conversorHex7Seg:decoderHEX5" ;
 +----------+-------+----------+----------------------------+
@@ -1220,7 +1392,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port        ; Type   ; Severity ; Details                                                                             ;
 +-------------+--------+----------+-------------------------------------------------------------------------------------+
-; saida[7..5] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; saida[7..6] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 ; saida[3..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 +-------------+--------+----------+-------------------------------------------------------------------------------------+
 
@@ -1257,28 +1429,30 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 69                          ;
+; arriav_ff             ; 70                          ;
 ;     ENA               ; 56                          ;
 ;     ENA SLD           ; 4                           ;
 ;     SLD               ; 9                           ;
-; arriav_lcell_comb     ; 118                         ;
+;     plain             ; 1                           ;
+; arriav_lcell_comb     ; 120                         ;
 ;     arith             ; 18                          ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 9                           ;
 ;         3 data inputs ; 2                           ;
 ;         4 data inputs ; 2                           ;
 ;         5 data inputs ; 4                           ;
-;     normal            ; 100                         ;
+;     normal            ; 102                         ;
 ;         0 data inputs ; 1                           ;
-;         2 data inputs ; 5                           ;
+;         1 data inputs ; 1                           ;
+;         2 data inputs ; 6                           ;
 ;         3 data inputs ; 3                           ;
 ;         4 data inputs ; 65                          ;
 ;         5 data inputs ; 12                          ;
 ;         6 data inputs ; 14                          ;
-; boundary_port         ; 76                          ;
+; boundary_port         ; 81                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 6.30                        ;
-; Average LUT depth     ; 3.20                        ;
+; Average LUT depth     ; 3.16                        ;
 +-----------------------+-----------------------------+
 
 
@@ -1287,7 +1461,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -1297,9 +1471,15 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Thu Apr 14 10:47:59 2022
+    Info: Processing started: Thu Apr 14 16:30:21 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off relogio -c relogio
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file buffer3state_8portas.vhd
+    Info (12022): Found design unit 1: buffer3State_8portas-comportamento File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/buffer3State_8portas.vhd Line: 12
+    Info (12023): Found entity 1: buffer3State_8portas File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/buffer3State_8portas.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file buffer3state_1porta.vhd
+    Info (12022): Found design unit 1: buffer3State_1porta-comportamento File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/buffer3State_1porta.vhd Line: 12
+    Info (12023): Found entity 1: buffer3State_1porta File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/buffer3State_1porta.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file ulasomasub.vhd
     Info (12022): Found design unit 1: ULASomaSub-comportamento File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/ULASomaSub.vhd Line: 16
     Info (12023): Found entity 1: ULASomaSub File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/ULASomaSub.vhd Line: 6
@@ -1344,23 +1524,24 @@ Info (12021): Found 2 design units, including 1 entities, in source file and_log
     Info (12022): Found design unit 1: AND_logic-comportamento File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/AND_logic.vhd Line: 17
     Info (12023): Found entity 1: AND_logic File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/AND_logic.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file relogio.vhd
-    Info (12022): Found design unit 1: relogio-arquitetura File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 28
+    Info (12022): Found design unit 1: relogio-arquitetura File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 29
     Info (12023): Found entity 1: relogio File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 4
 Info (12127): Elaborating entity "relogio" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at relogio.vhd(21): used implicit default value for signal "PC_OUT" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
-Warning (10541): VHDL Signal Declaration warning at relogio.vhd(31): used implicit default value for signal "RST" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 31
-Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(80): object "bloco0" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 80
-Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(81): object "bloco1" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 81
-Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(82): object "bloco2" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 82
-Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(83): object "bloco3" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 83
-Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(85): object "bloco5" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 85
-Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(86): object "bloco6" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 86
-Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(87): object "bloco7" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 87
-Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(97): object "endereco6" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 97
-Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(98): object "endereco7" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 98
-Info (12128): Elaborating entity "memoriaROM" for hierarchy "memoriaROM:ROM_instrucao" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 114
-Info (12128): Elaborating entity "memoriaRAM" for hierarchy "memoriaRAM:MemoriaRAM" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 120
-Info (12128): Elaborating entity "processador" for hierarchy "processador:Processador" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 131
+Warning (10541): VHDL Signal Declaration warning at relogio.vhd(22): used implicit default value for signal "PC_OUT" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
+Warning (10541): VHDL Signal Declaration warning at relogio.vhd(32): used implicit default value for signal "RST" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 32
+Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(36): object "Data_IN" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 36
+Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(99): object "bloco0" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 99
+Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(100): object "bloco1" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 100
+Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(101): object "bloco2" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 101
+Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(102): object "bloco3" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 102
+Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(105): object "bloco6" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 105
+Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(106): object "bloco7" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 106
+Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(116): object "endereco6" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 116
+Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(117): object "endereco7" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 117
+Info (12129): Elaborating entity "edgeDetector" using architecture "A:bordasubida" for hierarchy "edgeDetector:\gravar:detectorSub0" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 127
+Info (12128): Elaborating entity "memoriaROM" for hierarchy "memoriaROM:ROM_instrucao" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 133
+Info (12128): Elaborating entity "memoriaRAM" for hierarchy "memoriaRAM:MemoriaRAM" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 139
+Info (12128): Elaborating entity "processador" for hierarchy "processador:Processador" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 150
 Warning (10036): Verilog HDL or VHDL warning at processador.vhd(36): object "JMP" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/processador.vhd Line: 36
 Warning (10036): Verilog HDL or VHDL warning at processador.vhd(37): object "RET" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/processador.vhd Line: 37
 Warning (10036): Verilog HDL or VHDL warning at processador.vhd(38): object "JSR" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/processador.vhd Line: 38
@@ -1373,10 +1554,12 @@ Info (12128): Elaborating entity "muxGenerico4x1" for hierarchy "processador:Pro
 Info (12128): Elaborating entity "ULASomaSub" for hierarchy "processador:Processador|ULASomaSub:ULA1" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/processador.vhd Line: 83
 Info (12128): Elaborating entity "flipFlop" for hierarchy "processador:Processador|flipFlop:flagIgual" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/processador.vhd Line: 87
 Info (12128): Elaborating entity "DecoderInstruction" for hierarchy "processador:Processador|DecoderInstruction:decoder" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/processador.vhd Line: 91
-Info (12128): Elaborating entity "DecoderAddress" for hierarchy "DecoderAddress:DecoderHabBloc" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 143
-Info (12128): Elaborating entity "AND_logic" for hierarchy "AND_logic:AndLed2" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 153
-Info (12128): Elaborating entity "registradorGenerico" for hierarchy "registradorGenerico:RegistradorHEX0" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 238
-Info (12128): Elaborating entity "conversorHex7Seg" for hierarchy "conversorHex7Seg:decoderHEX0" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 282
+Info (12128): Elaborating entity "DecoderAddress" for hierarchy "DecoderAddress:DecoderHabBloc" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 162
+Info (12128): Elaborating entity "AND_logic" for hierarchy "AND_logic:AndLed2" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 173
+Info (12128): Elaborating entity "registradorGenerico" for hierarchy "registradorGenerico:RegistradorHEX0" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 316
+Info (12128): Elaborating entity "conversorHex7Seg" for hierarchy "conversorHex7Seg:decoderHEX0" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 360
+Info (12128): Elaborating entity "buffer3State_8portas" for hierarchy "buffer3State_8portas:buffer3State_SW0_7" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 404
+Info (12128): Elaborating entity "buffer3State_1porta" for hierarchy "buffer3State_1porta:buffer3State_SW8" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 409
 Info (276014): Found 2 instances of uninferred RAM logic
     Info (276007): RAM logic "memoriaRAM:MemoriaRAM|ram" is uninferred due to asynchronous read logic File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/memoriaRAM.vhd Line: 28
     Info (276007): RAM logic "memoriaROM:ROM_instrucao|memROM" is uninferred due to asynchronous read logic File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/memoriaROM.vhd Line: 53
@@ -1390,52 +1573,56 @@ Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
     Warning (13049): Converted tri-state buffer "memoriaRAM:MemoriaRAM|dado_out[6]" feeding internal logic into a wire File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/memoriaRAM.vhd Line: 18
     Warning (13049): Converted tri-state buffer "memoriaRAM:MemoriaRAM|dado_out[7]" feeding internal logic into a wire File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/memoriaRAM.vhd Line: 18
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "PC_OUT[0]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
-    Warning (13410): Pin "PC_OUT[1]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
-    Warning (13410): Pin "PC_OUT[2]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
-    Warning (13410): Pin "PC_OUT[3]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
-    Warning (13410): Pin "PC_OUT[4]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
-    Warning (13410): Pin "PC_OUT[5]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
-    Warning (13410): Pin "PC_OUT[6]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
-    Warning (13410): Pin "PC_OUT[7]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
-    Warning (13410): Pin "PC_OUT[8]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
-    Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
-    Warning (13410): Pin "LEDR[1]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
-    Warning (13410): Pin "LEDR[2]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
-    Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
-    Warning (13410): Pin "LEDR[4]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
-    Warning (13410): Pin "LEDR[5]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
-    Warning (13410): Pin "LEDR[6]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
-    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
-    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
-    Warning (13410): Pin "LEDR[9]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
+    Warning (13410): Pin "PC_OUT[0]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
+    Warning (13410): Pin "PC_OUT[1]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
+    Warning (13410): Pin "PC_OUT[2]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
+    Warning (13410): Pin "PC_OUT[3]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
+    Warning (13410): Pin "PC_OUT[4]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
+    Warning (13410): Pin "PC_OUT[5]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
+    Warning (13410): Pin "PC_OUT[6]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
+    Warning (13410): Pin "PC_OUT[7]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
+    Warning (13410): Pin "PC_OUT[8]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 22
+    Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 23
+    Warning (13410): Pin "LEDR[1]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 23
+    Warning (13410): Pin "LEDR[2]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 23
+    Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 23
+    Warning (13410): Pin "LEDR[4]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 23
+    Warning (13410): Pin "LEDR[5]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 23
+    Warning (13410): Pin "LEDR[6]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 23
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 23
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 23
+    Warning (13410): Pin "LEDR[9]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 23
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 452 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 14 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "CLOCK_50" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 18
+Warning (21074): Design contains 18 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "KEY[1]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 19
     Warning (15610): No output dependent on input pin "KEY[2]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 19
     Warning (15610): No output dependent on input pin "KEY[3]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 19
-    Warning (15610): No output dependent on input pin "SW[0]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
-    Warning (15610): No output dependent on input pin "SW[1]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
-    Warning (15610): No output dependent on input pin "SW[2]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
-    Warning (15610): No output dependent on input pin "SW[3]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
-    Warning (15610): No output dependent on input pin "SW[4]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
-    Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
-    Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
-    Warning (15610): No output dependent on input pin "SW[7]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
-    Warning (15610): No output dependent on input pin "SW[8]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
-    Warning (15610): No output dependent on input pin "SW[9]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
-Info (21057): Implemented 250 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 15 input pins
+    Warning (15610): No output dependent on input pin "KEY0" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
+    Warning (15610): No output dependent on input pin "KEY1" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
+    Warning (15610): No output dependent on input pin "KEY2" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
+    Warning (15610): No output dependent on input pin "KEY3" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
+    Warning (15610): No output dependent on input pin "FPGA_RESET" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
+    Warning (15610): No output dependent on input pin "SW[0]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
+    Warning (15610): No output dependent on input pin "SW[1]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
+    Warning (15610): No output dependent on input pin "SW[2]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
+    Warning (15610): No output dependent on input pin "SW[3]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
+    Warning (15610): No output dependent on input pin "SW[4]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
+    Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
+    Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
+    Warning (15610): No output dependent on input pin "SW[7]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
+    Warning (15610): No output dependent on input pin "SW[8]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
+    Warning (15610): No output dependent on input pin "SW[9]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
+Info (21057): Implemented 257 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 20 input pins
     Info (21059): Implemented 61 output pins
-    Info (21061): Implemented 174 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 59 warnings
-    Info: Peak virtual memory: 4860 megabytes
-    Info: Processing ended: Thu Apr 14 10:48:12 2022
+    Info (21061): Implemented 176 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 63 warnings
+    Info: Peak virtual memory: 4853 megabytes
+    Info: Processing ended: Thu Apr 14 16:30:34 2022
     Info: Elapsed time: 00:00:13
-    Info: Total CPU time (on all processors): 00:00:27
+    Info: Total CPU time (on all processors): 00:00:26
 
 
