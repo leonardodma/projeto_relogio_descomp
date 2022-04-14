@@ -6,9 +6,9 @@ entity flipFlop is
         larguraDados : natural := 8
     );
     port (DIN : in std_logic;
-       DOUT : out std_logic;
-       ENABLE : in std_logic;
-       CLK,RST : in std_logic
+          DOUT : out std_logic;
+          ENABLE : in std_logic;
+          CLK, RST : in std_logic
         );
 end entity;
 

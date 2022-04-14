@@ -19,7 +19,7 @@ entity relogio is
     KEY: in std_logic_vector(3 downto 0);
     SW: in std_logic_vector(9 downto 0);
     PC_OUT: out std_logic_vector(larguraEnderecos-1 downto 0);
-    LEDR  : out std_logic_vector(9 downto 0);
+    LEDR  : out std_logic_vector(9 downto 0)
   );
 end entity;
 
@@ -41,6 +41,10 @@ architecture arquitetura of relogio is
   signal saidaAndLedR: std_logic;
   signal saidaAndLed1: std_logic;
   signal saidaAndLed2: std_logic;
+  signal saidaFlipFlopLed2: std_logic;
+  signal saidaFlipFlopLed1: std_logic;
+  signal saidaRegistradorLedR: std_logic_vector(7 downto 0);
+
 
   signal blocos : std_logic_vector (7 downto 0);
   signal bloco0 : std_logic;
@@ -61,21 +65,6 @@ architecture arquitetura of relogio is
   signal endereco5 : std_logic;
   signal endereco6 : std_logic;
   signal endereco7 : std_logic;
-
-
-  -- Sinais de Controle
-  signal Habilita_regend : std_logic;
-  signal JMP : std_logic;
-  signal RET : std_logic;
-  signal JSR : std_logic;
-  signal JEQ : std_logic;
-  signal SelMUX : std_logic;
-  signal Habilita_A : std_logic;
-  signal Operacao_ULA :std_logic_vector (1 downto 0);
-  signal habFlag : std_logic;
-  signal hab_leitura : std_logic;
-  signal hab_escrita : std_logic;
-  signal SelMUX4x1 : std_logic_vector (1 downto 0);
 
 begin
 
@@ -149,7 +138,31 @@ AndLedR : entity work.AND_logic generic map(larguraDados => 1)
                     entradaC => endereco0, 
                     entradaD => dataAddressA5_LED,
                     saida => saidaAndLedR);
-                                    
+                
+            
+flipFlopLed2 : entity work.flipFlop  generic map (larguraDados => 1)
+               port map (DIN => Data_OUT(0), 
+                         DOUT => saidaFlipFlopLed2, 
+                         ENABLE => saidaAndLed2, 
+                         CLK => CLK, 
+                         RST => RST);
+
+
+flipFlopLed1 : entity work.flipFlop  generic map (larguraDados => 1)
+               port map (DIN => Data_OUT(0), 
+                         DOUT => saidaFlipFlopLed1, 
+                         ENABLE => saidaAndLed1, 
+                         CLK => CLK, 
+                         RST => RST);
+
+
+RegistradorLedR: entity work.registradorGenerico generic map (larguraDados => larguraDados)
+                 port map (DIN => Data_OUT, 
+                           DOUT => saidaRegistradorLedR, 
+                           ENABLE => saidaAndLedR, 
+                           CLK => CLK, 
+                           RST => RST);
+
 
 -- Sinal de Controle LEDS ou HEX
 dataAddressA5_LED <= not(Data_Address(5));
@@ -174,5 +187,11 @@ endereco4 <= enderecos(4);
 endereco5 <= enderecos(5); 
 endereco6 <= enderecos(6); 
 endereco7 <= enderecos(7); 
+
+-- Atribuição dos LEDs
+LED(7 downto 0) <= saidaAndLedR;
+LED(8) <= saidaAndLed1;
+LED(9) <= saidaAndLed2;
+
 
 end architecture;
