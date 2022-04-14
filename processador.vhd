@@ -67,7 +67,7 @@ incrementaPC : entity work.somaConstante  generic map (larguraDados => larguraEn
                port map(entrada => Endereco, saida => proxPC);
 	
                
-reg_endretorno : entity work.reg_endretorno generic map (larguraDados => larguraEnderecos)
+reg_endretorno : entity work.registradorGenerico generic map (larguraDados => larguraEnderecos)
                  port map (DIN => proxPC, DOUT => saida_regend_mux4x1, ENABLE => Habilita_regend, CLK => CLK, RST => RST);
 
                  
@@ -88,11 +88,11 @@ flagIgual : entity work.flipFlop  generic map (larguraDados => 1)
             port map (DIN => Entrada_Flag, DOUT => Saida_Flag, ENABLE => habFlag, CLK => CLK, RST => RST);
 
                 
-decoder : entity work.decoder
+decoder : entity work.DecoderInstruction
           port map(opcode => Instruction_IN(12 downto 9),
                    flagIgual => Saida_Flag,
                    saida => Sinais_Controle,
-				   saidaMux => SelMUX4x1);
+						 saidaMux => SelMUX4x1);
 
 
 -- Sinais de Controle

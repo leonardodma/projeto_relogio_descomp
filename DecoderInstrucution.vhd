@@ -45,7 +45,7 @@ architecture comportamento of DecoderInstruction is
 	constant instru_RET: std_logic_vector(11 downto 0) := "001000000000";
   
 begin
-	saida <= instru_NOP  when opcode = NOP else
+	saida <= 	instru_NOP  when opcode = NOP else
 				instru_LDA  when opcode = LDA else
 				instru_SOMA when opcode = SOMA else
 				instru_SUB  when opcode = SUB else

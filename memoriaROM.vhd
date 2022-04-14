@@ -33,22 +33,18 @@ architecture assincrona of memoriaROM is
         return blocoMemoria is variable tmp : blocoMemoria := (others => (others => '0'));
   begin
         -- Inicializa os endereços:
-		tmp(0)  := JSR & "000001110"; -- Pula pra sub rotina da linha 14
-		tmp(1)  := JMP & "000000101"; 
-		tmp(2)  := JEQ & "000001001"; 
-		tmp(3)  := NOP & "000000000"; 
-		tmp(4)  := NOP & "000000000";
-		tmp(5)  := LDI & "000000101";
-		tmp(6)  := STA & "000000000"; 
-		tmp(7)  := CEQ & "000000000"; 
-		tmp(8)  := JMP & "000000010"; 
-		tmp(9)  := NOP & "000000000";
-		tmp(10) := LDI & "000000100"; 
-		tmp(11) := CEQ & "000000000"; 
-		tmp(12) := STA & "000000000"; 
-		tmp(13) := JMP & "000001101"; 
-		tmp(14) := NOP & "000000000"; -- nop
-		tmp(15) := RET & "000000000"; -- retorna pra o endereço de retorno (1)
+		tmp(0)  := LDI 	& "000000001"; 
+		tmp(1)  := STA 	& "000000000"; 
+		tmp(2)  := SOMA & "000000000"; 
+		tmp(3)  := STA 	& "100100000";  -- STA @288
+		tmp(4)  := SOMA & "000000000";
+		tmp(5)  := STA 	& "100100001";  -- STA @289
+		tmp(6)  := SOMA & "000000000"; 
+		tmp(7)  := STA 	& "100100010";  -- STA @290
+		tmp(8)  := SOMA & "000000000"; 
+		tmp(9)  := STA 	& "100100011";  -- STA @291
+		tmp(10) := SOMA & "000000000"; 
+		tmp(11) := STA 	& "100100100";  -- STA @292
 		  
 		  
         return tmp;

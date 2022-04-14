@@ -9,8 +9,8 @@ entity relogio is
             tamanhoROM: natural := 9;
             dadoROM: natural := 13;
 
-            tamanhoRAM: natural := 8;
-            dadoRAM: natural := 6;
+            tamanhoRAM: natural := 6;
+            dadoRAM: natural := 8;
             
             simulacao : boolean := TRUE -- para gravar na placa, altere de TRUE para FALSE
   );
@@ -19,33 +19,63 @@ entity relogio is
     KEY: in std_logic_vector(3 downto 0);
     SW: in std_logic_vector(9 downto 0);
     PC_OUT: out std_logic_vector(larguraEnderecos-1 downto 0);
-    LEDR  : out std_logic_vector(9 downto 0)
+    LEDR  : out std_logic_vector(9 downto 0);
+    HEX0, HEX1, HEX2, HEX3, HEX4, HEX5 : out std_logic_vector(6 downto 0)
   );
 end entity;
 
 
 architecture arquitetura of relogio is
 
-  CLK: in std_logic;
-  RST: in std_logic;
-  Instruction_IN: in std_logic_vector(12 downto 0);
-  Data_IN: in std_logic_vector(7 downto 0);
-  Data_OUT: out std_logic_vector(7 downto 0);
-  Data_Address: out std_logic_vector(8 downto 0);
-  Control: out std_logic_vector(1 downto 0); --Rd(1), Wr(0)
-  ROM_Address: out std_logic_vector(8 downto 0)
+  signal CLK : std_logic;
+  signal RST: std_logic;
+
+  -- Precessor signals
+  signal Instruction_IN: std_logic_vector(12 downto 0);
+  signal Data_IN: std_logic_vector(7 downto 0);
+  signal Data_OUT: std_logic_vector(7 downto 0);
+  signal Saida_ROM: std_logic_vector(12 downto 0);
+  signal Saida_RAM: std_logic_vector(7 downto 0);
+  signal Data_Address: std_logic_vector(8 downto 0);
+  signal Control: std_logic_vector(1 downto 0); --Rd(1), Wr(0)
+  signal ROM_Address: std_logic_vector(8 downto 0);
+  signal hab_escrita: std_logic;
+  signal hab_leitura : std_logic;
 
   -- NOVO
   signal dataAddressA5_LED : std_logic;
   signal dataAddressA5_HEX : std_logic;
+
   signal saidaAndLedR: std_logic;
   signal saidaAndLed1: std_logic;
   signal saidaAndLed2: std_logic;
+
+  signal saidaAndHEX0: std_logic;
+  signal saidaAndHEX1: std_logic;
+  signal saidaAndHEX2: std_logic;
+  signal saidaAndHEX3: std_logic;
+  signal saidaAndHEX4: std_logic;
+  signal saidaAndHEX5: std_logic;
+
   signal saidaFlipFlopLed2: std_logic;
   signal saidaFlipFlopLed1: std_logic;
   signal saidaRegistradorLedR: std_logic_vector(7 downto 0);
 
+  signal saidaRegistradorHEX0: std_logic_vector(3 downto 0);
+  signal saidaRegistradorHEX1: std_logic_vector(3 downto 0);
+  signal saidaRegistradorHEX2: std_logic_vector(3 downto 0);
+  signal saidaRegistradorHEX3: std_logic_vector(3 downto 0);
+  signal saidaRegistradorHEX4: std_logic_vector(3 downto 0);
+  signal saidaRegistradorHEX5: std_logic_vector(3 downto 0);
 
+  signal saidaDecoderHEX0: std_logic_vector(6 downto 0);
+  signal saidaDecoderHEX1: std_logic_vector(6 downto 0);
+  signal saidaDecoderHEX2: std_logic_vector(6 downto 0);
+  signal saidaDecoderHEX3: std_logic_vector(6 downto 0);
+  signal saidaDecoderHEX4: std_logic_vector(6 downto 0);
+  signal saidaDecoderHEX5: std_logic_vector(6 downto 0);
+
+  -- Blocos
   signal blocos : std_logic_vector (7 downto 0);
   signal bloco0 : std_logic;
   signal bloco1 : std_logic;
@@ -56,6 +86,7 @@ architecture arquitetura of relogio is
   signal bloco6 : std_logic;
   signal bloco7 : std_logic;
 
+  -- Endereco
   signal enderecos : std_logic_vector (7 downto 0);
   signal endereco0 : std_logic;
   signal endereco1 : std_logic;
@@ -79,25 +110,28 @@ detectorSub0: work.edgeDetector(bordaSubida)
 end generate;
 
 
+-- MEMÓRIA ROM
 ROM_instrucao : entity work.memoriaROM   generic map (dataWidth => dadoROM, addrWidth => tamanhoROM)
                 port map (Endereco => ROM_Address, 
                           Dado => Saida_ROM);
 
 
+-- MEMÓRIA RAM                          
 MemoriaRAM : entity work.memoriaRAM   generic map (dataWidth => dadoRAM, addrWidth => tamanhoRAM)
              port map (addr => Data_Address(5 downto 0), 
-                       we => Control(0), 
-                       re => Control(1), 
+                       we => hab_escrita, 
+                       re => hab_leitura, 
                        habilita => bloco4, 
                        dado_in => Data_OUT, 
                        dado_out => Saida_RAM, 
                        clk => CLK);
 
 
+-- PROCESSADOR (AULA 05)                       
 Processador: entity work.processador generic map (larguraDados => larguraDados, larguraEnderecos => larguraEnderecos)
              port map (
               CLK => CLK,
-              RST => '0',
+              RST => RST,
               Instruction_IN => Saida_ROM,
               Data_IN => Saida_RAM,
               Data_OUT => Data_OUT,
@@ -105,48 +139,87 @@ Processador: entity work.processador generic map (larguraDados => larguraDados, 
               Control => Control,
               ROM_Address => ROM_Address);        
 
-
+-- DECODIFICADORES DE BLOCOS E ENDERECOS
 DecoderHabBloc : entity work.DecoderAddress
                  port map(entrada => Data_Address(8 downto 6),
                           saida => blocos);
 
-
 DecoderSelEnd : entity work.DecoderAddress
-                port map(entrada => Data_Address(0 downto 2),
-                         saida => sinaisControle);
+                port map(entrada => Data_Address(2 downto 0),
+                         saida => enderecos);
 
 
+-- Portas ANDS: LEDS e DISPLAYS HEX
 AndLed2 : entity work.AND_logic generic map(larguraDados => 1)
           port map (entradaA => hab_escrita, 
                     entradaB => bloco4, 
                     entradaC => dataAddressA5_LED,
                     entradaD => endereco2,
-                    saida => saidaAndLed2);
-          
+                    saida    => saidaAndLed2);        
 
 AndLed1 : entity work.AND_logic generic map(larguraDados => 1)
           port map (entradaA => hab_escrita, 
                     entradaB => bloco4, 
                     entradaC => endereco1, 
                     entradaD => dataAddressA5_LED,
-                    saida => saidaAndLed1);
-
+                    saida    => saidaAndLed1);
 
 AndLedR : entity work.AND_logic generic map(larguraDados => 1)
           port map (entradaA => hab_escrita, 
                     entradaB => bloco4, 
                     entradaC => endereco0, 
                     entradaD => dataAddressA5_LED,
-                    saida => saidaAndLedR);
-                
-            
+                    saida    => saidaAndLedR);
+
+AndHEX0 : entity work.AND_logic generic map(larguraDados => 1)
+          port map (entradaA => hab_escrita, 
+                    entradaB => bloco4, 
+                    entradaC => endereco0, 
+                    entradaD => dataAddressA5_HEX,
+                    saida    => saidaAndHEX0);
+                               
+AndHEX1 : entity work.AND_logic generic map(larguraDados => 1)
+          port map (entradaA => hab_escrita, 
+                    entradaB => bloco4, 
+                    entradaC => endereco1, 
+                    entradaD => dataAddressA5_HEX,
+                    saida    => saidaAndHEX1);
+
+AndHEX2 : entity work.AND_logic generic map(larguraDados => 1)
+          port map (entradaA => hab_escrita, 
+                    entradaB => bloco4, 
+                    entradaC => endereco2, 
+                    entradaD => dataAddressA5_HEX,
+                    saida    => saidaAndHEX2);
+
+AndHEX3 : entity work.AND_logic generic map(larguraDados => 1)
+          port map (entradaA => hab_escrita, 
+                    entradaB => bloco4, 
+                    entradaC => endereco3, 
+                    entradaD => dataAddressA5_HEX,
+                    saida    => saidaAndHEX3);            
+
+AndHEX4 : entity work.AND_logic generic map(larguraDados => 1)
+          port map (entradaA => hab_escrita, 
+                    entradaB => bloco4, 
+                    entradaC => endereco4, 
+                    entradaD => dataAddressA5_HEX,
+                    saida    => saidaAndHEX4);
+
+AndHEX5 : entity work.AND_logic generic map(larguraDados => 1)
+          port map (entradaA => hab_escrita, 
+                    entradaB => bloco4, 
+                    entradaC => endereco5, 
+                    entradaD => dataAddressA5_HEX,
+                    saida    => saidaAndHEX5);
+
+-- FLIP FLOPS E REGISTRADORES DOS LEDS E DISPLAYS HEX
 flipFlopLed2 : entity work.flipFlop  generic map (larguraDados => 1)
                port map (DIN => Data_OUT(0), 
                          DOUT => saidaFlipFlopLed2, 
                          ENABLE => saidaAndLed2, 
                          CLK => CLK, 
                          RST => RST);
-
 
 flipFlopLed1 : entity work.flipFlop  generic map (larguraDados => 1)
                port map (DIN => Data_OUT(0), 
@@ -155,14 +228,103 @@ flipFlopLed1 : entity work.flipFlop  generic map (larguraDados => 1)
                          CLK => CLK, 
                          RST => RST);
 
-
 RegistradorLedR: entity work.registradorGenerico generic map (larguraDados => larguraDados)
                  port map (DIN => Data_OUT, 
                            DOUT => saidaRegistradorLedR, 
                            ENABLE => saidaAndLedR, 
                            CLK => CLK, 
                            RST => RST);
+                                    
+RegistradorHEX0: entity work.registradorGenerico generic map (larguraDados => 4)
+                 port map (DIN => Data_OUT(3 downto 0), 
+                           DOUT => saidaRegistradorHEX0, 
+                           ENABLE => saidaAndHEX0, 
+                           CLK => CLK, 
+                           RST => RST);
 
+RegistradorHEX1: entity work.registradorGenerico generic map (larguraDados => 4)
+                 port map (DIN => Data_OUT(3 downto 0), 
+                           DOUT => saidaRegistradorHEX1, 
+                           ENABLE => saidaAndHEX1, 
+                           CLK => CLK, 
+                           RST => RST);
+                           
+RegistradorHEX2: entity work.registradorGenerico generic map (larguraDados => 4)
+                 port map (DIN => Data_OUT(3 downto 0), 
+                           DOUT => saidaRegistradorHEX2, 
+                           ENABLE => saidaAndHEX2, 
+                           CLK => CLK, 
+                           RST => RST);
+
+RegistradorHEX3: entity work.registradorGenerico generic map (larguraDados => 4)
+                 port map (DIN => Data_OUT(3 downto 0), 
+                           DOUT => saidaRegistradorHEX3, 
+                           ENABLE => saidaAndHEX3, 
+                           CLK => CLK, 
+                           RST => RST);
+
+RegistradorHEX4: entity work.registradorGenerico generic map (larguraDados => 4)
+                 port map (DIN => Data_OUT(3 downto 0), 
+                           DOUT => saidaRegistradorHEX4, 
+                           ENABLE => saidaAndHEX4, 
+                           CLK => CLK, 
+                           RST => RST);
+
+RegistradorHEX5: entity work.registradorGenerico generic map (larguraDados => 4)
+                 port map (DIN => Data_OUT(3 downto 0), 
+                           DOUT => saidaRegistradorHEX5, 
+                           ENABLE => saidaAndHEX5, 
+                           CLK => CLK, 
+                           RST => RST);
+
+
+-- ATRIBUIÇÃO DOS DISPLAYS DE 7 SEGMENTOS
+decoderHEX0 : entity work.conversorHex7Seg
+              port map(dadoHex => saidaRegistradorHEX0,
+                       apaga =>  '0',
+                       negativo => '0',
+                       overFlow =>  '0',
+                       saida7seg => saidaDecoderHEX0);
+                    
+decoderHEX1 : entity work.conversorHex7Seg
+              port map(dadoHex => saidaRegistradorHEX1,
+                       apaga =>  '0',
+                       negativo => '0',
+                       overFlow =>  '0',
+                       saida7seg => saidaDecoderHEX1);
+                
+decoderHEX2 : entity work.conversorHex7Seg
+              port map(dadoHex => saidaRegistradorHEX2,
+                       apaga =>  '0',
+                       negativo => '0',
+                       overFlow =>  '0',
+                       saida7seg => saidaDecoderHEX2);
+                      
+decoderHEX3 : entity work.conversorHex7Seg
+              port map(dadoHex => saidaRegistradorHEX3,
+                       apaga =>  '0',
+                       negativo => '0',
+                       overFlow =>  '0',
+                       saida7seg => saidaDecoderHEX3);
+
+decoderHEX4 : entity work.conversorHex7Seg
+              port map(dadoHex => saidaRegistradorHEX4,
+                       apaga =>  '0',
+                       negativo => '0',
+                       overFlow =>  '0',
+                       saida7seg => saidaDecoderHEX4);
+
+decoderHEX5 : entity work.conversorHex7Seg
+              port map(dadoHex => saidaRegistradorHEX5,
+                       apaga =>  '0',
+                       negativo => '0',
+                       overFlow =>  '0',
+                       saida7seg => saidaDecoderHEX5);
+
+
+-- ############### Atribuindo Sinais ###############
+hab_escrita <= Control(0);
+hab_leitura <= Control(1);
 
 -- Sinal de Controle LEDS ou HEX
 dataAddressA5_LED <= not(Data_Address(5));
@@ -189,9 +351,16 @@ endereco6 <= enderecos(6);
 endereco7 <= enderecos(7); 
 
 -- Atribuição dos LEDs
-LED(7 downto 0) <= saidaAndLedR;
-LED(8) <= saidaAndLed1;
-LED(9) <= saidaAndLed2;
+LEDR(7 downto 0) <= saidaRegistradorLedR;
+LEDR(8) <= saidaFlipFlopLed1;
+LEDR(9) <= saidaFlipFlopLed2;
 
+-- Atribuição dos HEXs
+HEX0 <= saidaDecoderHEX0;
+HEX1 <= saidaDecoderHEX1;
+HEX2 <= saidaDecoderHEX2;
+HEX3 <= saidaDecoderHEX3;
+HEX4 <= saidaDecoderHEX4;
+HEX5 <= saidaDecoderHEX5;
 
 end architecture;
