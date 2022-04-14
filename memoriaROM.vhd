@@ -35,18 +35,20 @@ architecture assincrona of memoriaROM is
         -- Inicializa os endereços:
 		tmp(0)  := LDI 	& "000000001"; 
 		tmp(1)  := STA 	& "000000000"; 
-		tmp(2)  := SOMA & "000000000"; 
+		tmp(2)  := SOMA   & "000000000"; 
 		tmp(3)  := STA 	& "100100000";  -- STA @288
-		tmp(4)  := SOMA & "000000000";
+		tmp(4)  := SOMA   & "000000000";
 		tmp(5)  := STA 	& "100100001";  -- STA @289
-		tmp(6)  := SOMA & "000000000"; 
+		tmp(6)  := SOMA   & "000000000"; 
 		tmp(7)  := STA 	& "100100010";  -- STA @290
-		tmp(8)  := SOMA & "000000000"; 
+		tmp(8)  := SOMA   & "000000000"; 
 		tmp(9)  := STA 	& "100100011";  -- STA @291
-		tmp(10) := SOMA & "000000000"; 
+		tmp(10) := SOMA   & "000000000"; 
 		tmp(11) := STA 	& "100100100";  -- STA @292
-		  
-		  
+		tmp(12) := SOMA   & "000000000"; 
+		tmp(13) := STA 	& "100100101";  -- STA @294  
+		tmp(14) := JMP 	& "000000010";  -- JMP @2 
+		
         return tmp;
     end initMemory;
 

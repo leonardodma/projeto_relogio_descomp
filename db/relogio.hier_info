@@ -1,6 +1,16 @@
 |relogio
-CLOCK_50 => edgedetector:gravar:detectorSub0.clk
-KEY[0] => edgedetector:gravar:detectorSub0.entrada
+CLOCK_50 => ~NO_FANOUT~
+KEY[0] => memoriaram:MemoriaRAM.clk
+KEY[0] => processador:Processador.CLK
+KEY[0] => flipflop:flipFlopLed2.CLK
+KEY[0] => flipflop:flipFlopLed1.CLK
+KEY[0] => registradorgenerico:RegistradorLedR.CLK
+KEY[0] => registradorgenerico:RegistradorHEX0.CLK
+KEY[0] => registradorgenerico:RegistradorHEX1.CLK
+KEY[0] => registradorgenerico:RegistradorHEX2.CLK
+KEY[0] => registradorgenerico:RegistradorHEX3.CLK
+KEY[0] => registradorgenerico:RegistradorHEX4.CLK
+KEY[0] => registradorgenerico:RegistradorHEX5.CLK
 KEY[1] => ~NO_FANOUT~
 KEY[2] => ~NO_FANOUT~
 KEY[3] => ~NO_FANOUT~
@@ -20,15 +30,15 @@ SW[6] => buffer3state_8portas:buffer3State_SW0_7.entrada[6]
 SW[7] => buffer3state_8portas:buffer3State_SW0_7.entrada[7]
 SW[8] => buffer3state_1porta:buffer3State_SW8.entrada
 SW[9] => buffer3state_1porta:buffer3State_SW9.entrada
-PC_OUT[0] <= comb.DB_MAX_OUTPUT_PORT_TYPE
-PC_OUT[1] <= PC_OUT[1].DB_MAX_OUTPUT_PORT_TYPE
-PC_OUT[2] <= PC_OUT[2].DB_MAX_OUTPUT_PORT_TYPE
-PC_OUT[3] <= PC_OUT[3].DB_MAX_OUTPUT_PORT_TYPE
-PC_OUT[4] <= PC_OUT[4].DB_MAX_OUTPUT_PORT_TYPE
-PC_OUT[5] <= PC_OUT[5].DB_MAX_OUTPUT_PORT_TYPE
-PC_OUT[6] <= PC_OUT[6].DB_MAX_OUTPUT_PORT_TYPE
-PC_OUT[7] <= PC_OUT[7].DB_MAX_OUTPUT_PORT_TYPE
-PC_OUT[8] <= PC_OUT[8].DB_MAX_OUTPUT_PORT_TYPE
+PC_OUT[0] <= processador:Processador.ROM_Address[0]
+PC_OUT[1] <= processador:Processador.ROM_Address[1]
+PC_OUT[2] <= processador:Processador.ROM_Address[2]
+PC_OUT[3] <= processador:Processador.ROM_Address[3]
+PC_OUT[4] <= processador:Processador.ROM_Address[4]
+PC_OUT[5] <= processador:Processador.ROM_Address[5]
+PC_OUT[6] <= processador:Processador.ROM_Address[6]
+PC_OUT[7] <= processador:Processador.ROM_Address[7]
+PC_OUT[8] <= processador:Processador.ROM_Address[8]
 LEDR[0] <= registradorgenerico:RegistradorLedR.DOUT[0]
 LEDR[1] <= registradorgenerico:RegistradorLedR.DOUT[1]
 LEDR[2] <= registradorgenerico:RegistradorLedR.DOUT[2]
@@ -81,13 +91,27 @@ HEX5[3] <= conversorhex7seg:decoderHEX5.saida7seg[3]
 HEX5[4] <= conversorhex7seg:decoderHEX5.saida7seg[4]
 HEX5[5] <= conversorhex7seg:decoderHEX5.saida7seg[5]
 HEX5[6] <= conversorhex7seg:decoderHEX5.saida7seg[6]
-
-
-|relogio|edgeDetector:\gravar:detectorSub0
-clk => saidaQ.CLK
-entrada => saida.IN1
-entrada => saidaQ.DATAIN
-saida <= saida.DB_MAX_OUTPUT_PORT_TYPE
+ACUMULADOR[0] <= processador:Processador.Data_OUT[0]
+ACUMULADOR[1] <= processador:Processador.Data_OUT[1]
+ACUMULADOR[2] <= processador:Processador.Data_OUT[2]
+ACUMULADOR[3] <= processador:Processador.Data_OUT[3]
+ACUMULADOR[4] <= processador:Processador.Data_OUT[4]
+ACUMULADOR[5] <= processador:Processador.Data_OUT[5]
+ACUMULADOR[6] <= processador:Processador.Data_OUT[6]
+ACUMULADOR[7] <= processador:Processador.Data_OUT[7]
+INSTRUCAO[0] <= memoriarom:ROM_instrucao.Dado[0]
+INSTRUCAO[1] <= memoriarom:ROM_instrucao.Dado[1]
+INSTRUCAO[2] <= memoriarom:ROM_instrucao.Dado[2]
+INSTRUCAO[3] <= memoriarom:ROM_instrucao.Dado[3]
+INSTRUCAO[4] <= memoriarom:ROM_instrucao.Dado[4]
+INSTRUCAO[5] <= memoriarom:ROM_instrucao.Dado[5]
+INSTRUCAO[6] <= memoriarom:ROM_instrucao.Dado[6]
+INSTRUCAO[7] <= memoriarom:ROM_instrucao.Dado[7]
+INSTRUCAO[8] <= memoriarom:ROM_instrucao.Dado[8]
+INSTRUCAO[9] <= memoriarom:ROM_instrucao.Dado[9]
+INSTRUCAO[10] <= memoriarom:ROM_instrucao.Dado[10]
+INSTRUCAO[11] <= memoriarom:ROM_instrucao.Dado[11]
+INSTRUCAO[12] <= memoriarom:ROM_instrucao.Dado[12]
 
 
 |relogio|memoriaROM:ROM_instrucao

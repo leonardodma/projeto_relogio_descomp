@@ -12,7 +12,7 @@ entity relogio is
             tamanhoRAM: natural := 6;
             dadoRAM: natural := 8;
             
-            simulacao : boolean := FALSE -- para gravar na placa, altere de TRUE para FALSE
+            simulacao : boolean := TRUE -- para gravar na placa, altere de TRUE para FALSE
   );
   port   (
     CLOCK_50 : in std_logic;
@@ -21,7 +21,10 @@ entity relogio is
     SW: in std_logic_vector(9 downto 0);
     PC_OUT: out std_logic_vector(larguraEnderecos-1 downto 0);
     LEDR  : out std_logic_vector(9 downto 0);
-    HEX0, HEX1, HEX2, HEX3, HEX4, HEX5 : out std_logic_vector(6 downto 0)
+    HEX0, HEX1, HEX2, HEX3, HEX4, HEX5 : out std_logic_vector(6 downto 0);
+	 
+	 ACUMULADOR: out std_logic_vector(7 downto 0);
+	 INSTRUCAO: out std_logic_vector(12 downto 0)
   );
 end entity;
 
@@ -140,7 +143,7 @@ MemoriaRAM : entity work.memoriaRAM   generic map (dataWidth => dadoRAM, addrWid
              port map (addr => Data_Address(5 downto 0), 
                        we => hab_escrita, 
                        re => hab_leitura, 
-                       habilita => bloco4, 
+                       habilita => bloco0, 
                        dado_in => Data_OUT, 
                        dado_out => Saida_RAM, 
                        clk => CLK);
@@ -482,5 +485,13 @@ HEX2 <= saidaDecoderHEX2;
 HEX3 <= saidaDecoderHEX3;
 HEX4 <= saidaDecoderHEX4;
 HEX5 <= saidaDecoderHEX5;
+
+
+-- SINAIS A SEREM OBSERVADOS
+
+ACUMULADOR <= Data_OUT;
+INSTRUCAO <= Saida_ROM;
+PC_OUT <= ROM_Address;
+
 
 end architecture;

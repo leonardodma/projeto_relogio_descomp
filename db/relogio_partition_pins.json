@@ -4,6 +4,42 @@
 			"name" : "Top",
 			"pins" : [
 				{
+					"name" : "PC_OUT[0]",
+					"strict" : false
+				},
+				{
+					"name" : "PC_OUT[1]",
+					"strict" : false
+				},
+				{
+					"name" : "PC_OUT[2]",
+					"strict" : false
+				},
+				{
+					"name" : "PC_OUT[3]",
+					"strict" : false
+				},
+				{
+					"name" : "PC_OUT[4]",
+					"strict" : false
+				},
+				{
+					"name" : "PC_OUT[5]",
+					"strict" : false
+				},
+				{
+					"name" : "PC_OUT[6]",
+					"strict" : false
+				},
+				{
+					"name" : "PC_OUT[7]",
+					"strict" : false
+				},
+				{
+					"name" : "PC_OUT[8]",
+					"strict" : false
+				},
+				{
 					"name" : "HEX0[0]",
 					"strict" : false
 				},
@@ -172,11 +208,71 @@
 					"strict" : false
 				},
 				{
-					"name" : "KEY[0]",
+					"name" : "ACUMULADOR[0]",
 					"strict" : false
 				},
 				{
-					"name" : "CLOCK_50",
+					"name" : "ACUMULADOR[1]",
+					"strict" : false
+				},
+				{
+					"name" : "ACUMULADOR[2]",
+					"strict" : false
+				},
+				{
+					"name" : "ACUMULADOR[3]",
+					"strict" : false
+				},
+				{
+					"name" : "ACUMULADOR[4]",
+					"strict" : false
+				},
+				{
+					"name" : "ACUMULADOR[5]",
+					"strict" : false
+				},
+				{
+					"name" : "ACUMULADOR[6]",
+					"strict" : false
+				},
+				{
+					"name" : "ACUMULADOR[7]",
+					"strict" : false
+				},
+				{
+					"name" : "INSTRUCAO[0]",
+					"strict" : false
+				},
+				{
+					"name" : "INSTRUCAO[1]",
+					"strict" : false
+				},
+				{
+					"name" : "INSTRUCAO[2]",
+					"strict" : false
+				},
+				{
+					"name" : "INSTRUCAO[5]",
+					"strict" : false
+				},
+				{
+					"name" : "INSTRUCAO[8]",
+					"strict" : false
+				},
+				{
+					"name" : "INSTRUCAO[9]",
+					"strict" : false
+				},
+				{
+					"name" : "INSTRUCAO[10]",
+					"strict" : false
+				},
+				{
+					"name" : "INSTRUCAO[11]",
+					"strict" : false
+				},
+				{
+					"name" : "KEY[0]",
 					"strict" : false
 				}
 			]
