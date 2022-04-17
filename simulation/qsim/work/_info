@@ -10,7 +10,7 @@ z2
 cModel Technology
 Z0 dC:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/simulation/qsim
 Erelogio
-Z1 w1649974295
+Z1 w1650217867
 Z2 DPx8 cyclonev 18 cyclonev_atom_pack 0 22 ^K2eeK[IVbX]]MLcdOEI91
 Z3 DPx8 cyclonev 19 cyclonev_components 0 22 GFL[QAd@dAZF:`jjOGn9>2
 Z4 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 3dzZ?YU_4FC5UU0cTXRET1
@@ -20,19 +20,19 @@ Z7 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
 Z8 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z9 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
 Z10 DPx6 altera 28 altera_primitives_components 0 22 VSD=32;3391kSOd?PDZYj3
-!i122 16
+!i122 42
 R0
 Z11 8relogio.vho
 Z12 Frelogio.vho
 l0
 L39 1
-VLn2O2][?hiEM6U`iQ04Fn3
-!s100 Ge2l>AFNOHCOk]CU6TgX=1
+V_>L_BJ84CVSXBdA2DPHSb3
+!s100 HYd=9MOmb9PE>Y4nWUI[n1
 Z13 OV;C;2020.1;71
 32
-Z14 !s110 1649974297
+Z14 !s110 1650217870
 !i10b 1
-Z15 !s108 1649974297.000000
+Z15 !s108 1650217870.000000
 Z16 !s90 -work|work|relogio.vho|
 Z17 !s107 relogio.vho|
 !i113 1
@@ -48,12 +48,12 @@ R7
 R8
 R9
 R10
-DEx4 work 7 relogio 0 22 Ln2O2][?hiEM6U`iQ04Fn3
-!i122 16
-l489
-L62 5962
-VY2W?NPd;8zh8OhHnaZgYZ0
-!s100 6]YGO]gdTRz>6Mgj084:j0
+DEx4 work 7 relogio 0 22 _>L_BJ84CVSXBdA2DPHSb3
+!i122 42
+l503
+L69 6096
+VQ8PQ>9AgWchkcRI89coP>2
+!s100 dK5^lA6fd;OTB^H8QMBT?1
 R13
 32
 R14
@@ -65,10 +65,10 @@ R17
 R18
 R19
 Erelogio_vhd_vec_tst
-Z20 w1649974294
+Z20 w1650217866
 R8
 R9
-!i122 17
+!i122 43
 R0
 Z21 8Waveform2.vwf.vht
 Z22 FWaveform2.vwf.vht
@@ -90,11 +90,11 @@ Arelogio_arch
 R8
 R9
 Z25 DEx4 work 19 relogio_vhd_vec_tst 0 22 <gOk6D1VGJQD`F=bE@c>A1
-!i122 17
-l77
-Z26 L34 83
-Z27 VoVVG;Al=IYLW8QSWOeNcK2
-Z28 !s100 UZfjkOSmz]dWSS=B]R`B60
+!i122 43
+l91
+Z26 L34 104
+Z27 VfEYlcmCPUBBo3XgNCHnf70
+Z28 !s100 ^<4fNgf[>kgHKK[;eKkic2
 R13
 32
 R14

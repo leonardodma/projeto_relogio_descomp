@@ -208,6 +208,46 @@
 					"strict" : false
 				},
 				{
+					"name" : "SAIDA_AND_HEX0",
+					"strict" : false
+				},
+				{
+					"name" : "DIN_HEX[0]",
+					"strict" : false
+				},
+				{
+					"name" : "DIN_HEX[1]",
+					"strict" : false
+				},
+				{
+					"name" : "DIN_HEX[2]",
+					"strict" : false
+				},
+				{
+					"name" : "DIN_HEX[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SAIDA_AND_HEX1",
+					"strict" : false
+				},
+				{
+					"name" : "SAIDA_AND_HEX2",
+					"strict" : false
+				},
+				{
+					"name" : "SAIDA_AND_HEX3",
+					"strict" : false
+				},
+				{
+					"name" : "SAIDA_AND_HEX4",
+					"strict" : false
+				},
+				{
+					"name" : "SAIDA_AND_HEX5",
+					"strict" : false
+				},
+				{
 					"name" : "ACUMULADOR[0]",
 					"strict" : false
 				},

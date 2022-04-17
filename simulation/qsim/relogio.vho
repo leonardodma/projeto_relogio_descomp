@@ -17,7 +17,7 @@
 -- PROGRAM "Quartus Prime"
 -- VERSION "Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition"
 
--- DATE "04/14/2022 19:11:35"
+-- DATE "04/17/2022 14:51:07"
 
 -- 
 -- Device: Altera 5CEBA4F23C7 Package FBGA484
@@ -54,6 +54,13 @@ ENTITY 	relogio IS
 	HEX3 : OUT std_logic_vector(6 DOWNTO 0);
 	HEX4 : OUT std_logic_vector(6 DOWNTO 0);
 	HEX5 : OUT std_logic_vector(6 DOWNTO 0);
+	SAIDA_AND_HEX0 : OUT std_logic;
+	DIN_HEX : OUT std_logic_vector(3 DOWNTO 0);
+	SAIDA_AND_HEX1 : OUT std_logic;
+	SAIDA_AND_HEX2 : OUT std_logic;
+	SAIDA_AND_HEX3 : OUT std_logic;
+	SAIDA_AND_HEX4 : OUT std_logic;
+	SAIDA_AND_HEX5 : OUT std_logic;
 	ACUMULADOR : OUT std_logic_vector(7 DOWNTO 0);
 	INSTRUCAO : OUT std_logic_vector(12 DOWNTO 0)
 	);
@@ -85,6 +92,13 @@ SIGNAL ww_HEX2 : std_logic_vector(6 DOWNTO 0);
 SIGNAL ww_HEX3 : std_logic_vector(6 DOWNTO 0);
 SIGNAL ww_HEX4 : std_logic_vector(6 DOWNTO 0);
 SIGNAL ww_HEX5 : std_logic_vector(6 DOWNTO 0);
+SIGNAL ww_SAIDA_AND_HEX0 : std_logic;
+SIGNAL ww_DIN_HEX : std_logic_vector(3 DOWNTO 0);
+SIGNAL ww_SAIDA_AND_HEX1 : std_logic;
+SIGNAL ww_SAIDA_AND_HEX2 : std_logic;
+SIGNAL ww_SAIDA_AND_HEX3 : std_logic;
+SIGNAL ww_SAIDA_AND_HEX4 : std_logic;
+SIGNAL ww_SAIDA_AND_HEX5 : std_logic;
 SIGNAL ww_ACUMULADOR : std_logic_vector(7 DOWNTO 0);
 SIGNAL ww_INSTRUCAO : std_logic_vector(12 DOWNTO 0);
 SIGNAL \CLOCK_50~input_o\ : std_logic;
@@ -114,11 +128,11 @@ SIGNAL \ROM_instrucao|memROM~1_combout\ : std_logic;
 SIGNAL \ROM_instrucao|memROM~3_combout\ : std_logic;
 SIGNAL \ROM_instrucao|memROM~4_combout\ : std_logic;
 SIGNAL \ROM_instrucao|memROM~9_combout\ : std_logic;
-SIGNAL \ROM_instrucao|memROM~10_combout\ : std_logic;
+SIGNAL \ROM_instrucao|memROM~14_combout\ : std_logic;
+SIGNAL \ROM_instrucao|memROM~8_combout\ : std_logic;
 SIGNAL \ROM_instrucao|memROM~11_combout\ : std_logic;
 SIGNAL \ROM_instrucao|memROM~12_combout\ : std_logic;
 SIGNAL \ROM_instrucao|memROM~13_combout\ : std_logic;
-SIGNAL \ROM_instrucao|memROM~14_combout\ : std_logic;
 SIGNAL \Processador|decoder|Equal10~0_combout\ : std_logic;
 SIGNAL \Processador|incrementaPC|Add0~6\ : std_logic;
 SIGNAL \Processador|incrementaPC|Add0~9_sumout\ : std_logic;
@@ -132,7 +146,7 @@ SIGNAL \Processador|incrementaPC|Add0~17_sumout\ : std_logic;
 SIGNAL \Processador|incrementaPC|Add0~18\ : std_logic;
 SIGNAL \Processador|incrementaPC|Add0~21_sumout\ : std_logic;
 SIGNAL \ROM_instrucao|memROM~7_combout\ : std_logic;
-SIGNAL \ROM_instrucao|memROM~8_combout\ : std_logic;
+SIGNAL \ROM_instrucao|memROM~10_combout\ : std_logic;
 SIGNAL \Processador|incrementaPC|Add0~22\ : std_logic;
 SIGNAL \Processador|incrementaPC|Add0~25_sumout\ : std_logic;
 SIGNAL \Processador|incrementaPC|Add0~26\ : std_logic;
@@ -350,37 +364,6 @@ SIGNAL \RegistradorHEX0|DOUT\ : std_logic_vector(3 DOWNTO 0);
 SIGNAL \RegistradorHEX1|DOUT\ : std_logic_vector(3 DOWNTO 0);
 SIGNAL \RegistradorHEX2|DOUT\ : std_logic_vector(3 DOWNTO 0);
 SIGNAL \RegistradorHEX3|DOUT\ : std_logic_vector(3 DOWNTO 0);
-SIGNAL \MemoriaRAM|ALT_INV_ram~48_q\ : std_logic;
-SIGNAL \MemoriaRAM|ALT_INV_ram~530_combout\ : std_logic;
-SIGNAL \MemoriaRAM|ALT_INV_ram~32_q\ : std_logic;
-SIGNAL \MemoriaRAM|ALT_INV_ram~16_q\ : std_logic;
-SIGNAL \Processador|decoder|ALT_INV_saida~0_combout\ : std_logic;
-SIGNAL \MemoriaRAM|ALT_INV_ram~529_combout\ : std_logic;
-SIGNAL \MemoriaRAM|ALT_INV_ram~528_combout\ : std_logic;
-SIGNAL \MemoriaRAM|ALT_INV_ram~71_q\ : std_logic;
-SIGNAL \MemoriaRAM|ALT_INV_ram~63_q\ : std_logic;
-SIGNAL \MemoriaRAM|ALT_INV_ram~39_q\ : std_logic;
-SIGNAL \MemoriaRAM|ALT_INV_ram~31_q\ : std_logic;
-SIGNAL \MemoriaRAM|ALT_INV_ram~527_combout\ : std_logic;
-SIGNAL \MemoriaRAM|ALT_INV_ram~55_q\ : std_logic;
-SIGNAL \MemoriaRAM|ALT_INV_ram~47_q\ : std_logic;
-SIGNAL \MemoriaRAM|ALT_INV_ram~23_q\ : std_logic;
-SIGNAL \MemoriaRAM|ALT_INV_ram~15_q\ : std_logic;
-SIGNAL \Processador|decoder|ALT_INV_Equal10~1_combout\ : std_logic;
-SIGNAL \AndHEX2|ALT_INV_saida~0_combout\ : std_logic;
-SIGNAL \ROM_instrucao|ALT_INV_memROM~14_combout\ : std_logic;
-SIGNAL \ROM_instrucao|ALT_INV_memROM~13_combout\ : std_logic;
-SIGNAL \ROM_instrucao|ALT_INV_memROM~12_combout\ : std_logic;
-SIGNAL \ROM_instrucao|ALT_INV_memROM~11_combout\ : std_logic;
-SIGNAL \ROM_instrucao|ALT_INV_memROM~10_combout\ : std_logic;
-SIGNAL \ROM_instrucao|ALT_INV_memROM~9_combout\ : std_logic;
-SIGNAL \ROM_instrucao|ALT_INV_memROM~8_combout\ : std_logic;
-SIGNAL \ROM_instrucao|ALT_INV_memROM~7_combout\ : std_logic;
-SIGNAL \ROM_instrucao|ALT_INV_memROM~6_combout\ : std_logic;
-SIGNAL \ROM_instrucao|ALT_INV_memROM~5_combout\ : std_logic;
-SIGNAL \ROM_instrucao|ALT_INV_memROM~4_combout\ : std_logic;
-SIGNAL \ROM_instrucao|ALT_INV_memROM~3_combout\ : std_logic;
-SIGNAL \ROM_instrucao|ALT_INV_memROM~2_combout\ : std_logic;
 SIGNAL \ROM_instrucao|ALT_INV_memROM~1_combout\ : std_logic;
 SIGNAL \ROM_instrucao|ALT_INV_memROM~0_combout\ : std_logic;
 SIGNAL \RegistradorHEX5|ALT_INV_DOUT\ : std_logic_vector(3 DOWNTO 0);
@@ -399,12 +382,6 @@ SIGNAL \Processador|ULA1|ALT_INV_Add1~5_sumout\ : std_logic;
 SIGNAL \Processador|ULA1|ALT_INV_Add1~1_sumout\ : std_logic;
 SIGNAL \Processador|REGA|ALT_INV_DOUT\ : std_logic_vector(7 DOWNTO 0);
 SIGNAL \Processador|PC|ALT_INV_DOUT\ : std_logic_vector(8 DOWNTO 0);
-SIGNAL \ROM_instrucao|ALT_INV_memROM~18_combout\ : std_logic;
-SIGNAL \ROM_instrucao|ALT_INV_memROM~17_combout\ : std_logic;
-SIGNAL \ROM_instrucao|ALT_INV_memROM~16_combout\ : std_logic;
-SIGNAL \MemoriaRAM|ALT_INV_ram~559_combout\ : std_logic;
-SIGNAL \ROM_instrucao|ALT_INV_memROM~15_combout\ : std_logic;
-SIGNAL \MemoriaRAM|ALT_INV_ram~558_combout\ : std_logic;
 SIGNAL \MemoriaRAM|ALT_INV_ram~557_combout\ : std_logic;
 SIGNAL \MemoriaRAM|ALT_INV_ram~78_q\ : std_logic;
 SIGNAL \MemoriaRAM|ALT_INV_ram~62_q\ : std_logic;
@@ -485,6 +462,43 @@ SIGNAL \MemoriaRAM|ALT_INV_ram~40_q\ : std_logic;
 SIGNAL \MemoriaRAM|ALT_INV_ram~24_q\ : std_logic;
 SIGNAL \MemoriaRAM|ALT_INV_ram~531_combout\ : std_logic;
 SIGNAL \MemoriaRAM|ALT_INV_ram~64_q\ : std_logic;
+SIGNAL \MemoriaRAM|ALT_INV_ram~48_q\ : std_logic;
+SIGNAL \MemoriaRAM|ALT_INV_ram~530_combout\ : std_logic;
+SIGNAL \MemoriaRAM|ALT_INV_ram~32_q\ : std_logic;
+SIGNAL \MemoriaRAM|ALT_INV_ram~16_q\ : std_logic;
+SIGNAL \Processador|decoder|ALT_INV_saida~0_combout\ : std_logic;
+SIGNAL \MemoriaRAM|ALT_INV_ram~529_combout\ : std_logic;
+SIGNAL \MemoriaRAM|ALT_INV_ram~528_combout\ : std_logic;
+SIGNAL \MemoriaRAM|ALT_INV_ram~71_q\ : std_logic;
+SIGNAL \MemoriaRAM|ALT_INV_ram~63_q\ : std_logic;
+SIGNAL \MemoriaRAM|ALT_INV_ram~39_q\ : std_logic;
+SIGNAL \MemoriaRAM|ALT_INV_ram~31_q\ : std_logic;
+SIGNAL \MemoriaRAM|ALT_INV_ram~527_combout\ : std_logic;
+SIGNAL \MemoriaRAM|ALT_INV_ram~55_q\ : std_logic;
+SIGNAL \MemoriaRAM|ALT_INV_ram~47_q\ : std_logic;
+SIGNAL \MemoriaRAM|ALT_INV_ram~23_q\ : std_logic;
+SIGNAL \MemoriaRAM|ALT_INV_ram~15_q\ : std_logic;
+SIGNAL \Processador|decoder|ALT_INV_Equal10~1_combout\ : std_logic;
+SIGNAL \ROM_instrucao|ALT_INV_memROM~14_combout\ : std_logic;
+SIGNAL \ROM_instrucao|ALT_INV_memROM~13_combout\ : std_logic;
+SIGNAL \ROM_instrucao|ALT_INV_memROM~12_combout\ : std_logic;
+SIGNAL \ROM_instrucao|ALT_INV_memROM~11_combout\ : std_logic;
+SIGNAL \ROM_instrucao|ALT_INV_memROM~10_combout\ : std_logic;
+SIGNAL \AndHEX2|ALT_INV_saida~0_combout\ : std_logic;
+SIGNAL \ROM_instrucao|ALT_INV_memROM~9_combout\ : std_logic;
+SIGNAL \ROM_instrucao|ALT_INV_memROM~8_combout\ : std_logic;
+SIGNAL \ROM_instrucao|ALT_INV_memROM~7_combout\ : std_logic;
+SIGNAL \ROM_instrucao|ALT_INV_memROM~6_combout\ : std_logic;
+SIGNAL \ROM_instrucao|ALT_INV_memROM~5_combout\ : std_logic;
+SIGNAL \ROM_instrucao|ALT_INV_memROM~4_combout\ : std_logic;
+SIGNAL \ROM_instrucao|ALT_INV_memROM~3_combout\ : std_logic;
+SIGNAL \ROM_instrucao|ALT_INV_memROM~2_combout\ : std_logic;
+SIGNAL \ROM_instrucao|ALT_INV_memROM~18_combout\ : std_logic;
+SIGNAL \ROM_instrucao|ALT_INV_memROM~17_combout\ : std_logic;
+SIGNAL \ROM_instrucao|ALT_INV_memROM~16_combout\ : std_logic;
+SIGNAL \MemoriaRAM|ALT_INV_ram~559_combout\ : std_logic;
+SIGNAL \ROM_instrucao|ALT_INV_memROM~15_combout\ : std_logic;
+SIGNAL \MemoriaRAM|ALT_INV_ram~558_combout\ : std_logic;
 
 BEGIN
 
@@ -504,42 +518,18 @@ HEX2 <= ww_HEX2;
 HEX3 <= ww_HEX3;
 HEX4 <= ww_HEX4;
 HEX5 <= ww_HEX5;
+SAIDA_AND_HEX0 <= ww_SAIDA_AND_HEX0;
+DIN_HEX <= ww_DIN_HEX;
+SAIDA_AND_HEX1 <= ww_SAIDA_AND_HEX1;
+SAIDA_AND_HEX2 <= ww_SAIDA_AND_HEX2;
+SAIDA_AND_HEX3 <= ww_SAIDA_AND_HEX3;
+SAIDA_AND_HEX4 <= ww_SAIDA_AND_HEX4;
+SAIDA_AND_HEX5 <= ww_SAIDA_AND_HEX5;
 ACUMULADOR <= ww_ACUMULADOR;
 INSTRUCAO <= ww_INSTRUCAO;
 ww_devoe <= devoe;
 ww_devclrn <= devclrn;
 ww_devpor <= devpor;
-\MemoriaRAM|ALT_INV_ram~48_q\ <= NOT \MemoriaRAM|ram~48_q\;
-\MemoriaRAM|ALT_INV_ram~530_combout\ <= NOT \MemoriaRAM|ram~530_combout\;
-\MemoriaRAM|ALT_INV_ram~32_q\ <= NOT \MemoriaRAM|ram~32_q\;
-\MemoriaRAM|ALT_INV_ram~16_q\ <= NOT \MemoriaRAM|ram~16_q\;
-\Processador|decoder|ALT_INV_saida~0_combout\ <= NOT \Processador|decoder|saida~0_combout\;
-\MemoriaRAM|ALT_INV_ram~529_combout\ <= NOT \MemoriaRAM|ram~529_combout\;
-\MemoriaRAM|ALT_INV_ram~528_combout\ <= NOT \MemoriaRAM|ram~528_combout\;
-\MemoriaRAM|ALT_INV_ram~71_q\ <= NOT \MemoriaRAM|ram~71_q\;
-\MemoriaRAM|ALT_INV_ram~63_q\ <= NOT \MemoriaRAM|ram~63_q\;
-\MemoriaRAM|ALT_INV_ram~39_q\ <= NOT \MemoriaRAM|ram~39_q\;
-\MemoriaRAM|ALT_INV_ram~31_q\ <= NOT \MemoriaRAM|ram~31_q\;
-\MemoriaRAM|ALT_INV_ram~527_combout\ <= NOT \MemoriaRAM|ram~527_combout\;
-\MemoriaRAM|ALT_INV_ram~55_q\ <= NOT \MemoriaRAM|ram~55_q\;
-\MemoriaRAM|ALT_INV_ram~47_q\ <= NOT \MemoriaRAM|ram~47_q\;
-\MemoriaRAM|ALT_INV_ram~23_q\ <= NOT \MemoriaRAM|ram~23_q\;
-\MemoriaRAM|ALT_INV_ram~15_q\ <= NOT \MemoriaRAM|ram~15_q\;
-\Processador|decoder|ALT_INV_Equal10~1_combout\ <= NOT \Processador|decoder|Equal10~1_combout\;
-\AndHEX2|ALT_INV_saida~0_combout\ <= NOT \AndHEX2|saida~0_combout\;
-\ROM_instrucao|ALT_INV_memROM~14_combout\ <= NOT \ROM_instrucao|memROM~14_combout\;
-\ROM_instrucao|ALT_INV_memROM~13_combout\ <= NOT \ROM_instrucao|memROM~13_combout\;
-\ROM_instrucao|ALT_INV_memROM~12_combout\ <= NOT \ROM_instrucao|memROM~12_combout\;
-\ROM_instrucao|ALT_INV_memROM~11_combout\ <= NOT \ROM_instrucao|memROM~11_combout\;
-\ROM_instrucao|ALT_INV_memROM~10_combout\ <= NOT \ROM_instrucao|memROM~10_combout\;
-\ROM_instrucao|ALT_INV_memROM~9_combout\ <= NOT \ROM_instrucao|memROM~9_combout\;
-\ROM_instrucao|ALT_INV_memROM~8_combout\ <= NOT \ROM_instrucao|memROM~8_combout\;
-\ROM_instrucao|ALT_INV_memROM~7_combout\ <= NOT \ROM_instrucao|memROM~7_combout\;
-\ROM_instrucao|ALT_INV_memROM~6_combout\ <= NOT \ROM_instrucao|memROM~6_combout\;
-\ROM_instrucao|ALT_INV_memROM~5_combout\ <= NOT \ROM_instrucao|memROM~5_combout\;
-\ROM_instrucao|ALT_INV_memROM~4_combout\ <= NOT \ROM_instrucao|memROM~4_combout\;
-\ROM_instrucao|ALT_INV_memROM~3_combout\ <= NOT \ROM_instrucao|memROM~3_combout\;
-\ROM_instrucao|ALT_INV_memROM~2_combout\ <= NOT \ROM_instrucao|memROM~2_combout\;
 \ROM_instrucao|ALT_INV_memROM~1_combout\ <= NOT \ROM_instrucao|memROM~1_combout\;
 \ROM_instrucao|ALT_INV_memROM~0_combout\ <= NOT \ROM_instrucao|memROM~0_combout\;
 \RegistradorHEX5|ALT_INV_DOUT\(2) <= NOT \RegistradorHEX5|DOUT\(2);
@@ -591,12 +581,6 @@ ww_devpor <= devpor;
 \Processador|PC|ALT_INV_DOUT\(2) <= NOT \Processador|PC|DOUT\(2);
 \Processador|PC|ALT_INV_DOUT\(1) <= NOT \Processador|PC|DOUT\(1);
 \Processador|PC|ALT_INV_DOUT\(0) <= NOT \Processador|PC|DOUT\(0);
-\ROM_instrucao|ALT_INV_memROM~18_combout\ <= NOT \ROM_instrucao|memROM~18_combout\;
-\ROM_instrucao|ALT_INV_memROM~17_combout\ <= NOT \ROM_instrucao|memROM~17_combout\;
-\ROM_instrucao|ALT_INV_memROM~16_combout\ <= NOT \ROM_instrucao|memROM~16_combout\;
-\MemoriaRAM|ALT_INV_ram~559_combout\ <= NOT \MemoriaRAM|ram~559_combout\;
-\ROM_instrucao|ALT_INV_memROM~15_combout\ <= NOT \ROM_instrucao|memROM~15_combout\;
-\MemoriaRAM|ALT_INV_ram~558_combout\ <= NOT \MemoriaRAM|ram~558_combout\;
 \MemoriaRAM|ALT_INV_ram~557_combout\ <= NOT \MemoriaRAM|ram~557_combout\;
 \MemoriaRAM|ALT_INV_ram~78_q\ <= NOT \MemoriaRAM|ram~78_q\;
 \MemoriaRAM|ALT_INV_ram~62_q\ <= NOT \MemoriaRAM|ram~62_q\;
@@ -677,6 +661,43 @@ ww_devpor <= devpor;
 \MemoriaRAM|ALT_INV_ram~24_q\ <= NOT \MemoriaRAM|ram~24_q\;
 \MemoriaRAM|ALT_INV_ram~531_combout\ <= NOT \MemoriaRAM|ram~531_combout\;
 \MemoriaRAM|ALT_INV_ram~64_q\ <= NOT \MemoriaRAM|ram~64_q\;
+\MemoriaRAM|ALT_INV_ram~48_q\ <= NOT \MemoriaRAM|ram~48_q\;
+\MemoriaRAM|ALT_INV_ram~530_combout\ <= NOT \MemoriaRAM|ram~530_combout\;
+\MemoriaRAM|ALT_INV_ram~32_q\ <= NOT \MemoriaRAM|ram~32_q\;
+\MemoriaRAM|ALT_INV_ram~16_q\ <= NOT \MemoriaRAM|ram~16_q\;
+\Processador|decoder|ALT_INV_saida~0_combout\ <= NOT \Processador|decoder|saida~0_combout\;
+\MemoriaRAM|ALT_INV_ram~529_combout\ <= NOT \MemoriaRAM|ram~529_combout\;
+\MemoriaRAM|ALT_INV_ram~528_combout\ <= NOT \MemoriaRAM|ram~528_combout\;
+\MemoriaRAM|ALT_INV_ram~71_q\ <= NOT \MemoriaRAM|ram~71_q\;
+\MemoriaRAM|ALT_INV_ram~63_q\ <= NOT \MemoriaRAM|ram~63_q\;
+\MemoriaRAM|ALT_INV_ram~39_q\ <= NOT \MemoriaRAM|ram~39_q\;
+\MemoriaRAM|ALT_INV_ram~31_q\ <= NOT \MemoriaRAM|ram~31_q\;
+\MemoriaRAM|ALT_INV_ram~527_combout\ <= NOT \MemoriaRAM|ram~527_combout\;
+\MemoriaRAM|ALT_INV_ram~55_q\ <= NOT \MemoriaRAM|ram~55_q\;
+\MemoriaRAM|ALT_INV_ram~47_q\ <= NOT \MemoriaRAM|ram~47_q\;
+\MemoriaRAM|ALT_INV_ram~23_q\ <= NOT \MemoriaRAM|ram~23_q\;
+\MemoriaRAM|ALT_INV_ram~15_q\ <= NOT \MemoriaRAM|ram~15_q\;
+\Processador|decoder|ALT_INV_Equal10~1_combout\ <= NOT \Processador|decoder|Equal10~1_combout\;
+\ROM_instrucao|ALT_INV_memROM~14_combout\ <= NOT \ROM_instrucao|memROM~14_combout\;
+\ROM_instrucao|ALT_INV_memROM~13_combout\ <= NOT \ROM_instrucao|memROM~13_combout\;
+\ROM_instrucao|ALT_INV_memROM~12_combout\ <= NOT \ROM_instrucao|memROM~12_combout\;
+\ROM_instrucao|ALT_INV_memROM~11_combout\ <= NOT \ROM_instrucao|memROM~11_combout\;
+\ROM_instrucao|ALT_INV_memROM~10_combout\ <= NOT \ROM_instrucao|memROM~10_combout\;
+\AndHEX2|ALT_INV_saida~0_combout\ <= NOT \AndHEX2|saida~0_combout\;
+\ROM_instrucao|ALT_INV_memROM~9_combout\ <= NOT \ROM_instrucao|memROM~9_combout\;
+\ROM_instrucao|ALT_INV_memROM~8_combout\ <= NOT \ROM_instrucao|memROM~8_combout\;
+\ROM_instrucao|ALT_INV_memROM~7_combout\ <= NOT \ROM_instrucao|memROM~7_combout\;
+\ROM_instrucao|ALT_INV_memROM~6_combout\ <= NOT \ROM_instrucao|memROM~6_combout\;
+\ROM_instrucao|ALT_INV_memROM~5_combout\ <= NOT \ROM_instrucao|memROM~5_combout\;
+\ROM_instrucao|ALT_INV_memROM~4_combout\ <= NOT \ROM_instrucao|memROM~4_combout\;
+\ROM_instrucao|ALT_INV_memROM~3_combout\ <= NOT \ROM_instrucao|memROM~3_combout\;
+\ROM_instrucao|ALT_INV_memROM~2_combout\ <= NOT \ROM_instrucao|memROM~2_combout\;
+\ROM_instrucao|ALT_INV_memROM~18_combout\ <= NOT \ROM_instrucao|memROM~18_combout\;
+\ROM_instrucao|ALT_INV_memROM~17_combout\ <= NOT \ROM_instrucao|memROM~17_combout\;
+\ROM_instrucao|ALT_INV_memROM~16_combout\ <= NOT \ROM_instrucao|memROM~16_combout\;
+\MemoriaRAM|ALT_INV_ram~559_combout\ <= NOT \MemoriaRAM|ram~559_combout\;
+\ROM_instrucao|ALT_INV_memROM~15_combout\ <= NOT \ROM_instrucao|memROM~15_combout\;
+\MemoriaRAM|ALT_INV_ram~558_combout\ <= NOT \MemoriaRAM|ram~558_combout\;
 
 \PC_OUT[0]~output\ : cyclonev_io_obuf
 -- pragma translate_off
@@ -1410,6 +1431,126 @@ PORT MAP (
 	devoe => ww_devoe,
 	o => ww_HEX5(6));
 
+\SAIDA_AND_HEX0~output\ : cyclonev_io_obuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	open_drain_output => "false",
+	shift_series_termination_control => "false")
+-- pragma translate_on
+PORT MAP (
+	i => \DecoderSelEnd|Equal0~0_combout\,
+	devoe => ww_devoe,
+	o => ww_SAIDA_AND_HEX0);
+
+\DIN_HEX[0]~output\ : cyclonev_io_obuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	open_drain_output => "false",
+	shift_series_termination_control => "false")
+-- pragma translate_on
+PORT MAP (
+	i => \Processador|REGA|DOUT\(0),
+	devoe => ww_devoe,
+	o => ww_DIN_HEX(0));
+
+\DIN_HEX[1]~output\ : cyclonev_io_obuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	open_drain_output => "false",
+	shift_series_termination_control => "false")
+-- pragma translate_on
+PORT MAP (
+	i => \Processador|REGA|DOUT\(1),
+	devoe => ww_devoe,
+	o => ww_DIN_HEX(1));
+
+\DIN_HEX[2]~output\ : cyclonev_io_obuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	open_drain_output => "false",
+	shift_series_termination_control => "false")
+-- pragma translate_on
+PORT MAP (
+	i => \Processador|REGA|DOUT\(2),
+	devoe => ww_devoe,
+	o => ww_DIN_HEX(2));
+
+\DIN_HEX[3]~output\ : cyclonev_io_obuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	open_drain_output => "false",
+	shift_series_termination_control => "false")
+-- pragma translate_on
+PORT MAP (
+	i => \Processador|REGA|DOUT\(3),
+	devoe => ww_devoe,
+	o => ww_DIN_HEX(3));
+
+\SAIDA_AND_HEX1~output\ : cyclonev_io_obuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	open_drain_output => "false",
+	shift_series_termination_control => "false")
+-- pragma translate_on
+PORT MAP (
+	i => \DecoderSelEnd|Equal0~1_combout\,
+	devoe => ww_devoe,
+	o => ww_SAIDA_AND_HEX1);
+
+\SAIDA_AND_HEX2~output\ : cyclonev_io_obuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	open_drain_output => "false",
+	shift_series_termination_control => "false")
+-- pragma translate_on
+PORT MAP (
+	i => \AndHEX2|saida~1_combout\,
+	devoe => ww_devoe,
+	o => ww_SAIDA_AND_HEX2);
+
+\SAIDA_AND_HEX3~output\ : cyclonev_io_obuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	open_drain_output => "false",
+	shift_series_termination_control => "false")
+-- pragma translate_on
+PORT MAP (
+	i => \DecoderSelEnd|Equal0~2_combout\,
+	devoe => ww_devoe,
+	o => ww_SAIDA_AND_HEX3);
+
+\SAIDA_AND_HEX4~output\ : cyclonev_io_obuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	open_drain_output => "false",
+	shift_series_termination_control => "false")
+-- pragma translate_on
+PORT MAP (
+	i => \DecoderSelEnd|Equal0~3_combout\,
+	devoe => ww_devoe,
+	o => ww_SAIDA_AND_HEX4);
+
+\SAIDA_AND_HEX5~output\ : cyclonev_io_obuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	open_drain_output => "false",
+	shift_series_termination_control => "false")
+-- pragma translate_on
+PORT MAP (
+	i => \DecoderSelEnd|Equal0~4_combout\,
+	devoe => ww_devoe,
+	o => ww_SAIDA_AND_HEX5);
+
 \ACUMULADOR[0]~output\ : cyclonev_io_obuf
 -- pragma translate_off
 GENERIC MAP (
@@ -1574,7 +1715,7 @@ GENERIC MAP (
 	shift_series_termination_control => "false")
 -- pragma translate_on
 PORT MAP (
-	i => \ROM_instrucao|memROM~8_combout\,
+	i => \ROM_instrucao|memROM~10_combout\,
 	devoe => ww_devoe,
 	o => ww_INSTRUCAO(5));
 
@@ -1610,7 +1751,7 @@ GENERIC MAP (
 	shift_series_termination_control => "false")
 -- pragma translate_on
 PORT MAP (
-	i => \ROM_instrucao|memROM~8_combout\,
+	i => \ROM_instrucao|memROM~10_combout\,
 	devoe => ww_devoe,
 	o => ww_INSTRUCAO(8));
 
@@ -1622,7 +1763,7 @@ GENERIC MAP (
 	shift_series_termination_control => "false")
 -- pragma translate_on
 PORT MAP (
-	i => \ROM_instrucao|memROM~10_combout\,
+	i => \ROM_instrucao|memROM~11_combout\,
 	devoe => ww_devoe,
 	o => ww_INSTRUCAO(9));
 
@@ -1634,7 +1775,7 @@ GENERIC MAP (
 	shift_series_termination_control => "false")
 -- pragma translate_on
 PORT MAP (
-	i => \ROM_instrucao|memROM~12_combout\,
+	i => \ROM_instrucao|memROM~13_combout\,
 	devoe => ww_devoe,
 	o => ww_INSTRUCAO(10));
 
@@ -1759,73 +1900,7 @@ PORT MAP (
 
 \ROM_instrucao|memROM~9\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ROM_instrucao|memROM~9_combout\ = (\Processador|PC|DOUT\(0) & ((!\Processador|PC|DOUT\(1)) # ((!\Processador|PC|DOUT\(2)) # (!\Processador|PC|DOUT\(3)))))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0101010101010100010101010101010001010101010101000101010101010100",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \Processador|PC|ALT_INV_DOUT\(0),
-	datab => \Processador|PC|ALT_INV_DOUT\(1),
-	datac => \Processador|PC|ALT_INV_DOUT\(2),
-	datad => \Processador|PC|ALT_INV_DOUT\(3),
-	combout => \ROM_instrucao|memROM~9_combout\);
-
-\ROM_instrucao|memROM~10\ : cyclonev_lcell_comb
--- Equation(s):
--- \ROM_instrucao|memROM~10_combout\ = (!\Processador|PC|DOUT\(8) & (\ROM_instrucao|memROM~1_combout\ & \ROM_instrucao|memROM~9_combout\))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000001000000010000000100000001000000010000000100000001000000010",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \Processador|PC|ALT_INV_DOUT\(8),
-	datab => \ROM_instrucao|ALT_INV_memROM~1_combout\,
-	datac => \ROM_instrucao|ALT_INV_memROM~9_combout\,
-	combout => \ROM_instrucao|memROM~10_combout\);
-
-\ROM_instrucao|memROM~11\ : cyclonev_lcell_comb
--- Equation(s):
--- \ROM_instrucao|memROM~11_combout\ = (!\Processador|PC|DOUT\(0) & (((\Processador|PC|DOUT\(3)) # (\Processador|PC|DOUT\(2))) # (\Processador|PC|DOUT\(1))))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0010101010101010001010101010101000101010101010100010101010101010",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \Processador|PC|ALT_INV_DOUT\(0),
-	datab => \Processador|PC|ALT_INV_DOUT\(1),
-	datac => \Processador|PC|ALT_INV_DOUT\(2),
-	datad => \Processador|PC|ALT_INV_DOUT\(3),
-	combout => \ROM_instrucao|memROM~11_combout\);
-
-\ROM_instrucao|memROM~12\ : cyclonev_lcell_comb
--- Equation(s):
--- \ROM_instrucao|memROM~12_combout\ = (!\Processador|PC|DOUT\(8) & (\ROM_instrucao|memROM~1_combout\ & \ROM_instrucao|memROM~11_combout\))
-
--- pragma translate_off
-GENERIC MAP (
-	extended_lut => "off",
-	lut_mask => "0000001000000010000000100000001000000010000000100000001000000010",
-	shared_arith => "off")
--- pragma translate_on
-PORT MAP (
-	dataa => \Processador|PC|ALT_INV_DOUT\(8),
-	datab => \ROM_instrucao|ALT_INV_memROM~1_combout\,
-	datac => \ROM_instrucao|ALT_INV_memROM~11_combout\,
-	combout => \ROM_instrucao|memROM~12_combout\);
-
-\ROM_instrucao|memROM~13\ : cyclonev_lcell_comb
--- Equation(s):
--- \ROM_instrucao|memROM~13_combout\ = (!\Processador|PC|DOUT\(1) & (!\Processador|PC|DOUT\(0) & ((\Processador|PC|DOUT\(3)) # (\Processador|PC|DOUT\(2))))) # (\Processador|PC|DOUT\(1) & (!\Processador|PC|DOUT\(0) $ (((\Processador|PC|DOUT\(2) & 
+-- \ROM_instrucao|memROM~9_combout\ = (!\Processador|PC|DOUT\(1) & (!\Processador|PC|DOUT\(0) & ((\Processador|PC|DOUT\(3)) # (\Processador|PC|DOUT\(2))))) # (\Processador|PC|DOUT\(1) & (!\Processador|PC|DOUT\(0) $ (((\Processador|PC|DOUT\(2) & 
 -- \Processador|PC|DOUT\(3))))))
 
 -- pragma translate_off
@@ -1839,11 +1914,11 @@ PORT MAP (
 	datab => \Processador|PC|ALT_INV_DOUT\(1),
 	datac => \Processador|PC|ALT_INV_DOUT\(2),
 	datad => \Processador|PC|ALT_INV_DOUT\(3),
-	combout => \ROM_instrucao|memROM~13_combout\);
+	combout => \ROM_instrucao|memROM~9_combout\);
 
 \ROM_instrucao|memROM~14\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ROM_instrucao|memROM~14_combout\ = (!\Processador|PC|DOUT\(8) & (\ROM_instrucao|memROM~1_combout\ & !\ROM_instrucao|memROM~13_combout\))
+-- \ROM_instrucao|memROM~14_combout\ = (!\Processador|PC|DOUT\(8) & (\ROM_instrucao|memROM~1_combout\ & !\ROM_instrucao|memROM~9_combout\))
 
 -- pragma translate_off
 GENERIC MAP (
@@ -1854,12 +1929,29 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \Processador|PC|ALT_INV_DOUT\(8),
 	datab => \ROM_instrucao|ALT_INV_memROM~1_combout\,
-	datac => \ROM_instrucao|ALT_INV_memROM~13_combout\,
+	datac => \ROM_instrucao|ALT_INV_memROM~9_combout\,
 	combout => \ROM_instrucao|memROM~14_combout\);
 
-\Processador|decoder|Equal10~0\ : cyclonev_lcell_comb
+\ROM_instrucao|memROM~8\ : cyclonev_lcell_comb
 -- Equation(s):
--- \Processador|decoder|Equal10~0_combout\ = (!\ROM_instrucao|memROM~10_combout\ & (\ROM_instrucao|memROM~12_combout\ & \ROM_instrucao|memROM~14_combout\))
+-- \ROM_instrucao|memROM~8_combout\ = (\Processador|PC|DOUT\(0) & ((!\Processador|PC|DOUT\(1)) # ((!\Processador|PC|DOUT\(2)) # (!\Processador|PC|DOUT\(3)))))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0101010101010100010101010101010001010101010101000101010101010100",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \Processador|PC|ALT_INV_DOUT\(0),
+	datab => \Processador|PC|ALT_INV_DOUT\(1),
+	datac => \Processador|PC|ALT_INV_DOUT\(2),
+	datad => \Processador|PC|ALT_INV_DOUT\(3),
+	combout => \ROM_instrucao|memROM~8_combout\);
+
+\ROM_instrucao|memROM~11\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ROM_instrucao|memROM~11_combout\ = (!\Processador|PC|DOUT\(8) & (\ROM_instrucao|memROM~1_combout\ & \ROM_instrucao|memROM~8_combout\))
 
 -- pragma translate_off
 GENERIC MAP (
@@ -1868,9 +1960,58 @@ GENERIC MAP (
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \ROM_instrucao|ALT_INV_memROM~10_combout\,
-	datab => \ROM_instrucao|ALT_INV_memROM~12_combout\,
-	datac => \ROM_instrucao|ALT_INV_memROM~14_combout\,
+	dataa => \Processador|PC|ALT_INV_DOUT\(8),
+	datab => \ROM_instrucao|ALT_INV_memROM~1_combout\,
+	datac => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	combout => \ROM_instrucao|memROM~11_combout\);
+
+\ROM_instrucao|memROM~12\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ROM_instrucao|memROM~12_combout\ = (!\Processador|PC|DOUT\(0) & (((\Processador|PC|DOUT\(3)) # (\Processador|PC|DOUT\(2))) # (\Processador|PC|DOUT\(1))))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0010101010101010001010101010101000101010101010100010101010101010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \Processador|PC|ALT_INV_DOUT\(0),
+	datab => \Processador|PC|ALT_INV_DOUT\(1),
+	datac => \Processador|PC|ALT_INV_DOUT\(2),
+	datad => \Processador|PC|ALT_INV_DOUT\(3),
+	combout => \ROM_instrucao|memROM~12_combout\);
+
+\ROM_instrucao|memROM~13\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \ROM_instrucao|memROM~13_combout\ = (!\Processador|PC|DOUT\(8) & (\ROM_instrucao|memROM~1_combout\ & \ROM_instrucao|memROM~12_combout\))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000001000000010000000100000001000000010000000100000001000000010",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \Processador|PC|ALT_INV_DOUT\(8),
+	datab => \ROM_instrucao|ALT_INV_memROM~1_combout\,
+	datac => \ROM_instrucao|ALT_INV_memROM~12_combout\,
+	combout => \ROM_instrucao|memROM~13_combout\);
+
+\Processador|decoder|Equal10~0\ : cyclonev_lcell_comb
+-- Equation(s):
+-- \Processador|decoder|Equal10~0_combout\ = (\ROM_instrucao|memROM~14_combout\ & (!\ROM_instrucao|memROM~11_combout\ & \ROM_instrucao|memROM~13_combout\))
+
+-- pragma translate_off
+GENERIC MAP (
+	extended_lut => "off",
+	lut_mask => "0000010000000100000001000000010000000100000001000000010000000100",
+	shared_arith => "off")
+-- pragma translate_on
+PORT MAP (
+	dataa => \ROM_instrucao|ALT_INV_memROM~14_combout\,
+	datab => \ROM_instrucao|ALT_INV_memROM~11_combout\,
+	datac => \ROM_instrucao|ALT_INV_memROM~13_combout\,
 	combout => \Processador|decoder|Equal10~0_combout\);
 
 \Processador|PC|DOUT[1]\ : dffeas
@@ -2064,9 +2205,9 @@ PORT MAP (
 	datad => \Processador|PC|ALT_INV_DOUT\(3),
 	combout => \ROM_instrucao|memROM~7_combout\);
 
-\ROM_instrucao|memROM~8\ : cyclonev_lcell_comb
+\ROM_instrucao|memROM~10\ : cyclonev_lcell_comb
 -- Equation(s):
--- \ROM_instrucao|memROM~8_combout\ = (!\Processador|PC|DOUT\(8) & (\ROM_instrucao|memROM~1_combout\ & \ROM_instrucao|memROM~7_combout\))
+-- \ROM_instrucao|memROM~10_combout\ = (!\Processador|PC|DOUT\(8) & (\ROM_instrucao|memROM~1_combout\ & \ROM_instrucao|memROM~7_combout\))
 
 -- pragma translate_off
 GENERIC MAP (
@@ -2078,7 +2219,7 @@ PORT MAP (
 	dataa => \Processador|PC|ALT_INV_DOUT\(8),
 	datab => \ROM_instrucao|ALT_INV_memROM~1_combout\,
 	datac => \ROM_instrucao|ALT_INV_memROM~7_combout\,
-	combout => \ROM_instrucao|memROM~8_combout\);
+	combout => \ROM_instrucao|memROM~10_combout\);
 
 \Processador|PC|DOUT[5]\ : dffeas
 -- pragma translate_off
@@ -2089,7 +2230,7 @@ GENERIC MAP (
 PORT MAP (
 	clk => \KEY[0]~input_o\,
 	d => \Processador|incrementaPC|Add0~21_sumout\,
-	asdata => \ROM_instrucao|memROM~8_combout\,
+	asdata => \ROM_instrucao|memROM~10_combout\,
 	sload => \Processador|decoder|Equal10~0_combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
@@ -2183,7 +2324,7 @@ GENERIC MAP (
 PORT MAP (
 	clk => \KEY[0]~input_o\,
 	d => \Processador|incrementaPC|Add0~33_sumout\,
-	asdata => \ROM_instrucao|memROM~8_combout\,
+	asdata => \ROM_instrucao|memROM~10_combout\,
 	sload => \Processador|decoder|Equal10~0_combout\,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor,
@@ -2239,7 +2380,7 @@ PORT MAP (
 
 \Processador|decoder|Equal10~1\ : cyclonev_lcell_comb
 -- Equation(s):
--- \Processador|decoder|Equal10~1_combout\ = ( !\ROM_instrucao|memROM~13_combout\ & ( (!\Processador|PC|DOUT\(8) & (\ROM_instrucao|memROM~1_combout\ & (!\ROM_instrucao|memROM~9_combout\ & !\ROM_instrucao|memROM~11_combout\))) ) )
+-- \Processador|decoder|Equal10~1_combout\ = ( !\ROM_instrucao|memROM~12_combout\ & ( (!\Processador|PC|DOUT\(8) & (\ROM_instrucao|memROM~1_combout\ & (!\ROM_instrucao|memROM~8_combout\ & !\ROM_instrucao|memROM~9_combout\))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -2250,9 +2391,9 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \Processador|PC|ALT_INV_DOUT\(8),
 	datab => \ROM_instrucao|ALT_INV_memROM~1_combout\,
-	datac => \ROM_instrucao|ALT_INV_memROM~9_combout\,
-	datad => \ROM_instrucao|ALT_INV_memROM~11_combout\,
-	datae => \ROM_instrucao|ALT_INV_memROM~13_combout\,
+	datac => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datad => \ROM_instrucao|ALT_INV_memROM~9_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~12_combout\,
 	combout => \Processador|decoder|Equal10~1_combout\);
 
 \ROM_instrucao|memROM~15\ : cyclonev_lcell_comb
@@ -2272,7 +2413,7 @@ PORT MAP (
 
 \MemoriaRAM|ram~559\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~559_combout\ = ( !\ROM_instrucao|memROM~13_combout\ & ( (!\Processador|PC|DOUT\(8) & (\ROM_instrucao|memROM~1_combout\ & (!\ROM_instrucao|memROM~7_combout\ & \ROM_instrucao|memROM~9_combout\))) ) )
+-- \MemoriaRAM|ram~559_combout\ = ( !\ROM_instrucao|memROM~9_combout\ & ( (!\Processador|PC|DOUT\(8) & (\ROM_instrucao|memROM~1_combout\ & (!\ROM_instrucao|memROM~7_combout\ & \ROM_instrucao|memROM~8_combout\))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -2284,8 +2425,8 @@ PORT MAP (
 	dataa => \Processador|PC|ALT_INV_DOUT\(8),
 	datab => \ROM_instrucao|ALT_INV_memROM~1_combout\,
 	datac => \ROM_instrucao|ALT_INV_memROM~7_combout\,
-	datad => \ROM_instrucao|ALT_INV_memROM~9_combout\,
-	datae => \ROM_instrucao|ALT_INV_memROM~13_combout\,
+	datad => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~9_combout\,
 	combout => \MemoriaRAM|ram~559_combout\);
 
 \MemoriaRAM|ram~560\ : cyclonev_lcell_comb
@@ -2578,8 +2719,8 @@ PORT MAP (
 
 \MemoriaRAM|ram~529\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~529_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~528_combout\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~527_combout\ ) ) 
--- )
+-- \MemoriaRAM|ram~529_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~528_combout\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~527_combout\ ) 
+-- ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -2590,7 +2731,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~527_combout\,
 	datac => \MemoriaRAM|ALT_INV_ram~528_combout\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~529_combout\);
 
@@ -2619,18 +2760,18 @@ PORT MAP (
 
 \Processador|decoder|saida~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \Processador|decoder|saida~0_combout\ = (!\ROM_instrucao|memROM~12_combout\ & (!\ROM_instrucao|memROM~10_combout\ $ (!\ROM_instrucao|memROM~14_combout\)))
+-- \Processador|decoder|saida~0_combout\ = (!\ROM_instrucao|memROM~13_combout\ & (!\ROM_instrucao|memROM~14_combout\ $ (!\ROM_instrucao|memROM~11_combout\)))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0100100001001000010010000100100001001000010010000100100001001000",
+	lut_mask => "0110000001100000011000000110000001100000011000000110000001100000",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \ROM_instrucao|ALT_INV_memROM~10_combout\,
-	datab => \ROM_instrucao|ALT_INV_memROM~12_combout\,
-	datac => \ROM_instrucao|ALT_INV_memROM~14_combout\,
+	dataa => \ROM_instrucao|ALT_INV_memROM~14_combout\,
+	datab => \ROM_instrucao|ALT_INV_memROM~11_combout\,
+	datac => \ROM_instrucao|ALT_INV_memROM~13_combout\,
 	combout => \Processador|decoder|saida~0_combout\);
 
 \Processador|ULA1|Add1~34\ : cyclonev_lcell_comb
@@ -2692,34 +2833,34 @@ PORT MAP (
 
 \Processador|decoder|Equal10~2\ : cyclonev_lcell_comb
 -- Equation(s):
--- \Processador|decoder|Equal10~2_combout\ = ((!\ROM_instrucao|memROM~12_combout\) # (\ROM_instrucao|memROM~14_combout\)) # (\ROM_instrucao|memROM~10_combout\)
+-- \Processador|decoder|Equal10~2_combout\ = ((!\ROM_instrucao|memROM~13_combout\) # (\ROM_instrucao|memROM~11_combout\)) # (\ROM_instrucao|memROM~14_combout\)
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "1101111111011111110111111101111111011111110111111101111111011111",
+	lut_mask => "1111011111110111111101111111011111110111111101111111011111110111",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \ROM_instrucao|ALT_INV_memROM~10_combout\,
-	datab => \ROM_instrucao|ALT_INV_memROM~12_combout\,
-	datac => \ROM_instrucao|ALT_INV_memROM~14_combout\,
+	dataa => \ROM_instrucao|ALT_INV_memROM~14_combout\,
+	datab => \ROM_instrucao|ALT_INV_memROM~11_combout\,
+	datac => \ROM_instrucao|ALT_INV_memROM~13_combout\,
 	combout => \Processador|decoder|Equal10~2_combout\);
 
 \Processador|decoder|saida~1\ : cyclonev_lcell_comb
 -- Equation(s):
--- \Processador|decoder|saida~1_combout\ = !\ROM_instrucao|memROM~14_combout\ $ (((!\ROM_instrucao|memROM~10_combout\ & !\ROM_instrucao|memROM~12_combout\)))
+-- \Processador|decoder|saida~1_combout\ = !\ROM_instrucao|memROM~14_combout\ $ (((!\ROM_instrucao|memROM~11_combout\ & !\ROM_instrucao|memROM~13_combout\)))
 
 -- pragma translate_off
 GENERIC MAP (
 	extended_lut => "off",
-	lut_mask => "0111100001111000011110000111100001111000011110000111100001111000",
+	lut_mask => "0110101001101010011010100110101001101010011010100110101001101010",
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \ROM_instrucao|ALT_INV_memROM~10_combout\,
-	datab => \ROM_instrucao|ALT_INV_memROM~12_combout\,
-	datac => \ROM_instrucao|ALT_INV_memROM~14_combout\,
+	dataa => \ROM_instrucao|ALT_INV_memROM~14_combout\,
+	datab => \ROM_instrucao|ALT_INV_memROM~11_combout\,
+	datac => \ROM_instrucao|ALT_INV_memROM~13_combout\,
 	combout => \Processador|decoder|saida~1_combout\);
 
 \Processador|REGA|DOUT[0]\ : dffeas
@@ -2740,7 +2881,7 @@ PORT MAP (
 
 \AndHEX2|saida~0\ : cyclonev_lcell_comb
 -- Equation(s):
--- \AndHEX2|saida~0_combout\ = ( !\ROM_instrucao|memROM~13_combout\ & ( (!\Processador|PC|DOUT\(8) & (\ROM_instrucao|memROM~1_combout\ & (\ROM_instrucao|memROM~7_combout\ & \ROM_instrucao|memROM~9_combout\))) ) )
+-- \AndHEX2|saida~0_combout\ = ( !\ROM_instrucao|memROM~9_combout\ & ( (!\Processador|PC|DOUT\(8) & (\ROM_instrucao|memROM~1_combout\ & (\ROM_instrucao|memROM~7_combout\ & \ROM_instrucao|memROM~8_combout\))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -2752,8 +2893,8 @@ PORT MAP (
 	dataa => \Processador|PC|ALT_INV_DOUT\(8),
 	datab => \ROM_instrucao|ALT_INV_memROM~1_combout\,
 	datac => \ROM_instrucao|ALT_INV_memROM~7_combout\,
-	datad => \ROM_instrucao|ALT_INV_memROM~9_combout\,
-	datae => \ROM_instrucao|ALT_INV_memROM~13_combout\,
+	datad => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~9_combout\,
 	combout => \AndHEX2|saida~0_combout\);
 
 \DecoderSelEnd|Equal0~0\ : cyclonev_lcell_comb
@@ -2817,7 +2958,7 @@ PORT MAP (
 
 \MemoriaRAM|ram~538\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~538_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~34_q\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~18_q\ ) ) )
+-- \MemoriaRAM|ram~538_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~34_q\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~18_q\ ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -2828,7 +2969,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~18_q\,
 	datac => \MemoriaRAM|ALT_INV_ram~34_q\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~538_combout\);
 
@@ -2862,7 +3003,7 @@ PORT MAP (
 
 \MemoriaRAM|ram~539\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~539_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~66_q\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~50_q\ ) ) )
+-- \MemoriaRAM|ram~539_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~66_q\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~50_q\ ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -2873,7 +3014,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~50_q\,
 	datac => \MemoriaRAM|ALT_INV_ram~66_q\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~539_combout\);
 
@@ -2907,7 +3048,7 @@ PORT MAP (
 
 \MemoriaRAM|ram~540\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~540_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~42_q\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~26_q\ ) ) )
+-- \MemoriaRAM|ram~540_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~42_q\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~26_q\ ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -2918,7 +3059,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~26_q\,
 	datac => \MemoriaRAM|ALT_INV_ram~42_q\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~540_combout\);
 
@@ -2952,7 +3093,7 @@ PORT MAP (
 
 \MemoriaRAM|ram~541\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~541_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~74_q\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~58_q\ ) ) )
+-- \MemoriaRAM|ram~541_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~74_q\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~58_q\ ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -2963,7 +3104,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~58_q\,
 	datac => \MemoriaRAM|ALT_INV_ram~74_q\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~541_combout\);
 
@@ -3129,7 +3270,7 @@ PORT MAP (
 
 \MemoriaRAM|ram~530\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~530_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~32_q\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~16_q\ ) ) )
+-- \MemoriaRAM|ram~530_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~32_q\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~16_q\ ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -3140,7 +3281,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~16_q\,
 	datac => \MemoriaRAM|ALT_INV_ram~32_q\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~530_combout\);
 
@@ -3174,7 +3315,7 @@ PORT MAP (
 
 \MemoriaRAM|ram~531\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~531_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~64_q\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~48_q\ ) ) )
+-- \MemoriaRAM|ram~531_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~64_q\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~48_q\ ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -3185,7 +3326,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~48_q\,
 	datac => \MemoriaRAM|ALT_INV_ram~64_q\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~531_combout\);
 
@@ -3219,7 +3360,7 @@ PORT MAP (
 
 \MemoriaRAM|ram~532\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~532_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~40_q\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~24_q\ ) ) )
+-- \MemoriaRAM|ram~532_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~40_q\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~24_q\ ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -3230,7 +3371,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~24_q\,
 	datac => \MemoriaRAM|ALT_INV_ram~40_q\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~532_combout\);
 
@@ -3264,7 +3405,7 @@ PORT MAP (
 
 \MemoriaRAM|ram~533\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~533_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~72_q\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~56_q\ ) ) )
+-- \MemoriaRAM|ram~533_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~72_q\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~56_q\ ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -3275,7 +3416,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~56_q\,
 	datac => \MemoriaRAM|ALT_INV_ram~72_q\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~533_combout\);
 
@@ -3535,8 +3676,8 @@ PORT MAP (
 
 \MemoriaRAM|ram~537\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~537_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~536_combout\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~535_combout\ ) ) 
--- )
+-- \MemoriaRAM|ram~537_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~536_combout\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~535_combout\ ) 
+-- ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -3547,7 +3688,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~535_combout\,
 	datac => \MemoriaRAM|ALT_INV_ram~536_combout\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~537_combout\);
 
@@ -4939,8 +5080,8 @@ PORT MAP (
 
 \MemoriaRAM|ram~545\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~545_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~544_combout\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~543_combout\ ) ) 
--- )
+-- \MemoriaRAM|ram~545_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~544_combout\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~543_combout\ ) 
+-- ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -4951,7 +5092,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~543_combout\,
 	datac => \MemoriaRAM|ALT_INV_ram~544_combout\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~545_combout\);
 
@@ -5071,7 +5212,7 @@ PORT MAP (
 
 \MemoriaRAM|ram~546\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~546_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~36_q\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~20_q\ ) ) )
+-- \MemoriaRAM|ram~546_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~36_q\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~20_q\ ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -5082,7 +5223,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~20_q\,
 	datac => \MemoriaRAM|ALT_INV_ram~36_q\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~546_combout\);
 
@@ -5116,7 +5257,7 @@ PORT MAP (
 
 \MemoriaRAM|ram~547\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~547_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~68_q\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~52_q\ ) ) )
+-- \MemoriaRAM|ram~547_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~68_q\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~52_q\ ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -5127,7 +5268,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~52_q\,
 	datac => \MemoriaRAM|ALT_INV_ram~68_q\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~547_combout\);
 
@@ -5161,7 +5302,7 @@ PORT MAP (
 
 \MemoriaRAM|ram~548\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~548_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~44_q\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~28_q\ ) ) )
+-- \MemoriaRAM|ram~548_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~44_q\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~28_q\ ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -5172,7 +5313,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~28_q\,
 	datac => \MemoriaRAM|ALT_INV_ram~44_q\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~548_combout\);
 
@@ -5206,7 +5347,7 @@ PORT MAP (
 
 \MemoriaRAM|ram~549\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~549_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~76_q\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~60_q\ ) ) )
+-- \MemoriaRAM|ram~549_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~76_q\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~60_q\ ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -5217,7 +5358,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~60_q\,
 	datac => \MemoriaRAM|ALT_INV_ram~76_q\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~549_combout\);
 
@@ -5290,8 +5431,8 @@ PORT MAP (
 \Processador|ULA1|saida[5]~5\ : cyclonev_lcell_comb
 -- Equation(s):
 -- \Processador|ULA1|saida[5]~5_combout\ = ( \Processador|ULA1|Add1~21_sumout\ & ( (!\Processador|decoder|saida~0_combout\) # ((!\Processador|decoder|Equal10~1_combout\ & ((\MemoriaRAM|ram~550_combout\))) # (\Processador|decoder|Equal10~1_combout\ & 
--- (\ROM_instrucao|memROM~8_combout\))) ) ) # ( !\Processador|ULA1|Add1~21_sumout\ & ( (\Processador|decoder|saida~0_combout\ & ((!\Processador|decoder|Equal10~1_combout\ & ((\MemoriaRAM|ram~550_combout\))) # (\Processador|decoder|Equal10~1_combout\ & 
--- (\ROM_instrucao|memROM~8_combout\)))) ) )
+-- (\ROM_instrucao|memROM~10_combout\))) ) ) # ( !\Processador|ULA1|Add1~21_sumout\ & ( (\Processador|decoder|saida~0_combout\ & ((!\Processador|decoder|Equal10~1_combout\ & ((\MemoriaRAM|ram~550_combout\))) # (\Processador|decoder|Equal10~1_combout\ & 
+-- (\ROM_instrucao|memROM~10_combout\)))) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -5300,7 +5441,7 @@ GENERIC MAP (
 	shared_arith => "off")
 -- pragma translate_on
 PORT MAP (
-	dataa => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	dataa => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	datab => \Processador|decoder|ALT_INV_Equal10~1_combout\,
 	datac => \Processador|decoder|ALT_INV_saida~0_combout\,
 	datad => \MemoriaRAM|ALT_INV_ram~550_combout\,
@@ -5477,8 +5618,8 @@ PORT MAP (
 
 \MemoriaRAM|ram~553\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~553_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~552_combout\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~551_combout\ ) ) 
--- )
+-- \MemoriaRAM|ram~553_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~552_combout\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~551_combout\ ) 
+-- ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -5489,7 +5630,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~551_combout\,
 	datac => \MemoriaRAM|ALT_INV_ram~552_combout\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~553_combout\);
 
@@ -5594,7 +5735,7 @@ PORT MAP (
 
 \MemoriaRAM|ram~554\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~554_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~38_q\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~22_q\ ) ) )
+-- \MemoriaRAM|ram~554_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~38_q\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~22_q\ ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -5605,7 +5746,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~22_q\,
 	datac => \MemoriaRAM|ALT_INV_ram~38_q\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~554_combout\);
 
@@ -5639,7 +5780,7 @@ PORT MAP (
 
 \MemoriaRAM|ram~555\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~555_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~70_q\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~54_q\ ) ) )
+-- \MemoriaRAM|ram~555_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~70_q\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~54_q\ ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -5650,7 +5791,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~54_q\,
 	datac => \MemoriaRAM|ALT_INV_ram~70_q\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~555_combout\);
 
@@ -5684,7 +5825,7 @@ PORT MAP (
 
 \MemoriaRAM|ram~556\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~556_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~46_q\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~30_q\ ) ) )
+-- \MemoriaRAM|ram~556_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~46_q\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~30_q\ ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -5695,7 +5836,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~30_q\,
 	datac => \MemoriaRAM|ALT_INV_ram~46_q\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~556_combout\);
 
@@ -5729,7 +5870,7 @@ PORT MAP (
 
 \MemoriaRAM|ram~557\ : cyclonev_lcell_comb
 -- Equation(s):
--- \MemoriaRAM|ram~557_combout\ = ( !\ROM_instrucao|memROM~8_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~78_q\ ) ) ) # ( !\ROM_instrucao|memROM~8_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~62_q\ ) ) )
+-- \MemoriaRAM|ram~557_combout\ = ( !\ROM_instrucao|memROM~10_combout\ & ( \ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~78_q\ ) ) ) # ( !\ROM_instrucao|memROM~10_combout\ & ( !\ROM_instrucao|memROM~4_combout\ & ( \MemoriaRAM|ram~62_q\ ) ) )
 
 -- pragma translate_off
 GENERIC MAP (
@@ -5740,7 +5881,7 @@ GENERIC MAP (
 PORT MAP (
 	dataa => \MemoriaRAM|ALT_INV_ram~62_q\,
 	datac => \MemoriaRAM|ALT_INV_ram~78_q\,
-	datae => \ROM_instrucao|ALT_INV_memROM~8_combout\,
+	datae => \ROM_instrucao|ALT_INV_memROM~10_combout\,
 	dataf => \ROM_instrucao|ALT_INV_memROM~4_combout\,
 	combout => \MemoriaRAM|ram~557_combout\);
 

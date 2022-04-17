@@ -23,8 +23,16 @@ entity relogio is
     LEDR  : out std_logic_vector(9 downto 0);
     HEX0, HEX1, HEX2, HEX3, HEX4, HEX5 : out std_logic_vector(6 downto 0);
 	 
-	 ACUMULADOR: out std_logic_vector(7 downto 0);
-	 INSTRUCAO: out std_logic_vector(12 downto 0)
+    SAIDA_AND_HEX0: out std_logic;
+    DIN_HEX: out std_logic_vector(3 downto 0);
+    SAIDA_AND_HEX1: out std_logic;
+    SAIDA_AND_HEX2: out std_logic;
+    SAIDA_AND_HEX3: out std_logic;
+    SAIDA_AND_HEX4: out std_logic;
+    SAIDA_AND_HEX5: out std_logic;
+
+    ACUMULADOR: out std_logic_vector(7 downto 0);
+    INSTRUCAO: out std_logic_vector(12 downto 0)
   );
 end entity;
 
@@ -406,43 +414,43 @@ decoderHEX5 : entity work.conversorHex7Seg
 -- ATRIBUIÇÕES 3STATE SW
 buffer3State_SW0_7 :  entity work.buffer3State_8portas
                       port map(entrada => SW(7 downto 0), 
-                               habilita => saidaAndSW0_7, 
+                               habilita => not(saidaAndSW0_7), 
                                saida => Data_IN) ;
 
 buffer3State_SW8 :  entity work.buffer3State_1porta
                     port map(entrada => SW(8), 
-                             habilita => saidaAndSW8, 
+                             habilita => not(saidaAndSW8), 
                              saida => Data_IN(0)) ;
 
 buffer3State_SW9 :  entity work.buffer3State_1porta
                     port map(entrada => SW(9), 
-                             habilita => saidaAndSW9, 
+                             habilita => not(saidaAndSW9), 
                              saida => Data_IN(0));
                              
 -- ATRIBUIÇÕES 3STATE SW
 buffer3State_KEY0 :   entity work.buffer3State_1porta
                       port map(entrada => KEY0, 
-                               habilita => saidaAndKEY0, 
+                               habilita => not(saidaAndKEY0), 
                                saida => Data_IN(0));
 
 buffer3State_KEY1 :   entity work.buffer3State_1porta
                       port map(entrada => KEY1, 
-                               habilita => saidaAndKEY1, 
+                               habilita => not(saidaAndKEY1), 
                                saida => Data_IN(0));
 
 buffer3State_KEY2 :   entity work.buffer3State_1porta
                       port map(entrada => KEY2, 
-                               habilita => saidaAndKEY2, 
+                               habilita => not(saidaAndKEY2), 
                                saida => Data_IN(3));               
 
 buffer3State_KEY3 :   entity work.buffer3State_1porta
                       port map(entrada => KEY3, 
-                               habilita => saidaAndKEY3, 
+                               habilita => not(saidaAndKEY3), 
                                saida => Data_IN(0));                                
                                
 buffer3State_FPGA_RESET :   entity work.buffer3State_1porta
-                            port map(entrada => KEY3, 
-                                     habilita => saidaANDFPGA_RESET, 
+                            port map(entrada => FPGA_RESET,
+                                     habilita => not(saidaANDFPGA_RESET), 
                                      saida => Data_IN(0)); 
                                      
 -- ############### Atribuindo Sinais ###############
@@ -488,6 +496,13 @@ HEX5 <= saidaDecoderHEX5;
 
 
 -- SINAIS A SEREM OBSERVADOS
+SAIDA_AND_HEX0 <= saidaAndHEX0;
+DIN_HEX <= Data_OUT(3 downto 0);
+SAIDA_AND_HEX1 <= saidaAndHEX1;
+SAIDA_AND_HEX2 <= saidaAndHEX2;
+SAIDA_AND_HEX3 <= saidaAndHEX3;
+SAIDA_AND_HEX4 <= saidaAndHEX4;
+SAIDA_AND_HEX5 <= saidaAndHEX5;
 
 ACUMULADOR <= Data_OUT;
 INSTRUCAO <= Saida_ROM;
