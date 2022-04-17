@@ -12,7 +12,7 @@ entity relogio is
             tamanhoRAM: natural := 6;
             dadoRAM: natural := 8;
             
-            simulacao : boolean := TRUE -- para gravar na placa, altere de TRUE para FALSE
+            simulacao : boolean := FALSE -- para gravar na placa, altere de TRUE para FALSE
   );
   port   (
     CLOCK_50 : in std_logic;
@@ -46,8 +46,6 @@ architecture arquitetura of relogio is
   signal Instruction_IN: std_logic_vector(12 downto 0);
   signal Data_IN: std_logic_vector(7 downto 0);
   signal Data_OUT: std_logic_vector(7 downto 0);
-  signal Saida_ROM: std_logic_vector(12 downto 0);
-  signal Saida_RAM: std_logic_vector(7 downto 0);
   signal Data_Address: std_logic_vector(8 downto 0);
   signal Control: std_logic_vector(1 downto 0); --Rd(1), Wr(0)
   signal ROM_Address: std_logic_vector(8 downto 0);
@@ -143,7 +141,7 @@ end generate;
 -- MEMÓRIA ROM
 ROM_instrucao : entity work.memoriaROM   generic map (dataWidth => dadoROM, addrWidth => tamanhoROM)
                 port map (Endereco => ROM_Address, 
-                          Dado => Saida_ROM);
+                          Dado => Instruction_IN);
 
 
 -- MEMÓRIA RAM                          
@@ -153,7 +151,7 @@ MemoriaRAM : entity work.memoriaRAM   generic map (dataWidth => dadoRAM, addrWid
                        re => hab_leitura, 
                        habilita => bloco0, 
                        dado_in => Data_OUT, 
-                       dado_out => Saida_RAM, 
+                       dado_out => Data_IN, 
                        clk => CLK);
 
 
@@ -162,8 +160,8 @@ Processador: entity work.processador generic map (larguraDados => larguraDados, 
              port map (
               CLK => CLK,
               RST => RST,
-              Instruction_IN => Saida_ROM,
-              Data_IN => Saida_RAM,
+              Instruction_IN => Instruction_IN,
+              Data_IN => Data_IN,
               Data_OUT => Data_OUT,
               Data_Address => Data_Address,
               Control => Control,
@@ -441,7 +439,7 @@ buffer3State_KEY1 :   entity work.buffer3State_1porta
 buffer3State_KEY2 :   entity work.buffer3State_1porta
                       port map(entrada => KEY2, 
                                habilita => not(saidaAndKEY2), 
-                               saida => Data_IN(3));               
+                               saida => Data_IN(0));               
 
 buffer3State_KEY3 :   entity work.buffer3State_1porta
                       port map(entrada => KEY3, 
@@ -505,7 +503,7 @@ SAIDA_AND_HEX4 <= saidaAndHEX4;
 SAIDA_AND_HEX5 <= saidaAndHEX5;
 
 ACUMULADOR <= Data_OUT;
-INSTRUCAO <= Saida_ROM;
+INSTRUCAO <= Instruction_IN;
 PC_OUT <= ROM_Address;
 
 
