@@ -19,7 +19,7 @@
 -- the top level entity of the current Quartus project .The user can use this   
 -- testbench to simulate his design using a third-party simulation tool .       
 -- *****************************************************************************
--- Generated on "04/17/2022 17:05:18"
+-- Generated on "04/18/2022 16:54:10"
                                                              
 -- Vhdl Test Bench(with test vectors) for design  :          relogio
 -- 
@@ -58,6 +58,9 @@ SIGNAL SAIDA_AND_HEX2 : STD_LOGIC;
 SIGNAL SAIDA_AND_HEX3 : STD_LOGIC;
 SIGNAL SAIDA_AND_HEX4 : STD_LOGIC;
 SIGNAL SAIDA_AND_HEX5 : STD_LOGIC;
+SIGNAL SAIDA_AND_LED8 : STD_LOGIC;
+SIGNAL SAIDA_AND_LED9 : STD_LOGIC;
+SIGNAL SAIDA_AND_SW0_7 : STD_LOGIC;
 SIGNAL SW : STD_LOGIC_VECTOR(9 DOWNTO 0);
 COMPONENT relogio
 	PORT (
@@ -85,6 +88,9 @@ COMPONENT relogio
 	SAIDA_AND_HEX3 : OUT STD_LOGIC;
 	SAIDA_AND_HEX4 : OUT STD_LOGIC;
 	SAIDA_AND_HEX5 : OUT STD_LOGIC;
+	SAIDA_AND_LED8 : OUT STD_LOGIC;
+	SAIDA_AND_LED9 : OUT STD_LOGIC;
+	SAIDA_AND_SW0_7 : OUT STD_LOGIC;
 	SW : IN STD_LOGIC_VECTOR(9 DOWNTO 0)
 	);
 END COMPONENT;
@@ -116,6 +122,9 @@ BEGIN
 	SAIDA_AND_HEX3 => SAIDA_AND_HEX3,
 	SAIDA_AND_HEX4 => SAIDA_AND_HEX4,
 	SAIDA_AND_HEX5 => SAIDA_AND_HEX5,
+	SAIDA_AND_LED8 => SAIDA_AND_LED8,
+	SAIDA_AND_LED9 => SAIDA_AND_LED9,
+	SAIDA_AND_SW0_7 => SAIDA_AND_SW0_7,
 	SW => SW
 	);
 
@@ -134,4 +143,117 @@ BEGIN
 	KEY(0) <= '0';
 WAIT;
 END PROCESS t_prcs_KEY_0;
+
+-- SW[7]
+t_prcs_SW_7: PROCESS
+BEGIN
+	SW(7) <= '0';
+WAIT;
+END PROCESS t_prcs_SW_7;
+
+-- SW[6]
+t_prcs_SW_6: PROCESS
+BEGIN
+	SW(6) <= '0';
+WAIT;
+END PROCESS t_prcs_SW_6;
+
+-- SW[5]
+t_prcs_SW_5: PROCESS
+BEGIN
+	SW(5) <= '0';
+WAIT;
+END PROCESS t_prcs_SW_5;
+
+-- SW[4]
+t_prcs_SW_4: PROCESS
+BEGIN
+	SW(4) <= '0';
+WAIT;
+END PROCESS t_prcs_SW_4;
+
+-- SW[3]
+t_prcs_SW_3: PROCESS
+BEGIN
+	SW(3) <= '0';
+WAIT;
+END PROCESS t_prcs_SW_3;
+
+-- SW[2]
+t_prcs_SW_2: PROCESS
+BEGIN
+	SW(2) <= '1';
+WAIT;
+END PROCESS t_prcs_SW_2;
+
+-- SW[1]
+t_prcs_SW_1: PROCESS
+BEGIN
+	SW(1) <= '1';
+WAIT;
+END PROCESS t_prcs_SW_1;
+
+-- SW[0]
+t_prcs_SW_0: PROCESS
+BEGIN
+	SW(0) <= '0';
+WAIT;
+END PROCESS t_prcs_SW_0;
+
+-- SW[8]
+t_prcs_SW_8: PROCESS
+BEGIN
+	SW(8) <= '0';
+	WAIT FOR 100000 ps;
+	SW(8) <= '1';
+	WAIT FOR 540000 ps;
+	SW(8) <= '0';
+WAIT;
+END PROCESS t_prcs_SW_8;
+
+-- SW[9]
+t_prcs_SW_9: PROCESS
+BEGIN
+	SW(9) <= '0';
+	WAIT FOR 100000 ps;
+	SW(9) <= '1';
+	WAIT FOR 540000 ps;
+	SW(9) <= '0';
+WAIT;
+END PROCESS t_prcs_SW_9;
+
+-- KEY0
+t_prcs_KEY0: PROCESS
+BEGIN
+	KEY0 <= '1';
+WAIT;
+END PROCESS t_prcs_KEY0;
+
+-- KEY1
+t_prcs_KEY1: PROCESS
+BEGIN
+	KEY1 <= '0';
+WAIT;
+END PROCESS t_prcs_KEY1;
+
+-- KEY2
+t_prcs_KEY2: PROCESS
+BEGIN
+	KEY2 <= '1';
+WAIT;
+END PROCESS t_prcs_KEY2;
+
+-- KEY3
+t_prcs_KEY3: PROCESS
+BEGIN
+	KEY3 <= '0';
+WAIT;
+END PROCESS t_prcs_KEY3;
+
+-- FPGA_RESET
+t_prcs_FPGA_RESET: PROCESS
+BEGIN
+	FPGA_RESET <= '1';
+WAIT;
+END PROCESS t_prcs_FPGA_RESET;
 END relogio_arch;

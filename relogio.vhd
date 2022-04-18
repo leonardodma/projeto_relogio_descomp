@@ -30,6 +30,9 @@ entity relogio is
     SAIDA_AND_HEX3: out std_logic;
     SAIDA_AND_HEX4: out std_logic;
     SAIDA_AND_HEX5: out std_logic;
+    SAIDA_AND_LED8: out std_logic;
+    SAIDA_AND_LED9: out std_logic;
+    SAIDA_AND_SW0_7: out std_logic;
 
     ACUMULADOR: out std_logic_vector(7 downto 0);
     INSTRUCAO: out std_logic_vector(12 downto 0)
@@ -59,8 +62,8 @@ architecture arquitetura of relogio is
   -- ANDS
     -- leds
   signal saidaAndLedR: std_logic;
-  signal saidaAndLed1: std_logic;
-  signal saidaAndLed2: std_logic;
+  signal saidaAndLed8: std_logic;
+  signal saidaAndLed9: std_logic;
 
     -- hex
   signal saidaAndHEX0: std_logic;
@@ -83,8 +86,8 @@ architecture arquitetura of relogio is
   signal saidaANDFPGA_RESET: std_logic;
 
   -- FLIP FLOPS
-  signal saidaFlipFlopLed2: std_logic;
-  signal saidaFlipFlopLed1: std_logic;
+  signal saidaFlipFlopLed9: std_logic;
+  signal saidaFlipFlopLed8: std_logic;
   signal saidaRegistradorLedR: std_logic_vector(7 downto 0);
 
   -- REGISTRADORES
@@ -179,19 +182,19 @@ DecoderSelEnd : entity work.DecoderAddress
 
 -- Portas ANDS
   -- LEDs
-AndLed2 : entity work.AND_logic generic map(larguraDados => 1)
+AndLed9 : entity work.AND_logic generic map(larguraDados => 1)
           port map (entradaA => hab_escrita, 
                     entradaB => bloco4, 
                     entradaC => dataAddressA5_Invertido,
                     entradaD => endereco2,
-                    saida    => saidaAndLed2);        
+                    saida    => saidaAndLed9);        
 
-AndLed1 : entity work.AND_logic generic map(larguraDados => 1)
+AndLed8 : entity work.AND_logic generic map(larguraDados => 1)
           port map (entradaA => hab_escrita, 
                     entradaB => bloco4, 
                     entradaC => endereco1, 
                     entradaD => dataAddressA5_Invertido,
-                    saida    => saidaAndLed1);
+                    saida    => saidaAndLed8);
 
 AndLedR : entity work.AND_logic generic map(larguraDados => 1)
           port map (entradaA => hab_escrita, 
@@ -244,21 +247,21 @@ AndHEX5 : entity work.AND_logic generic map(larguraDados => 1)
 
   -- SW
 AndSW0_7 : entity work.AND_logic generic map(larguraDados => 1)
-           port map (entradaA => hab_escrita, 
+           port map (entradaA => hab_leitura, 
                      entradaB => bloco5, 
                      entradaC => endereco0, 
                      entradaD => dataAddressA5_Invertido,
                      saida    => saidaAndSW0_7);
 
 AndSW8 : entity work.AND_logic generic map(larguraDados => 1)
-         port map (entradaA => hab_escrita, 
+         port map (entradaA => hab_leitura, 
                    entradaB => bloco5, 
                    entradaC => endereco1, 
                    entradaD => dataAddressA5_Invertido,
                    saida    => saidaAndSW8);
 
 AndSW9 : entity work.AND_logic generic map(larguraDados => 1)
-         port map (entradaA => hab_escrita, 
+         port map (entradaA => hab_leitura, 
                    entradaB => bloco5, 
                    entradaC => endereco2, 
                    entradaD => dataAddressA5_Invertido,
@@ -266,52 +269,52 @@ AndSW9 : entity work.AND_logic generic map(larguraDados => 1)
 
   -- KEY
 AndKEY0 : entity work.AND_logic generic map(larguraDados => 1)
-          port map (entradaA => hab_escrita, 
+          port map (entradaA => hab_leitura, 
                     entradaB => bloco5, 
                     entradaC => endereco0, 
                     entradaD => dataAddressA5,
                     saida    => saidaAndKEY0);
 
 AndKEY1 : entity work.AND_logic generic map(larguraDados => 1)
-          port map (entradaA => hab_escrita, 
+          port map (entradaA => hab_leitura, 
                     entradaB => bloco5, 
                     entradaC => endereco1, 
                     entradaD => dataAddressA5,
                     saida    => saidaAndKEY1);
 
 AndKEY2 : entity work.AND_logic generic map(larguraDados => 1)
-          port map (entradaA => hab_escrita, 
+          port map (entradaA => hab_leitura, 
                     entradaB => bloco5, 
                     entradaC => endereco2, 
                     entradaD => dataAddressA5,
                     saida    => saidaAndKEY2); 
  
 AndKEY3 : entity work.AND_logic generic map(larguraDados => 1)
-          port map (entradaA => hab_escrita, 
+          port map (entradaA => hab_leitura, 
                     entradaB => bloco5, 
                     entradaC => endereco3, 
                     entradaD => dataAddressA5,
                     saida    => saidaAndKEY3);     
 
 AndKEY_RESET : entity work.AND_logic generic map(larguraDados => 1)
-               port map (entradaA => hab_escrita, 
+               port map (entradaA => hab_leitura, 
                          entradaB => bloco5, 
                          entradaC => endereco4, 
                          entradaD => dataAddressA5,
                          saida    => saidaANDFPGA_RESET); 
 
 -- FLIP FLOPS E REGISTRADORES DOS LEDS E DISPLAYS HEX
-flipFlopLed2 : entity work.flipFlop  generic map (larguraDados => 1)
+flipFlopLed9 : entity work.flipFlop  generic map (larguraDados => 1)
                port map (DIN => Data_OUT(0), 
-                         DOUT => saidaFlipFlopLed2, 
-                         ENABLE => saidaAndLed2, 
+                         DOUT => saidaFlipFlopLed9, 
+                         ENABLE => saidaAndLed9, 
                          CLK => CLK, 
                          RST => RST);
 
-flipFlopLed1 : entity work.flipFlop  generic map (larguraDados => 1)
+flipFlopLed8 : entity work.flipFlop  generic map (larguraDados => 1)
                port map (DIN => Data_OUT(0), 
-                         DOUT => saidaFlipFlopLed1, 
-                         ENABLE => saidaAndLed1, 
+                         DOUT => saidaFlipFlopLed8, 
+                         ENABLE => saidaAndLed8, 
                          CLK => CLK, 
                          RST => RST);
 
@@ -412,43 +415,43 @@ decoderHEX5 : entity work.conversorHex7Seg
 -- ATRIBUIÇÕES 3STATE SW
 buffer3State_SW0_7 :  entity work.buffer3State_8portas
                       port map(entrada => SW(7 downto 0), 
-                               habilita => not(saidaAndSW0_7), 
+                               habilita => saidaAndSW0_7, 
                                saida => Data_IN) ;
 
 buffer3State_SW8 :  entity work.buffer3State_1porta
                     port map(entrada => SW(8), 
-                             habilita => not(saidaAndSW8), 
+                             habilita => saidaAndSW8,
                              saida => Data_IN(0)) ;
 
 buffer3State_SW9 :  entity work.buffer3State_1porta
                     port map(entrada => SW(9), 
-                             habilita => not(saidaAndSW9), 
+                             habilita => saidaAndSW9,
                              saida => Data_IN(0));
                              
 -- ATRIBUIÇÕES 3STATE SW
 buffer3State_KEY0 :   entity work.buffer3State_1porta
                       port map(entrada => KEY0, 
-                               habilita => not(saidaAndKEY0), 
+                               habilita => saidaAndKEY0, 
                                saida => Data_IN(0));
 
 buffer3State_KEY1 :   entity work.buffer3State_1porta
                       port map(entrada => KEY1, 
-                               habilita => not(saidaAndKEY1), 
+                               habilita => saidaAndKEY1, 
                                saida => Data_IN(0));
 
 buffer3State_KEY2 :   entity work.buffer3State_1porta
                       port map(entrada => KEY2, 
-                               habilita => not(saidaAndKEY2), 
+                               habilita => saidaAndKEY2, 
                                saida => Data_IN(0));               
 
 buffer3State_KEY3 :   entity work.buffer3State_1porta
                       port map(entrada => KEY3, 
-                               habilita => not(saidaAndKEY3), 
+                               habilita => saidaAndKEY3, 
                                saida => Data_IN(0));                                
                                
 buffer3State_FPGA_RESET :   entity work.buffer3State_1porta
                             port map(entrada => FPGA_RESET,
-                                     habilita => not(saidaANDFPGA_RESET), 
+                                     habilita => saidaANDFPGA_RESET, 
                                      saida => Data_IN(0)); 
                                      
 -- ############### Atribuindo Sinais ###############
@@ -481,8 +484,8 @@ endereco7 <= enderecos(7);
 
 -- Atribuição dos LEDs
 LEDR(7 downto 0) <= saidaRegistradorLedR;
-LEDR(8) <= saidaFlipFlopLed1;
-LEDR(9) <= saidaFlipFlopLed2;
+LEDR(8) <= saidaFlipFlopLed8;
+LEDR(9) <= saidaFlipFlopLed9;
 
 -- Atribuição dos HEXs
 HEX0 <= saidaDecoderHEX0;
@@ -501,6 +504,9 @@ SAIDA_AND_HEX2 <= saidaAndHEX2;
 SAIDA_AND_HEX3 <= saidaAndHEX3;
 SAIDA_AND_HEX4 <= saidaAndHEX4;
 SAIDA_AND_HEX5 <= saidaAndHEX5;
+SAIDA_AND_LED8 <= saidaFlipFlopLed8;
+SAIDA_AND_LED9 <= saidaFlipFlopLed9;
+SAIDA_AND_SW0_7 <= saidaAndSW0_7;
 
 ACUMULADOR <= Data_OUT;
 INSTRUCAO <= Instruction_IN;

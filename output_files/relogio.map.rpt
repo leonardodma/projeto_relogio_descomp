@@ -1,5 +1,5 @@
 Analysis & Synthesis report for relogio
-Sun Apr 17 17:29:11 2022
+Mon Apr 18 16:44:31 2022
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -94,14 +94,14 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sun Apr 17 17:29:11 2022       ;
+; Analysis & Synthesis Status     ; Successful - Mon Apr 18 16:44:31 2022       ;
 ; Quartus Prime Version           ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                   ; relogio                                     ;
 ; Top-level Entity Name           ; relogio                                     ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
 ; Total registers                 ; 52                                          ;
-; Total pins                      ; 112                                         ;
+; Total pins                      ; 115                                         ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
 ; Total DSP Blocks                ; 0                                           ;
@@ -250,24 +250,24 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-----------------------------------------+
 ; Resource                                    ; Usage                                   ;
 +---------------------------------------------+-----------------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 66                                      ;
+; Estimate of Logic utilization (ALMs needed) ; 68                                      ;
 ;                                             ;                                         ;
-; Combinational ALUT usage for logic          ; 109                                     ;
+; Combinational ALUT usage for logic          ; 111                                     ;
 ;     -- 7 input functions                    ; 0                                       ;
-;     -- 6 input functions                    ; 6                                       ;
-;     -- 5 input functions                    ; 15                                      ;
-;     -- 4 input functions                    ; 55                                      ;
-;     -- <=3 input functions                  ; 33                                      ;
+;     -- 6 input functions                    ; 8                                       ;
+;     -- 5 input functions                    ; 10                                      ;
+;     -- 4 input functions                    ; 59                                      ;
+;     -- <=3 input functions                  ; 34                                      ;
 ;                                             ;                                         ;
 ; Dedicated logic registers                   ; 52                                      ;
 ;                                             ;                                         ;
-; I/O pins                                    ; 112                                     ;
+; I/O pins                                    ; 115                                     ;
 ;                                             ;                                         ;
 ; Total DSP Blocks                            ; 0                                       ;
 ;                                             ;                                         ;
 ; Maximum fan-out node                        ; edgeDetector:\gravar:detectorSub0|saida ;
 ; Maximum fan-out                             ; 51                                      ;
-; Total fan-out                               ; 756                                     ;
+; Total fan-out                               ; 771                                     ;
 ; Average fan-out                             ; 1.96                                    ;
 +---------------------------------------------+-----------------------------------------+
 
@@ -277,15 +277,15 @@ https://fpgasoftware.intel.com/eula.
 +------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------+---------------------+--------------+
 ; Compilation Hierarchy Node               ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                         ; Entity Name         ; Library Name ;
 +------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------+---------------------+--------------+
-; |relogio                                 ; 109 (0)             ; 52 (0)                    ; 0                 ; 0          ; 112  ; 0            ; |relogio                                                    ; relogio             ; work         ;
+; |relogio                                 ; 111 (6)             ; 52 (0)                    ; 0                 ; 0          ; 115  ; 0            ; |relogio                                                    ; relogio             ; work         ;
 ;    |AND_logic:AndHEX0|                   ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|AND_logic:AndHEX0                                  ; AND_logic           ; work         ;
 ;    |AND_logic:AndHEX1|                   ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|AND_logic:AndHEX1                                  ; AND_logic           ; work         ;
 ;    |AND_logic:AndHEX2|                   ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|AND_logic:AndHEX2                                  ; AND_logic           ; work         ;
 ;    |AND_logic:AndHEX3|                   ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|AND_logic:AndHEX3                                  ; AND_logic           ; work         ;
 ;    |AND_logic:AndHEX4|                   ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|AND_logic:AndHEX4                                  ; AND_logic           ; work         ;
 ;    |AND_logic:AndHEX5|                   ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|AND_logic:AndHEX5                                  ; AND_logic           ; work         ;
-;    |AND_logic:AndLed2|                   ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|AND_logic:AndLed2                                  ; AND_logic           ; work         ;
-;    |AND_logic:AndLedR|                   ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|AND_logic:AndLedR                                  ; AND_logic           ; work         ;
+;    |AND_logic:AndLedR|                   ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|AND_logic:AndLedR                                  ; AND_logic           ; work         ;
+;    |AND_logic:AndSW0_7|                  ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|AND_logic:AndSW0_7                                 ; AND_logic           ; work         ;
 ;    |conversorHex7Seg:decoderHEX0|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|conversorHex7Seg:decoderHEX0                       ; conversorHex7Seg    ; work         ;
 ;    |conversorHex7Seg:decoderHEX1|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|conversorHex7Seg:decoderHEX1                       ; conversorHex7Seg    ; work         ;
 ;    |conversorHex7Seg:decoderHEX2|        ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|conversorHex7Seg:decoderHEX2                       ; conversorHex7Seg    ; work         ;
@@ -295,10 +295,11 @@ https://fpgasoftware.intel.com/eula.
 ;    |edgeDetector:\gravar:detectorSub0|   ; 2 (2)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|edgeDetector:\gravar:detectorSub0                  ; edgeDetector        ; work         ;
 ;    |flipFlop:flipFlopLed1|               ; 1 (1)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|flipFlop:flipFlopLed1                              ; flipFlop            ; work         ;
 ;    |flipFlop:flipFlopLed2|               ; 1 (1)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|flipFlop:flipFlopLed2                              ; flipFlop            ; work         ;
-;    |memoriaROM:ROM_instrucao|            ; 19 (19)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|memoriaROM:ROM_instrucao                           ; memoriaROM          ; work         ;
+;    |memoriaROM:ROM_instrucao|            ; 13 (13)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|memoriaROM:ROM_instrucao                           ; memoriaROM          ; work         ;
 ;    |processador:Processador|             ; 35 (0)              ; 17 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |relogio|processador:Processador                            ; processador         ; work         ;
-;       |DecoderInstruction:decoder|       ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|processador:Processador|DecoderInstruction:decoder ; DecoderInstruction  ; work         ;
-;       |ULASomaSub:ULA1|                  ; 18 (18)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|processador:Processador|ULASomaSub:ULA1            ; ULASomaSub          ; work         ;
+;       |DecoderInstruction:decoder|       ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|processador:Processador|DecoderInstruction:decoder ; DecoderInstruction  ; work         ;
+;       |ULASomaSub:ULA1|                  ; 17 (17)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|processador:Processador|ULASomaSub:ULA1            ; ULASomaSub          ; work         ;
+;       |muxGenerico2x1:MUX1|              ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|processador:Processador|muxGenerico2x1:MUX1        ; muxGenerico2x1      ; work         ;
 ;       |muxGenerico4x1:MUX4x1|            ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|processador:Processador|muxGenerico4x1:MUX4x1      ; muxGenerico4x1      ; work         ;
 ;       |registradorGenerico:PC|           ; 0 (0)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|processador:Processador|registradorGenerico:PC     ; registradorGenerico ; work         ;
 ;       |registradorGenerico:REGA|         ; 0 (0)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |relogio|processador:Processador|registradorGenerico:REGA   ; registradorGenerico ; work         ;
@@ -346,6 +347,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                        ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------+
 ; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |relogio|processador:Processador|registradorGenerico:REGA|DOUT[0] ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |relogio|processador:Processador|muxGenerico2x1:MUX1|saida_MUX[7] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |relogio|processador:Processador|muxGenerico2x1:MUX1|saida_MUX[5] ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------+
 
 
@@ -860,24 +863,24 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     ENA               ; 32                          ;
 ;     ENA SLD           ; 8                           ;
 ;     plain             ; 12                          ;
-; arriav_lcell_comb     ; 110                         ;
+; arriav_lcell_comb     ; 112                         ;
 ;     arith             ; 18                          ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 9                           ;
-;         3 data inputs ; 4                           ;
-;         5 data inputs ; 4                           ;
-;     normal            ; 92                          ;
+;         2 data inputs ; 3                           ;
+;         3 data inputs ; 5                           ;
+;     normal            ; 94                          ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 1                           ;
-;         2 data inputs ; 10                          ;
-;         3 data inputs ; 8                           ;
-;         4 data inputs ; 55                          ;
-;         5 data inputs ; 11                          ;
-;         6 data inputs ; 6                           ;
-; boundary_port         ; 112                         ;
+;         2 data inputs ; 5                           ;
+;         3 data inputs ; 10                          ;
+;         4 data inputs ; 59                          ;
+;         5 data inputs ; 10                          ;
+;         6 data inputs ; 8                           ;
+; boundary_port         ; 115                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 4.70                        ;
-; Average LUT depth     ; 2.23                        ;
+; Max LUT depth         ; 6.70                        ;
+; Average LUT depth     ; 2.92                        ;
 +-----------------------+-----------------------------+
 
 
@@ -896,7 +899,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Sun Apr 17 17:28:59 2022
+    Info: Processing started: Mon Apr 18 16:44:19 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off relogio -c relogio
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file buffer3state_8portas.vhd
@@ -949,21 +952,21 @@ Info (12021): Found 2 design units, including 1 entities, in source file and_log
     Info (12022): Found design unit 1: AND_logic-comportamento File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/AND_logic.vhd Line: 17
     Info (12023): Found entity 1: AND_logic File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/AND_logic.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file relogio.vhd
-    Info (12022): Found design unit 1: relogio-arquitetura File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 40
+    Info (12022): Found design unit 1: relogio-arquitetura File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 43
     Info (12023): Found entity 1: relogio File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 4
 Info (12127): Elaborating entity "relogio" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at relogio.vhd(43): used implicit default value for signal "RST" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 43
-Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(109): object "bloco1" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 109
-Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(110): object "bloco2" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 110
-Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(111): object "bloco3" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 111
-Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(114): object "bloco6" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 114
-Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(115): object "bloco7" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 115
-Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(125): object "endereco6" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 125
-Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(126): object "endereco7" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 126
-Info (12129): Elaborating entity "edgeDetector" using architecture "A:bordasubida" for hierarchy "edgeDetector:\gravar:detectorSub0" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 136
-Info (12128): Elaborating entity "memoriaROM" for hierarchy "memoriaROM:ROM_instrucao" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 142
-Info (12128): Elaborating entity "memoriaRAM" for hierarchy "memoriaRAM:MemoriaRAM" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 148
-Info (12128): Elaborating entity "processador" for hierarchy "processador:Processador" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 159
+Warning (10541): VHDL Signal Declaration warning at relogio.vhd(46): used implicit default value for signal "RST" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 46
+Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(112): object "bloco1" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 112
+Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(113): object "bloco2" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 113
+Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(114): object "bloco3" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 114
+Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(117): object "bloco6" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 117
+Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(118): object "bloco7" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 118
+Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(128): object "endereco6" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 128
+Warning (10036): Verilog HDL or VHDL warning at relogio.vhd(129): object "endereco7" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 129
+Info (12129): Elaborating entity "edgeDetector" using architecture "A:bordasubida" for hierarchy "edgeDetector:\gravar:detectorSub0" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 139
+Info (12128): Elaborating entity "memoriaROM" for hierarchy "memoriaROM:ROM_instrucao" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 145
+Info (12128): Elaborating entity "memoriaRAM" for hierarchy "memoriaRAM:MemoriaRAM" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 151
+Info (12128): Elaborating entity "processador" for hierarchy "processador:Processador" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 162
 Warning (10036): Verilog HDL or VHDL warning at processador.vhd(36): object "JMP" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/processador.vhd Line: 36
 Warning (10036): Verilog HDL or VHDL warning at processador.vhd(37): object "RET" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/processador.vhd Line: 37
 Warning (10036): Verilog HDL or VHDL warning at processador.vhd(38): object "JSR" assigned a value but never read File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/processador.vhd Line: 38
@@ -976,12 +979,12 @@ Info (12128): Elaborating entity "muxGenerico4x1" for hierarchy "processador:Pro
 Info (12128): Elaborating entity "ULASomaSub" for hierarchy "processador:Processador|ULASomaSub:ULA1" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/processador.vhd Line: 83
 Info (12128): Elaborating entity "flipFlop" for hierarchy "processador:Processador|flipFlop:flagIgual" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/processador.vhd Line: 87
 Info (12128): Elaborating entity "DecoderInstruction" for hierarchy "processador:Processador|DecoderInstruction:decoder" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/processador.vhd Line: 91
-Info (12128): Elaborating entity "DecoderAddress" for hierarchy "DecoderAddress:DecoderHabBloc" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 171
-Info (12128): Elaborating entity "AND_logic" for hierarchy "AND_logic:AndLed2" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 182
-Info (12128): Elaborating entity "registradorGenerico" for hierarchy "registradorGenerico:RegistradorHEX0" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 325
-Info (12128): Elaborating entity "conversorHex7Seg" for hierarchy "conversorHex7Seg:decoderHEX0" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 369
-Info (12128): Elaborating entity "buffer3State_8portas" for hierarchy "buffer3State_8portas:buffer3State_SW0_7" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 413
-Info (12128): Elaborating entity "buffer3State_1porta" for hierarchy "buffer3State_1porta:buffer3State_SW8" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 418
+Info (12128): Elaborating entity "DecoderAddress" for hierarchy "DecoderAddress:DecoderHabBloc" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 174
+Info (12128): Elaborating entity "AND_logic" for hierarchy "AND_logic:AndLed2" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 185
+Info (12128): Elaborating entity "registradorGenerico" for hierarchy "registradorGenerico:RegistradorHEX0" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 328
+Info (12128): Elaborating entity "conversorHex7Seg" for hierarchy "conversorHex7Seg:decoderHEX0" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 372
+Info (12128): Elaborating entity "buffer3State_8portas" for hierarchy "buffer3State_8portas:buffer3State_SW0_7" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 416
+Info (12128): Elaborating entity "buffer3State_1porta" for hierarchy "buffer3State_1porta:buffer3State_SW8" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 421
 Info (276014): Found 2 instances of uninferred RAM logic
     Info (276007): RAM logic "memoriaRAM:MemoriaRAM|ram" is uninferred due to asynchronous read logic File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/memoriaRAM.vhd Line: 28
     Info (276007): RAM logic "memoriaROM:ROM_instrucao|memROM" is uninferred due to asynchronous read logic File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/memoriaROM.vhd Line: 57
@@ -995,32 +998,24 @@ Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
     Warning (13048): Converted tri-state node "Data_IN[1]" into a selector File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/muxGenerico2x1.vhd Line: 10
     Warning (13048): Converted tri-state node "Data_IN[0]" into a selector File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/muxGenerico2x1.vhd Line: 10
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "INSTRUCAO[3]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 35
-    Warning (13410): Pin "INSTRUCAO[4]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 35
-    Warning (13410): Pin "INSTRUCAO[6]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 35
-    Warning (13410): Pin "INSTRUCAO[7]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 35
-    Warning (13410): Pin "INSTRUCAO[12]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 35
+    Warning (13410): Pin "INSTRUCAO[3]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 38
+    Warning (13410): Pin "INSTRUCAO[4]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 38
+    Warning (13410): Pin "INSTRUCAO[7]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 38
+    Warning (13410): Pin "INSTRUCAO[12]" is stuck at GND File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 38
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 10 input pin(s) that do not drive logic
+Warning (21074): Design contains 3 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "KEY[1]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 19
     Warning (15610): No output dependent on input pin "KEY[2]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 19
     Warning (15610): No output dependent on input pin "KEY[3]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 19
-    Warning (15610): No output dependent on input pin "KEY0" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
-    Warning (15610): No output dependent on input pin "KEY1" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
-    Warning (15610): No output dependent on input pin "KEY2" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
-    Warning (15610): No output dependent on input pin "KEY3" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
-    Warning (15610): No output dependent on input pin "FPGA_RESET" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 20
-    Warning (15610): No output dependent on input pin "SW[8]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
-    Warning (15610): No output dependent on input pin "SW[9]" File: C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/relogio.vhd Line: 21
-Info (21057): Implemented 261 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 266 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 20 input pins
-    Info (21059): Implemented 92 output pins
-    Info (21061): Implemented 149 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 38 warnings
-    Info: Peak virtual memory: 4856 megabytes
-    Info: Processing ended: Sun Apr 17 17:29:11 2022
+    Info (21059): Implemented 95 output pins
+    Info (21061): Implemented 151 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 30 warnings
+    Info: Peak virtual memory: 4852 megabytes
+    Info: Processing ended: Mon Apr 18 16:44:31 2022
     Info: Elapsed time: 00:00:12
     Info: Total CPU time (on all processors): 00:00:27
 

@@ -10,7 +10,7 @@ z2
 cModel Technology
 Z0 dC:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/simulation/qsim
 Erelogio
-Z1 w1650225920
+Z1 w1650311651
 Z2 DPx8 cyclonev 18 cyclonev_atom_pack 0 22 ^K2eeK[IVbX]]MLcdOEI91
 Z3 DPx8 cyclonev 19 cyclonev_components 0 22 GFL[QAd@dAZF:`jjOGn9>2
 Z4 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 3dzZ?YU_4FC5UU0cTXRET1
@@ -20,24 +20,24 @@ Z7 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
 Z8 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z9 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
 Z10 DPx6 altera 28 altera_primitives_components 0 22 VSD=32;3391kSOd?PDZYj3
-!i122 52
+!i122 76
 R0
 Z11 8relogio.vho
 Z12 Frelogio.vho
 l0
 L39 1
-V_>L_BJ84CVSXBdA2DPHSb3
-!s100 HYd=9MOmb9PE>Y4nWUI[n1
+VPIUB76R<SAn7JDl<:1gd?3
+!s100 c>@bJ6Co[F2n3G@JKZ78O3
 Z13 OV;C;2020.1;71
 32
-Z14 !s110 1650225922
+!s110 1650311653
 !i10b 1
-Z15 !s108 1650225921.000000
-Z16 !s90 -work|work|relogio.vho|
-Z17 !s107 relogio.vho|
+Z14 !s108 1650311653.000000
+Z15 !s90 -work|work|relogio.vho|
+Z16 !s107 relogio.vho|
 !i113 1
-Z18 o-work work
-Z19 tExplicit 1 CvgOpt 0
+Z17 o-work work
+Z18 tExplicit 1 CvgOpt 0
 Astructure
 R2
 R3
@@ -48,27 +48,27 @@ R7
 R8
 R9
 R10
-DEx4 work 7 relogio 0 22 _>L_BJ84CVSXBdA2DPHSb3
-!i122 52
-l404
-L69 4554
-Vzo`0XE0l6HR6`XnQFXjgo2
-!s100 99gXn<5Ze306z1VdTR0`Q2
+DEx4 work 7 relogio 0 22 PIUB76R<SAn7JDl<:1gd?3
+!i122 76
+l464
+L190 4851
+VXm447[^UCR66Y07YLa<YZ2
+!s100 ^=Sl4FRiOdQ6dZR9n;KhV2
 R13
 32
-R14
+Z19 !s110 1650311654
 !i10b 1
+R14
 R15
 R16
-R17
 !i113 1
+R17
 R18
-R19
 Erelogio_vhd_vec_tst
-Z20 w1650225918
+Z20 w1650311650
 R8
 R9
-!i122 53
+!i122 77
 R0
 Z21 8Waveform2.vwf.vht
 Z22 FWaveform2.vwf.vht
@@ -78,30 +78,30 @@ V<gOk6D1VGJQD`F=bE@c>A1
 !s100 ZiVeX1cEfACR]F<OXaF`>0
 R13
 32
-R14
+R19
 !i10b 1
-Z23 !s108 1650225922.000000
+Z23 !s108 1650311654.000000
 Z24 !s90 -work|work|Waveform2.vwf.vht|
 Z25 !s107 Waveform2.vwf.vht|
 !i113 1
+R17
 R18
-R19
 Arelogio_arch
 R8
 R9
 Z26 DEx4 work 19 relogio_vhd_vec_tst 0 22 <gOk6D1VGJQD`F=bE@c>A1
-!i122 53
-l91
-Z27 L34 104
-Z28 VfEYlcmCPUBBo3XgNCHnf70
-Z29 !s100 ^<4fNgf[>kgHKK[;eKkic2
+!i122 77
+l97
+Z27 L34 226
+V`?9WI=2dLXC:V1@Yiz4Ck0
+!s100 ClWDZ6;CT_nZX3mmI02=P3
 R13
 32
-R14
+R19
 !i10b 1
 R23
 R24
 R25
 !i113 1
+R17
 R18
-R19
