@@ -332,7 +332,23 @@
 					"strict" : false
 				},
 				{
+					"name" : "INSTRUCAO[3]",
+					"strict" : false
+				},
+				{
+					"name" : "INSTRUCAO[4]",
+					"strict" : false
+				},
+				{
 					"name" : "INSTRUCAO[5]",
+					"strict" : false
+				},
+				{
+					"name" : "INSTRUCAO[6]",
+					"strict" : false
+				},
+				{
+					"name" : "INSTRUCAO[7]",
 					"strict" : false
 				},
 				{
@@ -352,7 +368,27 @@
 					"strict" : false
 				},
 				{
-					"name" : "KEY[0]",
+					"name" : "INSTRUCAO[12]",
+					"strict" : false
+				},
+				{
+					"name" : "FPGA_RESET",
+					"strict" : false
+				},
+				{
+					"name" : "KEY3",
+					"strict" : false
+				},
+				{
+					"name" : "KEY2",
+					"strict" : false
+				},
+				{
+					"name" : "SW[9]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[8]",
 					"strict" : false
 				},
 				{
@@ -388,7 +424,19 @@
 					"strict" : false
 				},
 				{
+					"name" : "KEY[0]",
+					"strict" : false
+				},
+				{
 					"name" : "CLOCK_50",
+					"strict" : false
+				},
+				{
+					"name" : "KEY0",
+					"strict" : false
+				},
+				{
+					"name" : "KEY1",
 					"strict" : false
 				}
 			]

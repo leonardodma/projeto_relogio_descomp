@@ -12,7 +12,7 @@ entity relogio is
             tamanhoRAM: natural := 6;
             dadoRAM: natural := 8;
             
-            simulacao : boolean := FALSE -- para gravar na placa, altere de TRUE para FALSE
+            simulacao : boolean := TRUE -- para gravar na placa, altere de TRUE para FALSE
   );
   port   (
     CLOCK_50 : in std_logic;
@@ -32,7 +32,13 @@ entity relogio is
     SAIDA_AND_HEX5: out std_logic;
 
     ACUMULADOR: out std_logic_vector(7 downto 0);
-    INSTRUCAO: out std_logic_vector(12 downto 0)
+    INSTRUCAO: out std_logic_vector(12 downto 0);
+	 
+	 ED_KEY0: out std_logic;
+	 ED_KEY1: out std_logic;
+	 
+	 DB_MEM_KEY0: out std_logic;
+	 DB_MEM_KEY1: out std_logic
   );
 end entity;
 
@@ -76,6 +82,12 @@ architecture arquitetura of relogio is
   signal saidaAndSW9: std_logic;
 
     -- key
+  signal edgeDetector_key0: std_logic;
+  signal edgeDetector_key1: std_logic;
+	 
+  signal saidaDbMemKEY0: std_logic;
+  signal saidaDbMemKEY1: std_logic;
+	 
   signal saidaAndKEY0: std_logic;
   signal saidaAndKEY1: std_logic;
   signal saidaAndKEY2: std_logic;
@@ -136,6 +148,7 @@ else generate
 detectorSub0: work.edgeDetector(bordaSubida)
         port map (clk => CLOCK_50, entrada => (not KEY(0)), saida => CLK);
 end generate;
+
 
 
 -- MEMÓRIA ROM
@@ -425,17 +438,41 @@ buffer3State_SW9 :  entity work.buffer3State_1porta
                              habilita => not(saidaAndSW9), 
                              saida => Data_IN(0));
                              
--- ATRIBUIÇÕES 3STATE SW
+-- ATRIBUIÇÕES 3STATE KEY
+DebouceMem_key0: work.edgeDetector(bordaSubida)
+        port map (clk => CLOCK_50, entrada => (not KEY0), saida => edgeDetector_key0);
+		  
+FFDebouceMem_key0: entity work.flipFlop  generic map (larguraDados => 1)
+               port map (DIN => '1', 
+                         DOUT => saidaDbMemKEY0, 
+                         ENABLE => '1', 
+                         CLK => edgeDetector_key0, 
+                         RST => bloco7);
+								 
 buffer3State_KEY0 :   entity work.buffer3State_1porta
-                      port map(entrada => KEY0, 
+                      port map(entrada => saidaDbMemKEY0, 
                                habilita => not(saidaAndKEY0), 
                                saida => Data_IN(0));
-
+					
+					
+DebouceMem_key1: work.edgeDetector(bordaSubida)
+        port map (clk => CLOCK_50, entrada => (not KEY1), saida => edgeDetector_key1);
+		  
+FFDebouceMem_key1: entity work.flipFlop  generic map (larguraDados => 1)
+               port map (DIN => '1', 
+                         DOUT => saidaDbMemKEY1, 
+                         ENABLE => '1', 
+                         CLK => edgeDetector_key1, 
+                         RST => bloco7);
+						
 buffer3State_KEY1 :   entity work.buffer3State_1porta
-                      port map(entrada => KEY1, 
+                      port map(entrada => saidaDbMemKEY1, 
                                habilita => not(saidaAndKEY1), 
                                saida => Data_IN(0));
 
+										 
+										 
+										 
 buffer3State_KEY2 :   entity work.buffer3State_1porta
                       port map(entrada => KEY2, 
                                habilita => not(saidaAndKEY2), 
@@ -505,6 +542,13 @@ SAIDA_AND_HEX5 <= saidaAndHEX5;
 ACUMULADOR <= Data_OUT;
 INSTRUCAO <= Instruction_IN;
 PC_OUT <= ROM_Address;
+
+ED_KEY0<= edgeDetector_key0;
+ED_KEY1<= edgeDetector_key1;
+
+DB_MEM_KEY0<= saidaDbMemKEY0;
+DB_MEM_KEY1<= saidaDbMemKEY1;
+
 
 
 end architecture;

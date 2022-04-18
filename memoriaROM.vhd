@@ -33,12 +33,43 @@ architecture assincrona of memoriaROM is
         return blocoMemoria is variable tmp : blocoMemoria := (others => (others => '0'));
   begin
         -- Inicializa os endereços:
-		tmp(0)  := LDI 	& "000000111";  -- LDI $7
-		tmp(1)  := STA 	& "100100000";  -- STA @288
-		tmp(2)  := LDI 	& "000000000";  -- LDI $0
-		tmp(3)  := STA 	& "100100001";  -- STA @289
-		tmp(4)  := LDI 	& "000000000";  -- LDI $0 
-		tmp(5)  := STA 	& "100100010";  -- STA @290
+--		tmp(0)  := LDI 	& "000000111";  -- LDI $7
+--		tmp(1)  := STA 	& "100100000";  -- STA @288
+--		tmp(2)  := LDI 	& "000000000";  -- LDI $0
+--		tmp(3)  := STA 	& "100100001";  -- STA @289
+--		tmp(4)  := LDI 	& "000000000";  -- LDI $0 
+--		tmp(5)  := STA 	& "100100010";  -- STA @290
+--		tmp(6)  := LDI    & "000000001";  -- LDI $1
+--		tmp(7)  := STA 	& "100100011";  -- STA @291
+--		tmp(8)  := LDI    & "000000000";  -- LDI $0
+--		tmp(9)  := STA 	& "100100100";  -- STA @292
+--		tmp(10) := LDI    & "000000001";  -- LDI $1
+--		tmp(11) := STA 	& "100100101";  -- STA @293 
+--		tmp(12) := LDI    & "000000000";  -- LDI $0
+--		tmp(13) := STA 	& "100000001";  -- STA @257 
+--		tmp(14) := LDI    & "000000001";  -- LDI $1
+--		tmp(15) := STA 	& "100000010";  -- STA @258 
+--		tmp(16) := JMP    & "000000000";  -- JMP @0
+		
+--		tmp(0)  := LDI 	& "000000000";  -- LDI $0
+--		tmp(1)  := STA 	& "000000000";  -- STA @0 				
+--		tmp(2)  := STA 	& "000000010";  -- STA @2 				
+--		tmp(3)  := LDI 	& "000000001";  -- LDI $1
+--		tmp(4)  := STA 	& "000000001";  -- STA @1 				
+--		tmp(5)  := NOP 	& "000000000";
+--		tmp(6)  := LDA 	& "101100000";  -- LDA @352
+--		tmp(7)  := CEQ 	& "000000000";	 -- CEQ @0 			
+--		tmp(8)  := JEQ 	& "000001010";	 -- JEQ @10 		
+--		tmp(9)  := JSR 	& "000100000";	 -- JSR @32 		
+--		tmp(10) := NOP 	& "000000000";
+--		tmp(11) := JMP    & "000000101";  -- JMP @5
+--		tmp(12) := STA 	& "111111111";  -- STA @511 		
+--		tmp(13) := LDA 	& "000000010";  -- LDA @2
+--		tmp(14) := SOMA 	& "000000001";	 -- SOMA @1 		
+--		tmp(15) := STA 	& "000000010";  -- STA @2 				
+--		tmp(16) := STA 	& "100000010";  -- STA @258 
+--		tmp(17) := RET 	& "000000000";		
+		
 		tmp(6)  := LDI    & "000000001";  -- LDI $1
 		tmp(7)  := STA 	& "100100011";  -- STA @291
 		tmp(8)  := LDI    & "000000000";  -- LDI $0
@@ -51,7 +82,13 @@ architecture assincrona of memoriaROM is
 		tmp(15) := STA 	& "100000010";  -- STA @258 
 		tmp(16) := JMP    & "000000000";  -- JMP @0
 		
-        return tmp;
+		
+		
+		
+		
+		
+		
+		return tmp;
     end initMemory;
 
     signal memROM : blocoMemoria := initMemory;

@@ -1,11 +1,22 @@
 |relogio
-CLOCK_50 => edgedetector:gravar:detectorSub0.clk
-KEY[0] => edgedetector:gravar:detectorSub0.entrada
+CLOCK_50 => edgedetector:DebouceMem_key0.clk
+CLOCK_50 => edgedetector:DebouceMem_key1.clk
+KEY[0] => memoriaram:MemoriaRAM.clk
+KEY[0] => processador:Processador.CLK
+KEY[0] => flipflop:flipFlopLed2.CLK
+KEY[0] => flipflop:flipFlopLed1.CLK
+KEY[0] => registradorgenerico:RegistradorLedR.CLK
+KEY[0] => registradorgenerico:RegistradorHEX0.CLK
+KEY[0] => registradorgenerico:RegistradorHEX1.CLK
+KEY[0] => registradorgenerico:RegistradorHEX2.CLK
+KEY[0] => registradorgenerico:RegistradorHEX3.CLK
+KEY[0] => registradorgenerico:RegistradorHEX4.CLK
+KEY[0] => registradorgenerico:RegistradorHEX5.CLK
 KEY[1] => ~NO_FANOUT~
 KEY[2] => ~NO_FANOUT~
 KEY[3] => ~NO_FANOUT~
-KEY0 => buffer3state_1porta:buffer3State_KEY0.entrada
-KEY1 => buffer3state_1porta:buffer3State_KEY1.entrada
+KEY0 => edgedetector:DebouceMem_key0.entrada
+KEY1 => edgedetector:DebouceMem_key1.entrada
 KEY2 => buffer3state_1porta:buffer3State_KEY2.entrada
 KEY3 => buffer3state_1porta:buffer3State_KEY3.entrada
 FPGA_RESET => buffer3state_1porta:buffer3State_FPGA_RESET.entrada
@@ -111,13 +122,10 @@ INSTRUCAO[9] <= memoriarom:ROM_instrucao.Dado[9]
 INSTRUCAO[10] <= memoriarom:ROM_instrucao.Dado[10]
 INSTRUCAO[11] <= memoriarom:ROM_instrucao.Dado[11]
 INSTRUCAO[12] <= memoriarom:ROM_instrucao.Dado[12]
-
-
-|relogio|edgeDetector:\gravar:detectorSub0
-clk => saidaQ.CLK
-entrada => saida.IN1
-entrada => saidaQ.DATAIN
-saida <= saida.DB_MAX_OUTPUT_PORT_TYPE
+ED_KEY0 <= edgedetector:DebouceMem_key0.saida
+ED_KEY1 <= edgedetector:DebouceMem_key1.saida
+DB_MEM_KEY0 <= flipflop:FFDebouceMem_key0.DOUT
+DB_MEM_KEY1 <= flipflop:FFDebouceMem_key1.DOUT
 
 
 |relogio|memoriaROM:ROM_instrucao
@@ -1614,10 +1622,40 @@ habilita => saida.OE
 saida <= saida.DB_MAX_OUTPUT_PORT_TYPE
 
 
+|relogio|edgeDetector:DebouceMem_key0
+clk => saidaQ.CLK
+entrada => saida.IN1
+entrada => saidaQ.DATAIN
+saida <= saida.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|relogio|flipFlop:FFDebouceMem_key0
+DIN => DOUT~reg0.DATAIN
+DOUT <= DOUT~reg0.DB_MAX_OUTPUT_PORT_TYPE
+ENABLE => DOUT~reg0.ENA
+CLK => DOUT~reg0.CLK
+RST => DOUT~reg0.ACLR
+
+
 |relogio|buffer3State_1porta:buffer3State_KEY0
 entrada => saida.DATAIN
 habilita => saida.OE
 saida <= saida.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|relogio|edgeDetector:DebouceMem_key1
+clk => saidaQ.CLK
+entrada => saida.IN1
+entrada => saidaQ.DATAIN
+saida <= saida.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|relogio|flipFlop:FFDebouceMem_key1
+DIN => DOUT~reg0.DATAIN
+DOUT <= DOUT~reg0.DB_MAX_OUTPUT_PORT_TYPE
+ENABLE => DOUT~reg0.ENA
+CLK => DOUT~reg0.CLK
+RST => DOUT~reg0.ACLR
 
 
 |relogio|buffer3State_1porta:buffer3State_KEY1
