@@ -27,6 +27,7 @@ quit -f
 
 
 
+
 </modelsim_script>
 <modelsim_script_timing>onerror {exit -code 1}
 vlib work
@@ -45,6 +46,7 @@ proc simTimestamp {} {
 after 2500 simTimestamp
 run -all
 quit -f
+
 
 
 
@@ -990,11 +992,6 @@ SIGNAL("FPGA_RESET")
 	PARENT = "";
 }
 
-GROUP("SW0_7")
-{
-	MEMBERS = "SW[7]", "SW[6]", "SW[5]", "SW[4]", "SW[3]", "SW[2]", "SW[1]", "SW[0]";
-}
-
 SIGNAL("LEDR[9]")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
@@ -1002,7 +999,7 @@ SIGNAL("LEDR[9]")
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "LEDR";
+	PARENT = "";
 }
 
 SIGNAL("LEDR[8]")
@@ -1012,7 +1009,7 @@ SIGNAL("LEDR[8]")
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "LEDR";
+	PARENT = "";
 }
 
 SIGNAL("LEDR[7]")
@@ -1022,7 +1019,7 @@ SIGNAL("LEDR[7]")
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "LEDR";
+	PARENT = "";
 }
 
 SIGNAL("LEDR[6]")
@@ -1032,7 +1029,7 @@ SIGNAL("LEDR[6]")
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "LEDR";
+	PARENT = "";
 }
 
 SIGNAL("LEDR[5]")
@@ -1042,7 +1039,7 @@ SIGNAL("LEDR[5]")
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "LEDR";
+	PARENT = "";
 }
 
 SIGNAL("LEDR[4]")
@@ -1052,7 +1049,7 @@ SIGNAL("LEDR[4]")
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "LEDR";
+	PARENT = "";
 }
 
 SIGNAL("LEDR[3]")
@@ -1062,7 +1059,7 @@ SIGNAL("LEDR[3]")
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "LEDR";
+	PARENT = "";
 }
 
 SIGNAL("LEDR[2]")
@@ -1072,7 +1069,7 @@ SIGNAL("LEDR[2]")
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "LEDR";
+	PARENT = "";
 }
 
 SIGNAL("LEDR[1]")
@@ -1082,7 +1079,7 @@ SIGNAL("LEDR[1]")
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "LEDR";
+	PARENT = "";
 }
 
 SIGNAL("LEDR[0]")
@@ -1092,7 +1089,12 @@ SIGNAL("LEDR[0]")
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = OUTPUT;
-	PARENT = "LEDR";
+	PARENT = "";
+}
+
+GROUP("SW0_7")
+{
+	MEMBERS = "SW[7]", "SW[6]", "SW[5]", "SW[4]", "SW[3]", "SW[2]", "SW[1]", "SW[0]";
 }
 
 GROUP("LEDR0_7")
@@ -1258,14 +1260,14 @@ TRANSITION_LIST("KEY[0]")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 1 FOR 20.0;
+		LEVEL 1 FOR 1.0;
 		NODE
 		{
-			REPEAT = 24;
-			LEVEL 0 FOR 20.0;
-			LEVEL 1 FOR 20.0;
+			REPEAT = 499;
+			LEVEL 0 FOR 1.0;
+			LEVEL 1 FOR 1.0;
 		}
-		LEVEL 0 FOR 20.0;
+		LEVEL 0 FOR 1.0;
 	}
 }
 
@@ -1827,7 +1829,9 @@ TRANSITION_LIST("KEY2")
 	NODE
 	{
 		REPEAT = 1;
-		LEVEL 1 FOR 1000.0;
+		LEVEL 1 FOR 480.0;
+		LEVEL 0 FOR 500.0;
+		LEVEL 1 FOR 20.0;
 	}
 }
 

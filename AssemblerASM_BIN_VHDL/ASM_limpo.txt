@@ -1,0 +1,16 @@
+JSR FUNC_14		#Deve desviar para a posição 14
+JMP FUNC_5		#Deve desviar para a posição 5
+JEQ FUNC_9		#Deve desviar para a posição 9
+NOP			
+NOP			
+LDI $5			#Carrega acumulador com valor 5
+STA @256		#Armazena 5 na posição 256 da memória
+CEQ @256		#A comparação deve fazer o flagIgual ser 1
+JMP FUNC_2		#vai testar o flagIgual depois do jump
+NOP			
+LDI $4			#Carrega acumulador com valor 4
+CEQ @256		#Compara com valor 5, deve fazer o flagIgual ser 0
+JEQ FUNC_3		#Não deve ocorrer o desvio
+JMP FUNC_13	#Fim. Deve ficar neste laço
+NOP		
+RET			#Retorna para a posição 1

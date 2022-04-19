@@ -17,7 +17,8 @@ entity relogio is
   port   (
     CLOCK_50 : in std_logic;
     KEY: in std_logic_vector(3 downto 0);
-    KEY0, KEY1, KEY2, KEY3, FPGA_RESET : in std_logic;
+    --fKEY0, KEY1, KEY2, KEY3
+	 FPGA_RESET : in std_logic;
     SW: in std_logic_vector(9 downto 0);
     PC_OUT: out std_logic_vector(larguraEnderecos-1 downto 0);
     LEDR  : out std_logic_vector(9 downto 0);
@@ -430,22 +431,22 @@ buffer3State_SW9 :  entity work.buffer3State_1porta
                              
 -- ATRIBUIÇÕES 3STATE SW
 buffer3State_KEY0 :   entity work.buffer3State_1porta
-                      port map(entrada => KEY0, 
+                      port map(entrada => KEY(0), 
                                habilita => saidaAndKEY0, 
                                saida => Data_IN(0));
 
 buffer3State_KEY1 :   entity work.buffer3State_1porta
-                      port map(entrada => KEY1, 
+                      port map(entrada => KEY(1), 
                                habilita => saidaAndKEY1, 
                                saida => Data_IN(0));
 
 buffer3State_KEY2 :   entity work.buffer3State_1porta
-                      port map(entrada => KEY2, 
+                      port map(entrada => KEY(2), 
                                habilita => saidaAndKEY2, 
                                saida => Data_IN(0));               
 
 buffer3State_KEY3 :   entity work.buffer3State_1porta
-                      port map(entrada => KEY3, 
+                      port map(entrada => KEY(3), 
                                habilita => saidaAndKEY3, 
                                saida => Data_IN(0));                                
                                
