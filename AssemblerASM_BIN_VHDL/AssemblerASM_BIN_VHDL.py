@@ -6,7 +6,7 @@ destinoBIN = 'BIN.txt'  # Arquivo de saída que contem o binário formatado para
 mne = {
     "NOP": "0000",
     "LDA": "0001",
-    "SOM": "0010",
+    "SOMA": "0010",
     "SUB": "0011",
     "LDI": "0100",
     "STA": "0101",
@@ -28,6 +28,8 @@ def converteArroba(line):
 
 # Converte o valor após o caractere cifrão'$'
 # em um valor hexadecimal de 3 dígitos (9 bits)
+
+
 def converteCifrao(line):
     line = line.split('$')
     line[1] = bin(int(line[1]))[2:].upper().zfill(9)
@@ -36,6 +38,8 @@ def converteCifrao(line):
 
 # Define a string que representa o comentário
 # a partir do caractere cerquilha '#'
+
+
 def defineComentario(line):
     if '#' in line:
         line = line.split('#')
@@ -45,6 +49,8 @@ def defineComentario(line):
 
 # Remove o comentário a partir do caractere cerquilha '#',
 # deixando apenas a instrução
+
+
 def defineInstrucao(line):
     line = line.split('#')
     line = line[0]
@@ -77,7 +83,7 @@ def returnFuncsDict():
 
         replacement = replacement + line
         cont += 1
-    
+
     file.close()
 
     fout = open("ASM_limpo.txt", "w")
@@ -93,7 +99,7 @@ with open("ASM_limpo.txt", "r") as f:  # Abre o arquivo ASM
 
 with open(destinoBIN, "w") as f:  # Abre o destino BIN
     dict_funcs = returnFuncsDict()
-    
+
     cont = 0  # Cria uma variável para contagem
 
     for line in lines:
@@ -103,11 +109,12 @@ with open(destinoBIN, "w") as f:  # Abre o destino BIN
             line = line.replace("\n", "")
             print("-- Sintaxe invalida" + ' na Linha: ' +
                   ' --> (' + line + ')')  # Print apenas para debug
+            print(cont)
         else:
             # Exemplo de linha => 1. JSR @14 #comentario1
             # Define o comentário da linha. Ex: #comentario1
             comentarioLine = defineComentario(line).replace("\n", "")
-            instrucaoLine = defineInstrucao(line).replace("\n", "") 
+            instrucaoLine = defineInstrucao(line).replace("\n", "")
 
             # Trata o mnemonico
             instrucaoLine = trataMnemonico(instrucaoLine)
@@ -121,7 +128,7 @@ with open(destinoBIN, "w") as f:  # Abre o destino BIN
             elif '$' in instrucaoLine:  # Se encontrar o caractere cifrao '$'
                 # converte o número após o caractere Ex(LDI $5): x"4" x"05"
                 instrucaoLine = converteCifrao(instrucaoLine)
-            
+
             elif "FUNC_" in instrucaoLine:
                 func_name = instrucaoLine[4:]
                 addr = dict_funcs[func_name]
@@ -132,13 +139,10 @@ with open(destinoBIN, "w") as f:  # Abre o destino BIN
                     "\n", "")  # Remove a quebra de linha
                 instrucaoLine = instrucaoLine + '000000000'
 
-            
-
             line = 'tmp(' + str(cont) + ') := "' + instrucaoLine + \
                 '";\t-- ' + comentarioLine + '\n'  # Formata para o arquivo BIN
-
 
             cont += 1  # Incrementa a variável de contagem, utilizada para incrementar as posições de memória no VHDL
             f.write(line)  # Escreve no arquivo BIN.txt
 
-            #print(line,end = '') #Print apenas para debug
+            # print(line,end = '') #Print apenas para debug

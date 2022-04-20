@@ -19,7 +19,7 @@
 -- the top level entity of the current Quartus project .The user can use this   
 -- testbench to simulate his design using a third-party simulation tool .       
 -- *****************************************************************************
--- Generated on "04/18/2022 18:30:12"
+-- Generated on "04/20/2022 01:53:36"
                                                              
 -- Vhdl Test Bench(with test vectors) for design  :          relogio
 -- 
@@ -46,10 +46,6 @@ SIGNAL HEX4 : STD_LOGIC_VECTOR(6 DOWNTO 0);
 SIGNAL HEX5 : STD_LOGIC_VECTOR(6 DOWNTO 0);
 SIGNAL INSTRUCAO : STD_LOGIC_VECTOR(12 DOWNTO 0);
 SIGNAL KEY : STD_LOGIC_VECTOR(3 DOWNTO 0);
-SIGNAL KEY0 : STD_LOGIC;
-SIGNAL KEY1 : STD_LOGIC;
-SIGNAL KEY2 : STD_LOGIC;
-SIGNAL KEY3 : STD_LOGIC;
 SIGNAL LEDR : STD_LOGIC_VECTOR(9 DOWNTO 0);
 SIGNAL PC_OUT : STD_LOGIC_VECTOR(8 DOWNTO 0);
 SIGNAL SAIDA_AND_HEX0 : STD_LOGIC;
@@ -76,10 +72,6 @@ COMPONENT relogio
 	HEX5 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
 	INSTRUCAO : OUT STD_LOGIC_VECTOR(12 DOWNTO 0);
 	KEY : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
-	KEY0 : IN STD_LOGIC;
-	KEY1 : IN STD_LOGIC;
-	KEY2 : IN STD_LOGIC;
-	KEY3 : IN STD_LOGIC;
 	LEDR : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
 	PC_OUT : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
 	SAIDA_AND_HEX0 : OUT STD_LOGIC;
@@ -110,10 +102,6 @@ BEGIN
 	HEX5 => HEX5,
 	INSTRUCAO => INSTRUCAO,
 	KEY => KEY,
-	KEY0 => KEY0,
-	KEY1 => KEY1,
-	KEY2 => KEY2,
-	KEY3 => KEY3,
 	LEDR => LEDR,
 	PC_OUT => PC_OUT,
 	SAIDA_AND_HEX0 => SAIDA_AND_HEX0,
@@ -143,121 +131,4 @@ BEGIN
 	KEY(0) <= '0';
 WAIT;
 END PROCESS t_prcs_KEY_0;
-
--- SW[7]
-t_prcs_SW_7: PROCESS
-BEGIN
-	SW(7) <= '0';
-WAIT;
-END PROCESS t_prcs_SW_7;
-
--- SW[6]
-t_prcs_SW_6: PROCESS
-BEGIN
-	SW(6) <= '0';
-WAIT;
-END PROCESS t_prcs_SW_6;
-
--- SW[5]
-t_prcs_SW_5: PROCESS
-BEGIN
-	SW(5) <= '0';
-WAIT;
-END PROCESS t_prcs_SW_5;
-
--- SW[4]
-t_prcs_SW_4: PROCESS
-BEGIN
-	SW(4) <= '0';
-WAIT;
-END PROCESS t_prcs_SW_4;
-
--- SW[3]
-t_prcs_SW_3: PROCESS
-BEGIN
-	SW(3) <= '0';
-WAIT;
-END PROCESS t_prcs_SW_3;
-
--- SW[2]
-t_prcs_SW_2: PROCESS
-BEGIN
-	SW(2) <= '1';
-WAIT;
-END PROCESS t_prcs_SW_2;
-
--- SW[1]
-t_prcs_SW_1: PROCESS
-BEGIN
-	SW(1) <= '1';
-WAIT;
-END PROCESS t_prcs_SW_1;
-
--- SW[0]
-t_prcs_SW_0: PROCESS
-BEGIN
-	SW(0) <= '0';
-WAIT;
-END PROCESS t_prcs_SW_0;
-
--- SW[8]
-t_prcs_SW_8: PROCESS
-BEGIN
-	SW(8) <= '0';
-	WAIT FOR 100000 ps;
-	SW(8) <= '1';
-	WAIT FOR 540000 ps;
-	SW(8) <= '0';
-WAIT;
-END PROCESS t_prcs_SW_8;
-
--- SW[9]
-t_prcs_SW_9: PROCESS
-BEGIN
-	SW(9) <= '0';
-	WAIT FOR 100000 ps;
-	SW(9) <= '1';
-	WAIT FOR 540000 ps;
-	SW(9) <= '0';
-WAIT;
-END PROCESS t_prcs_SW_9;
-
--- KEY0
-t_prcs_KEY0: PROCESS
-BEGIN
-	KEY0 <= '1';
-WAIT;
-END PROCESS t_prcs_KEY0;
-
--- KEY1
-t_prcs_KEY1: PROCESS
-BEGIN
-	KEY1 <= '0';
-WAIT;
-END PROCESS t_prcs_KEY1;
-
--- KEY2
-t_prcs_KEY2: PROCESS
-BEGIN
-	KEY2 <= '1';
-	WAIT FOR 480000 ps;
-	KEY2 <= '0';
-	WAIT FOR 500000 ps;
-	KEY2 <= '1';
-WAIT;
-END PROCESS t_prcs_KEY2;
-
--- KEY3
-t_prcs_KEY3: PROCESS
-BEGIN
-	KEY3 <= '0';
-WAIT;
-END PROCESS t_prcs_KEY3;
-
--- FPGA_RESET
-t_prcs_FPGA_RESET: PROCESS
-BEGIN
-	FPGA_RESET <= '1';
-WAIT;
-END PROCESS t_prcs_FPGA_RESET;
 END relogio_arch;

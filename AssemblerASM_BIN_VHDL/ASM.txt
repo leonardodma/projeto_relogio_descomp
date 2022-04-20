@@ -1,16 +1,55 @@
-FUNC_1: JSR FUNC_14		#Deve desviar para a posição 14
-FUNC_2: JMP FUNC_5		#Deve desviar para a posição 5
-FUNC_3: JEQ FUNC_9		#Deve desviar para a posição 9
-FUNC_4: NOP			
-FUNC_5: NOP			
-FUNC_6: LDI $5			#Carrega acumulador com valor 5
-FUNC_7: STA @256		#Armazena 5 na posição 256 da memória
-FUNC_8: CEQ @256		#A comparação deve fazer o flagIgual ser 1
-FUNC_9: JMP FUNC_2		#vai testar o flagIgual depois do jump
-FUNC_10: NOP			
-FUNC_11: LDI $4			#Carrega acumulador com valor 4
-FUNC_12: CEQ @256		#Compara com valor 5, deve fazer o flagIgual ser 0
-FUNC_13: JEQ FUNC_3		#Não deve ocorrer o desvio
-FUNC_14: JMP FUNC_13	#Fim. Deve ficar neste laço
-FUNC_15: NOP		
-FUNC_16: RET			#Retorna para a posição 1
+FUNC_SETUP: LDI $0			#Carrega o acumulador com o valor 0
+STA @288		#Armazena o valor do acumulador em HEX0
+STA @289		#Armazena o valor do acumulador em HEX1
+STA @290		#Armazena o valor do acumulador em HEX2
+STA @291		#Armazena o valor do acumulador em HEX3
+STA @292		#Armazena o valor do acumulador em HEX4
+STA @293		#Armazena o valor do acumulador em HEX5
+STA @256	    #Armazena o valor do bit0 do acumulador no LDR0 ~ LEDR7
+STA @257	    #Armazena o valor do bit0 do acumulador no LDR8
+STA @258	    #Armazena o valor do bit0 do acumulador no LDR9
+LDI $0			#Carrega o acumulador com o valor 0
+STA @0			#Armazena o valor do acumulador em MEM[0] (unidades)
+STA @1			#Armazena o valor do acumulador em MEM[1] (dezenas)
+STA @2			#Armazena o valor do acumulador em MEM[2] (centenas)
+LDI $7          #Carrega o acumulador com o valor 7
+STA @3          #Armazena o valor do acumulador em MEM[3] (LIMITE_UNID)
+STA @4          #Armazena o valor do acumulador em MEM[4] (LIMITE_DEZ)
+STA @5          #Armazena o valor do acumulador em MEM[5] (LIMITE_CENT)
+LDI $0          #Carrega o acumulador com o valor 0
+STA @6          #Armazena 0 ao acumulador em MEM[6] para comparacoes
+LDI $1          #Carrega o acumulador com o valor 1
+STA @7          #Armazena 1 ao acumulador em MEM[7] para incremento
+LDI $10         #Carrega o acumulador com o valor 10
+STA @8          #Armazena 10 ao acumulador em MEM[8] para comparacoes displays HEXs 
+LDI $0          #Carrega o acumulador com o valor 0
+STA @9          #Armazena 10 ao acumulador em MEM[9] para prosseguir ou não a contagem
+FUNC_VERIFICA_KEY0: LDA @352
+CEQ @9
+JEQ FUNC_VERIFICA_KEY0
+JSR FUNC_INC_UNID
+FUNC_ADICIONA_HEX: LDA @0                
+STA @288                  
+LDA @1                
+STA @289 
+LDA @2                
+STA @290 
+JMP FUNC_VERIFICA_KEY0
+FUNC_INC_UNID: LDA @0    #Armazena o valor MEM[0] no acumulador     
+SOMA @7                  #Soma o valor do acumulador com o MEM[7]                 
+CEQ @8		             #Compara o valor do acumulador com o MEM[8]
+JEQ FUNC_INC_DEZENA      #Se for 0 incrementa DEZENA, se não incrementa UNID
+STA @0
+RET
+FUNC_INC_DEZENA: LDA @1  #Armazena o valor MEM[1] no acumulador 
+SOMA @7                  #Soma o valor do acumulador com o MEM[7]                 
+CEQ @8		             #Compara o valor do acumulador com o MEM[8]
+JEQ FUNC_INC_CENTENA      #Se for 0 incrementa CENTENA, se não incrementa DEZENA
+STA @1
+RET
+FUNC_INC_CENTENA: LDA @2  #Armazena o valor MEM[2] no acumulador 
+SOMA @7                   #Soma o valor do acumulador com o MEM[7]                 
+CEQ @8		              #Compara o valor do acumulador com o MEM[8]
+JEQ FUNC_SETUP            #Se for 0 incrementa CENTENA, se não incrementa CENTENA
+STA @2
+RET
