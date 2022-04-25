@@ -17,8 +17,7 @@ entity relogio is
   port   (
     CLOCK_50 : in std_logic;
     KEY: in std_logic_vector(3 downto 0);
-    --fKEY0, KEY1, KEY2, KEY3
-	 FPGA_RESET : in std_logic;
+	 FPGA_RESET_N : in std_logic;
     SW: in std_logic_vector(9 downto 0);
     PC_OUT: out std_logic_vector(larguraEnderecos-1 downto 0);
     LEDR  : out std_logic_vector(9 downto 0);
@@ -34,6 +33,8 @@ entity relogio is
     SAIDA_AND_LED8: out std_logic;
     SAIDA_AND_LED9: out std_logic;
     SAIDA_AND_SW0_7: out std_logic;
+	 
+	 CONTROLES: out std_logic_vector(3 downto 0);
 
     ACUMULADOR: out std_logic_vector(7 downto 0);
     INSTRUCAO: out std_logic_vector(12 downto 0)
@@ -45,13 +46,13 @@ architecture arquitetura of relogio is
 
   signal CLK : std_logic;
   signal RST: std_logic;
-
+  
   -- Precessor signals
   signal Instruction_IN: std_logic_vector(12 downto 0);
   signal Data_IN: std_logic_vector(7 downto 0);
   signal Data_OUT: std_logic_vector(7 downto 0);
   signal Data_Address: std_logic_vector(8 downto 0);
-  signal Control: std_logic_vector(1 downto 0); --Rd(1), Wr(0)
+  signal Control: std_logic_vector(3 downto 0); --Rd(1), Wr(0)
   signal ROM_Address: std_logic_vector(8 downto 0);
   signal hab_escrita: std_logic;
   signal hab_leitura : std_logic;
@@ -451,7 +452,7 @@ buffer3State_KEY3 :   entity work.buffer3State_1porta
                                saida => Data_IN(0));                                
                                
 buffer3State_FPGA_RESET :   entity work.buffer3State_1porta
-                            port map(entrada => FPGA_RESET,
+                            port map(entrada => FPGA_RESET_N,
                                      habilita => saidaANDFPGA_RESET, 
                                      saida => Data_IN(0)); 
                                      
@@ -512,6 +513,7 @@ SAIDA_AND_SW0_7 <= saidaAndSW0_7;
 ACUMULADOR <= Data_OUT;
 INSTRUCAO <= Instruction_IN;
 PC_OUT <= ROM_Address;
+CONTROLES <= Control;
 
 
 end architecture;

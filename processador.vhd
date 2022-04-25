@@ -13,7 +13,7 @@ entity processador is
     Data_IN: in std_logic_vector(7 downto 0);
     Data_OUT: out std_logic_vector(7 downto 0);
     Data_Address: out std_logic_vector(8 downto 0);
-    Control: out std_logic_vector(1 downto 0); --Rd(1), Wr(0)
+    Control: out std_logic_vector(3 downto 0); --Rd(1), Wr(0)
     ROM_Address: out std_logic_vector(8 downto 0)
   );
 end entity;
@@ -101,7 +101,7 @@ JMP <= Sinais_Controle(10);
 RET <= Sinais_Controle(9);
 JSR <= Sinais_Controle(8);
 JEQ <= Sinais_Controle(7);
-selMUX <= Sinais_Controle(6);
+SelMUX <= Sinais_Controle(6);
 Habilita_A <= Sinais_Controle(5);
 Operacao_ULA <= Sinais_Controle(4 downto 3);
 habFlag <= Sinais_Controle(2);
@@ -115,5 +115,7 @@ Data_OUT <= REG1_ULA_A;
 Data_Address <= Instruction_IN(8 downto 0);
 Control(0) <= hab_escrita;
 Control(1) <= hab_leitura;
+Control(2) <= Entrada_Flag;
+Control(3) <= habFlag;
 
 end architecture;

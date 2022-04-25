@@ -17,10 +17,24 @@ mne = {
     "RET": "1010"
 }
 
+mem = {
+    "unidade": "@0",
+    "dezena": "@1",
+    "centena": "@2",
+    "limite_unid": "@3",
+    "limite_dez": "@4",
+    "limite_cent": "@5",
+    "valor_zero": "@6",
+    "valor_um": "@7",
+    "valor_dez": "@8"
+}
+
+mem_keys = mem.keys()
 
 # Converte o valor após o caractere arroba '@'
 # em um valor hexadecimal de 3 dígitos (9 bits)
 def converteArroba(line):
+    print(line)
     line = line.split('@')
     line[1] = bin(int(line[1]))[2:].upper().zfill(9)
     line = ''.join(line)
@@ -81,6 +95,10 @@ def returnFuncsDict():
             dict_funcs[func_name] = bin(cont)[2:].upper().zfill(9)
             line = line.replace(f"{func_name}: ", "")
 
+        for mem_word in mem_keys:
+            if mem_word in line:
+                line = line.replace(mem_word, mem[mem_word])
+
         replacement = replacement + line
         cont += 1
 
@@ -103,13 +121,11 @@ with open(destinoBIN, "w") as f:  # Abre o destino BIN
     cont = 0  # Cria uma variável para contagem
 
     for line in lines:
-
         # Verifica se a linha começa com alguns caracteres invalidos ('\n' ou ' ' ou '#')
         if (line.startswith('\n') or line.startswith(' ') or line.startswith('#')):
             line = line.replace("\n", "")
-            print("-- Sintaxe invalida" + ' na Linha: ' +
-                  ' --> (' + line + ')')  # Print apenas para debug
-            print(cont)
+            #print("-- Sintaxe invalida" + ' na Linha: ' +
+            #      ' --> (' + line + ')')  # Print apenas para debug
         else:
             # Exemplo de linha => 1. JSR @14 #comentario1
             # Define o comentário da linha. Ex: #comentario1

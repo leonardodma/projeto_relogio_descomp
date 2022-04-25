@@ -33,10 +33,10 @@ architecture comportamento of DecoderInstruction is
 	constant instru_JMP: std_logic_vector(11 downto 0) := "010000000000";
 	
 	constant JEQ  : std_logic_vector(3 downto 0) := "0111";
-	constant instru_JEQ: std_logic_vector(11 downto 0) := "000000000001";
+	constant instru_JEQ: std_logic_vector(11 downto 0) := "000010000000";
 	
 	constant CEQ  : std_logic_vector(3 downto 0) := "1000";
-	constant instru_CEQ: std_logic_vector(11 downto 0) := "000000010110";
+	constant instru_CEQ: std_logic_vector(11 downto 0) := "000000000110";
 	
 	constant JSR  : std_logic_vector(3 downto 0) := "1001";
 	constant instru_JSR: std_logic_vector(11 downto 0) := "100100000000";
@@ -45,7 +45,7 @@ architecture comportamento of DecoderInstruction is
 	constant instru_RET: std_logic_vector(11 downto 0) := "001000000000";
   
 begin
-	saida <= 	instru_NOP  when opcode = NOP else
+	saida <= instru_NOP  when opcode = NOP else
 				instru_LDA  when opcode = LDA else
 				instru_SOMA when opcode = SOMA else
 				instru_SUB  when opcode = SUB else
@@ -59,10 +59,10 @@ begin
 				instru_NOP; -- NOP para os opcodes Indefinidos
 				
 	saidaMux <= "10" when saida = instru_RET else
-				"01" when saida = instru_JMP else
-				"01" when saida = instru_JEQ and flagIgual = '1' else
-				"01" when saida = instru_JSR else
-				"00";
+					"01" when saida = instru_JMP else
+					"01" when saida = instru_JEQ and flagIgual = '1' else
+					"01" when saida = instru_JSR else
+					"00";
 	
 
 end architecture;

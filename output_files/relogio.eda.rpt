@@ -1,5 +1,5 @@
 EDA Netlist Writer report for relogio
-Wed Apr 20 01:53:39 2022
+Mon Apr 25 07:22:38 2022
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Wed Apr 20 01:53:39 2022 ;
+; EDA Netlist Writer Status ; Successful - Mon Apr 25 07:22:38 2022 ;
 ; Revision Name             ; relogio                               ;
 ; Top-level Entity Name     ; relogio                               ;
 ; Family                    ; Cyclone V                             ;
@@ -95,13 +95,14 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: Intel and sold by Intel or its authorized distributors.  Please
     Info: refer to the applicable agreement for further details, at
     Info: https://fpgasoftware.intel.com/eula.
-    Info: Processing started: Wed Apr 20 01:53:37 2022
+    Info: Processing started: Mon Apr 25 07:22:37 2022
 Info: Command: quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory=C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/simulation/qsim/ relogio -c relogio
+Info (119006): Selected device 5CEBA4F23C7 for design "relogio"
 Info (204019): Generated file relogio.vho in folder "C:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/simulation/qsim//" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 4726 megabytes
-    Info: Processing ended: Wed Apr 20 01:53:39 2022
-    Info: Elapsed time: 00:00:02
-    Info: Total CPU time (on all processors): 00:00:02
+    Info: Peak virtual memory: 4720 megabytes
+    Info: Processing ended: Mon Apr 25 07:22:38 2022
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
 
 

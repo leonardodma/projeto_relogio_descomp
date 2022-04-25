@@ -19,7 +19,7 @@
 -- the top level entity of the current Quartus project .The user can use this   
 -- testbench to simulate his design using a third-party simulation tool .       
 -- *****************************************************************************
--- Generated on "04/20/2022 01:53:36"
+-- Generated on "04/25/2022 07:22:36"
                                                              
 -- Vhdl Test Bench(with test vectors) for design  :          relogio
 -- 
@@ -36,8 +36,9 @@ ARCHITECTURE relogio_arch OF relogio_vhd_vec_tst IS
 -- signals                                                   
 SIGNAL ACUMULADOR : STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL CLOCK_50 : STD_LOGIC;
+SIGNAL CONTROLES : STD_LOGIC_VECTOR(3 DOWNTO 0);
 SIGNAL DIN_HEX : STD_LOGIC_VECTOR(3 DOWNTO 0);
-SIGNAL FPGA_RESET : STD_LOGIC;
+SIGNAL FPGA_RESET_N : STD_LOGIC;
 SIGNAL HEX0 : STD_LOGIC_VECTOR(6 DOWNTO 0);
 SIGNAL HEX1 : STD_LOGIC_VECTOR(6 DOWNTO 0);
 SIGNAL HEX2 : STD_LOGIC_VECTOR(6 DOWNTO 0);
@@ -62,8 +63,9 @@ COMPONENT relogio
 	PORT (
 	ACUMULADOR : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
 	CLOCK_50 : IN STD_LOGIC;
+	CONTROLES : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
 	DIN_HEX : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-	FPGA_RESET : IN STD_LOGIC;
+	FPGA_RESET_N : IN STD_LOGIC;
 	HEX0 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
 	HEX1 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
 	HEX2 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
@@ -92,8 +94,9 @@ BEGIN
 -- list connections between master ports and signals
 	ACUMULADOR => ACUMULADOR,
 	CLOCK_50 => CLOCK_50,
+	CONTROLES => CONTROLES,
 	DIN_HEX => DIN_HEX,
-	FPGA_RESET => FPGA_RESET,
+	FPGA_RESET_N => FPGA_RESET_N,
 	HEX0 => HEX0,
 	HEX1 => HEX1,
 	HEX2 => HEX2,
@@ -120,13 +123,13 @@ BEGIN
 t_prcs_KEY_0: PROCESS
 BEGIN
 	KEY(0) <= '1';
-	WAIT FOR 1000 ps;
-	FOR i IN 1 TO 499
+	WAIT FOR 20000 ps;
+	FOR i IN 1 TO 24
 	LOOP
 		KEY(0) <= '0';
-		WAIT FOR 1000 ps;
+		WAIT FOR 20000 ps;
 		KEY(0) <= '1';
-		WAIT FOR 1000 ps;
+		WAIT FOR 20000 ps;
 	END LOOP;
 	KEY(0) <= '0';
 WAIT;

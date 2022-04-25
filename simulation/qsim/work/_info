@@ -10,7 +10,7 @@ z2
 cModel Technology
 Z0 dC:/Users/user/Documents/Insper/6_semestre/descomp/projeto_relogio_descomp/simulation/qsim
 Erelogio
-Z1 w1650430419
+Z1 w1650882158
 Z2 DPx8 cyclonev 18 cyclonev_atom_pack 0 22 ^K2eeK[IVbX]]MLcdOEI91
 Z3 DPx8 cyclonev 19 cyclonev_components 0 22 GFL[QAd@dAZF:`jjOGn9>2
 Z4 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 3dzZ?YU_4FC5UU0cTXRET1
@@ -20,24 +20,24 @@ Z7 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
 Z8 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z9 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
 Z10 DPx6 altera 28 altera_primitives_components 0 22 VSD=32;3391kSOd?PDZYj3
-!i122 116
+!i122 176
 R0
 Z11 8relogio.vho
 Z12 Frelogio.vho
 l0
 L39 1
-V39:5<XW1G]6ia:4Z[01CX2
-!s100 QO3hg422L5PJ@[Mbh2a`@2
+V8NWGNb1?c[:@33aQU3Y`S3
+!s100 jG8:IU9VGOGVPa=XeS`Cc0
 Z13 OV;C;2020.1;71
 32
-!s110 1650430421
+Z14 !s110 1650882160
 !i10b 1
-Z14 !s108 1650430421.000000
-Z15 !s90 -work|work|relogio.vho|
-Z16 !s107 relogio.vho|
+Z15 !s108 1650882160.000000
+Z16 !s90 -work|work|relogio.vho|
+Z17 !s107 relogio.vho|
 !i113 1
-Z17 o-work work
-Z18 tExplicit 1 CvgOpt 0
+Z18 o-work work
+Z19 tExplicit 1 CvgOpt 0
 Astructure
 R2
 R3
@@ -48,60 +48,60 @@ R7
 R8
 R9
 R10
-DEx4 work 7 relogio 0 22 39:5<XW1G]6ia:4Z[01CX2
-!i122 116
-l2221
-L182 24399
-V=<6PiQTYf_4hJc<1z_FcC2
-!s100 Q^EW>D2F<k[kcGJJ4^RXe0
+DEx4 work 7 relogio 0 22 8NWGNb1?c[:@33aQU3Y`S3
+!i122 176
+l382
+L69 3888
+V0HR]BM8=jGJz9Qbi`RkkX0
+!s100 zQ7=8K@SB[62nQI;flMW00
 R13
 32
-!s110 1650430422
-!i10b 1
 R14
+!i10b 1
 R15
 R16
-!i113 1
 R17
+!i113 1
 R18
+R19
 Erelogio_vhd_vec_tst
-Z19 w1650430416
+Z20 w1650882156
 R8
 R9
-!i122 117
+!i122 177
 R0
-Z20 8Waveform2.vwf.vht
-Z21 FWaveform2.vwf.vht
+Z21 8Waveform2.vwf.vht
+Z22 FWaveform2.vwf.vht
 l0
 L32 1
 V<gOk6D1VGJQD`F=bE@c>A1
 !s100 ZiVeX1cEfACR]F<OXaF`>0
 R13
 32
-Z22 !s110 1650430423
+R14
 !i10b 1
-Z23 !s108 1650430422.000000
-Z24 !s90 -work|work|Waveform2.vwf.vht|
-Z25 !s107 Waveform2.vwf.vht|
+R15
+Z23 !s90 -work|work|Waveform2.vwf.vht|
+Z24 !s107 Waveform2.vwf.vht|
 !i113 1
-R17
 R18
+R19
 Arelogio_arch
 R8
 R9
-Z26 DEx4 work 19 relogio_vhd_vec_tst 0 22 <gOk6D1VGJQD`F=bE@c>A1
-!i122 117
-l89
-Z27 L34 101
-Z28 Vd>zaZSZ6i]07IXD9XUI[l0
-Z29 !s100 AYg=D5j3^hB5SlFIF@iTT1
+Z25 DEx4 work 19 relogio_vhd_vec_tst 0 22 <gOk6D1VGJQD`F=bE@c>A1
+!i122 177
+l91
+Z26 L34 104
+Z27 V^3BbF6hSlf9cUoMfco@PJ2
+Z28 !s100 OMzooQd@H4KfTd=co?KVC1
 R13
 32
-R22
+R14
 !i10b 1
+R15
 R23
 R24
-R25
 !i113 1
-R17
 R18
+R19

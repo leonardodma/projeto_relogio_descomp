@@ -1,55 +1,42 @@
-FUNC_SETUP: LDI $0			#Carrega o acumulador com o valor 0
-STA @288		#Armazena o valor do acumulador em HEX0
-STA @289		#Armazena o valor do acumulador em HEX1
-STA @290		#Armazena o valor do acumulador em HEX2
-STA @291		#Armazena o valor do acumulador em HEX3
-STA @292		#Armazena o valor do acumulador em HEX4
-STA @293		#Armazena o valor do acumulador em HEX5
-STA @256	    #Armazena o valor do bit0 do acumulador no LDR0 ~ LEDR7
-STA @257	    #Armazena o valor do bit0 do acumulador no LDR8
-STA @258	    #Armazena o valor do bit0 do acumulador no LDR9
-LDI $0			#Carrega o acumulador com o valor 0
-STA @0			#Armazena o valor do acumulador em MEM[0] (unidades)
-STA @1			#Armazena o valor do acumulador em MEM[1] (dezenas)
-STA @2			#Armazena o valor do acumulador em MEM[2] (centenas)
-LDI $7          #Carrega o acumulador com o valor 7
-STA @3          #Armazena o valor do acumulador em MEM[3] (LIMITE_UNID)
-STA @4          #Armazena o valor do acumulador em MEM[4] (LIMITE_DEZ)
-STA @5          #Armazena o valor do acumulador em MEM[5] (LIMITE_CENT)
-LDI $0          #Carrega o acumulador com o valor 0
-STA @6          #Armazena 0 ao acumulador em MEM[6] para comparacoes
-LDI $1          #Carrega o acumulador com o valor 1
-STA @7          #Armazena 1 ao acumulador em MEM[7] para incremento
-LDI $10         #Carrega o acumulador com o valor 10
-STA @8          #Armazena 10 ao acumulador em MEM[8] para comparacoes displays HEXs 
-LDI $0          #Carrega o acumulador com o valor 0
-STA @9          #Armazena 10 ao acumulador em MEM[9] para prosseguir ou não a contagem
+FUNC_SETUP: LDI $0	#Carrega o acumulador com o valor 0
+STA @288		    #Armazena o valor do acumulador em HEX0
+STA @289		    #Armazena o valor do acumulador em HEX1
+STA @290		    #Armazena o valor do acumulador em HEX2
+STA @291		    #Armazena o valor do acumulador em HEX3
+STA @292		    #Armazena o valor do acumulador em HEX4
+STA @293		    #Armazena o valor do acumulador em HEX5
+STA @256	        #Armazena o valor do bit0 do acumulador no LDR0 ~ LEDR7
+STA @257	        #Armazena o valor do bit0 do acumulador no LDR8
+STA @258	        #Armazena o valor do bit0 do acumulador no LDR9
+STA unidade		    #Armazena o valor do acumulador em unidade (MEM[0])
+STA dezena		    #Armazena o valor do acumulador em dezena (MEM[1])
+STA centena		    #Armazena o valor do acumulador em centena (MEM[2])
+LDI $9              #Carrega o acumulador com o valor 9
+STA limite_unid     #Armazena o valor do acumulador em limite_unid (MEM[3])
+STA limite_dez      #Armazena o valor do acumulador em limite_dez  (MEM[4])
+STA limite_cent     #Armazena o valor do acumulador em limite_cent (MEM[5])
+LDI $0              #Carrega o acumulador com o valor 0
+STA valor_zero      #Armazena o valor do acumulador em valor_zero (MEM[6])
+LDI $1              #Carrega o acumulador com o valor 1
+STA valor_um        #Armazena o valor do acumulador em valor_um (MEM[7])
+LDI $10             #Carrega o acumulador com o valor 10
+STA valor_dez       #Armazena o valor do acumulador em valor_dez (MEM[8])
 FUNC_VERIFICA_KEY0: LDA @352
-CEQ @9
-JEQ FUNC_VERIFICA_KEY0
+CEQ valor_zero
+JEQ FUNC_VERIFICA_RESET
 JSR FUNC_INC_UNID
-FUNC_ADICIONA_HEX: LDA @0                
+FUNC_VERIFICA_RESET: LDA @356
+CEQ valor_zero
+JEQ FUNC_ATUALIZA_DISPLAY
+JMP @0
+FUNC_ATUALIZA_DISPLAY: LDA unidade                
 STA @288                  
-LDA @1                
+LDA dezena                
 STA @289 
-LDA @2                
-STA @290 
+LDA centena                
+STA @290
 JMP FUNC_VERIFICA_KEY0
-FUNC_INC_UNID: LDA @0    #Armazena o valor MEM[0] no acumulador     
-SOMA @7                  #Soma o valor do acumulador com o MEM[7]                 
-CEQ @8		             #Compara o valor do acumulador com o MEM[8]
-JEQ FUNC_INC_DEZENA      #Se for 0 incrementa DEZENA, se não incrementa UNID
-STA @0
-RET
-FUNC_INC_DEZENA: LDA @1  #Armazena o valor MEM[1] no acumulador 
-SOMA @7                  #Soma o valor do acumulador com o MEM[7]                 
-CEQ @8		             #Compara o valor do acumulador com o MEM[8]
-JEQ FUNC_INC_CENTENA      #Se for 0 incrementa CENTENA, se não incrementa DEZENA
-STA @1
-RET
-FUNC_INC_CENTENA: LDA @2  #Armazena o valor MEM[2] no acumulador 
-SOMA @7                   #Soma o valor do acumulador com o MEM[7]                 
-CEQ @8		              #Compara o valor do acumulador com o MEM[8]
-JEQ FUNC_SETUP            #Se for 0 incrementa CENTENA, se não incrementa CENTENA
-STA @2
+FUNC_INC_UNID: LDA unidade    #Armazena o valor unidade no acumulador     
+SOMA valor_um                 #Soma o valor do acumulador com valor_um e joga no acumulador                 
+STA unidade
 RET
