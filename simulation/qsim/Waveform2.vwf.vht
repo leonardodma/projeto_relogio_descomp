@@ -19,7 +19,7 @@
 -- the top level entity of the current Quartus project .The user can use this   
 -- testbench to simulate his design using a third-party simulation tool .       
 -- *****************************************************************************
--- Generated on "04/25/2022 07:22:36"
+-- Generated on "04/25/2022 09:12:21"
                                                              
 -- Vhdl Test Bench(with test vectors) for design  :          relogio
 -- 
@@ -123,15 +123,22 @@ BEGIN
 t_prcs_KEY_0: PROCESS
 BEGIN
 	KEY(0) <= '1';
-	WAIT FOR 20000 ps;
-	FOR i IN 1 TO 24
+	WAIT FOR 1000 ps;
+	FOR i IN 1 TO 499
 	LOOP
 		KEY(0) <= '0';
-		WAIT FOR 20000 ps;
+		WAIT FOR 1000 ps;
 		KEY(0) <= '1';
-		WAIT FOR 20000 ps;
+		WAIT FOR 1000 ps;
 	END LOOP;
 	KEY(0) <= '0';
 WAIT;
 END PROCESS t_prcs_KEY_0;
+
+-- FPGA_RESET_N
+t_prcs_FPGA_RESET_N: PROCESS
+BEGIN
+	FPGA_RESET_N <= '0';
+WAIT;
+END PROCESS t_prcs_FPGA_RESET_N;
 END relogio_arch;

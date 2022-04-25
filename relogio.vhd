@@ -10,9 +10,9 @@ entity relogio is
             dadoROM: natural := 13;
 
             tamanhoRAM: natural := 6;
-            dadoRAM: natural := 8;
+            dadoRAM: natural := 8	
             
-            simulacao : boolean := FALSE -- para gravar na placa, altere de TRUE para FALSE
+           -- simulacao : boolean := FALSE -- para gravar na placa, altere de TRUE para FALSE
   );
   port   (
     CLOCK_50 : in std_logic;
@@ -135,13 +135,17 @@ begin
 -- Instanciando os componentes:
 
 -- Para simular, fica mais simples tirar o edgeDetector
-gravar:  if simulacao generate
-CLK <= KEY(0);
-else generate
-detectorSub0: work.edgeDetector(bordaSubida)
-        port map (clk => CLOCK_50, entrada => (not KEY(0)), saida => CLK);
-end generate;
+--gravar:  if simulacao generate
+--CLK <= CLOCK_50;
+--else generate
+--detectorSub0: work.edgeDetector(bordaSubida)
+--        port map (clk => CLOCK_50, entrada => CLOCK_50, saida => CLK);
+--end generate;
 
+
+--CLK <= CLOCK_50;
+divisor : entity work.divisorGenerico
+            port map (clk => CLOCK_50, saida_clk => CLK);
 
 -- MEMÓRIA ROM
 ROM_instrucao : entity work.memoriaROM   generic map (dataWidth => dadoROM, addrWidth => tamanhoROM)
@@ -432,27 +436,27 @@ buffer3State_SW9 :  entity work.buffer3State_1porta
                              
 -- ATRIBUIÇÕES 3STATE SW
 buffer3State_KEY0 :   entity work.buffer3State_1porta
-                      port map(entrada => KEY(0), 
+                      port map(entrada => not(KEY(0)), 
                                habilita => saidaAndKEY0, 
                                saida => Data_IN(0));
 
 buffer3State_KEY1 :   entity work.buffer3State_1porta
-                      port map(entrada => KEY(1), 
+                      port map(entrada => not(KEY(1)), 
                                habilita => saidaAndKEY1, 
                                saida => Data_IN(0));
 
 buffer3State_KEY2 :   entity work.buffer3State_1porta
-                      port map(entrada => KEY(2), 
+                      port map(entrada => not(KEY(2)), 
                                habilita => saidaAndKEY2, 
                                saida => Data_IN(0));               
 
 buffer3State_KEY3 :   entity work.buffer3State_1porta
-                      port map(entrada => KEY(3), 
+                      port map(entrada => not(KEY(3)), 
                                habilita => saidaAndKEY3, 
                                saida => Data_IN(0));                                
                                
 buffer3State_FPGA_RESET :   entity work.buffer3State_1porta
-                            port map(entrada => FPGA_RESET_N,
+                            port map(entrada => not(FPGA_RESET_N),
                                      habilita => saidaANDFPGA_RESET, 
                                      saida => Data_IN(0)); 
                                      

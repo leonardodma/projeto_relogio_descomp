@@ -1,7 +1,6 @@
 |relogio
-CLOCK_50 => edgedetector:gravar:detectorSub0.clk
+CLOCK_50 => divisorgenerico:divisor.clk
 KEY[0] => buffer3state_1porta:buffer3State_KEY0.entrada
-KEY[0] => edgedetector:gravar:detectorSub0.entrada
 KEY[1] => buffer3state_1porta:buffer3State_KEY1.entrada
 KEY[2] => buffer3state_1porta:buffer3State_KEY2.entrada
 KEY[3] => buffer3state_1porta:buffer3State_KEY3.entrada
@@ -117,11 +116,25 @@ INSTRUCAO[11] <= memoriarom:ROM_instrucao.Dado[11]
 INSTRUCAO[12] <= memoriarom:ROM_instrucao.Dado[12]
 
 
-|relogio|edgeDetector:\gravar:detectorSub0
-clk => saidaQ.CLK
-entrada => saida.IN1
-entrada => saidaQ.DATAIN
-saida <= saida.DB_MAX_OUTPUT_PORT_TYPE
+|relogio|divisorGenerico:divisor
+clk => tick.CLK
+clk => contador[0].CLK
+clk => contador[1].CLK
+clk => contador[2].CLK
+clk => contador[3].CLK
+clk => contador[4].CLK
+clk => contador[5].CLK
+clk => contador[6].CLK
+clk => contador[7].CLK
+clk => contador[8].CLK
+clk => contador[9].CLK
+clk => contador[10].CLK
+clk => contador[11].CLK
+clk => contador[12].CLK
+clk => contador[13].CLK
+clk => contador[14].CLK
+clk => contador[15].CLK
+saida_clk <= tick.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |relogio|memoriaROM:ROM_instrucao
