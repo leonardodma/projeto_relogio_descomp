@@ -3,99 +3,147 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1100mV 85C Model Setup 'divisorGenerico:divisor|tick'
-Slack : -8.621
-TNS   : -3628.602
+Slack : -10.325
+TNS   : -4769.544
 
 Type  : Slow 1100mV 85C Model Setup 'CLOCK_50'
-Slack : -4.566
-TNS   : -65.282
+Slack : -3.907
+TNS   : -34.018
 
 Type  : Slow 1100mV 85C Model Hold 'divisorGenerico:divisor|tick'
-Slack : 0.404
+Slack : 0.411
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Hold 'CLOCK_50'
-Slack : 0.449
+Slack : 0.452
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Recovery 'KEY[1]'
+Slack : -5.278
+TNS   : -10.550
+
+Type  : Slow 1100mV 85C Model Removal 'KEY[1]'
+Slack : 1.467
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'divisorGenerico:divisor|tick'
-Slack : -0.538
-TNS   : -522.217
+Slack : -0.564
+TNS   : -534.375
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
 Slack : -0.538
-TNS   : -20.859
+TNS   : -12.380
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'KEY[1]'
+Slack : -0.538
+TNS   : -1.826
 
 Type  : Slow 1100mV 0C Model Setup 'divisorGenerico:divisor|tick'
-Slack : -8.544
-TNS   : -3500.336
+Slack : -10.312
+TNS   : -4607.487
 
 Type  : Slow 1100mV 0C Model Setup 'CLOCK_50'
-Slack : -4.657
-TNS   : -64.845
+Slack : -4.163
+TNS   : -33.860
 
 Type  : Slow 1100mV 0C Model Hold 'divisorGenerico:divisor|tick'
-Slack : 0.362
+Slack : 0.371
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Hold 'CLOCK_50'
-Slack : 0.454
+Slack : 0.459
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Recovery 'KEY[1]'
+Slack : -5.155
+TNS   : -10.303
+
+Type  : Slow 1100mV 0C Model Removal 'KEY[1]'
+Slack : 1.180
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'divisorGenerico:divisor|tick'
-Slack : -0.538
-TNS   : -508.122
+Slack : -0.540
+TNS   : -517.501
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'CLOCK_50'
 Slack : -0.538
-TNS   : -21.278
+TNS   : -12.574
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'KEY[1]'
+Slack : -0.538
+TNS   : -1.892
 
 Type  : Fast 1100mV 85C Model Setup 'divisorGenerico:divisor|tick'
-Slack : -4.025
-TNS   : -1740.271
+Slack : -5.304
+TNS   : -2384.742
 
 Type  : Fast 1100mV 85C Model Setup 'CLOCK_50'
-Slack : -2.670
-TNS   : -18.951
+Slack : -2.665
+TNS   : -9.451
 
 Type  : Fast 1100mV 85C Model Hold 'divisorGenerico:divisor|tick'
-Slack : 0.160
+Slack : 0.167
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Hold 'CLOCK_50'
-Slack : 0.205
+Slack : 0.206
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Recovery 'KEY[1]'
+Slack : -2.655
+TNS   : -5.308
+
+Type  : Fast 1100mV 85C Model Removal 'KEY[1]'
+Slack : 0.356
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
-Slack : -0.335
-TNS   : -2.815
+Slack : -0.323
+TNS   : -1.760
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'divisorGenerico:divisor|tick'
-Slack : -0.141
-TNS   : -19.643
+Slack : -0.175
+TNS   : -28.229
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'KEY[1]'
+Slack : -0.113
+TNS   : -0.224
 
 Type  : Fast 1100mV 0C Model Setup 'divisorGenerico:divisor|tick'
-Slack : -3.609
-TNS   : -1527.224
+Slack : -4.678
+TNS   : -2079.680
 
 Type  : Fast 1100mV 0C Model Setup 'CLOCK_50'
-Slack : -2.262
-TNS   : -16.012
+Slack : -2.245
+TNS   : -7.636
 
 Type  : Fast 1100mV 0C Model Hold 'divisorGenerico:divisor|tick'
-Slack : 0.130
+Slack : 0.135
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Hold 'CLOCK_50'
-Slack : 0.193
+Slack : 0.191
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Recovery 'KEY[1]'
+Slack : -2.192
+TNS   : -4.382
+
+Type  : Fast 1100mV 0C Model Removal 'KEY[1]'
+Slack : 0.163
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'CLOCK_50'
-Slack : -0.344
-TNS   : -2.815
+Slack : -0.332
+TNS   : -1.781
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'KEY[1]'
+Slack : -0.144
+TNS   : -0.286
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'divisorGenerico:divisor|tick'
-Slack : -0.070
-TNS   : -4.569
+Slack : -0.106
+TNS   : -10.966
 
 ------------------------------------------------------------

@@ -37,7 +37,13 @@ entity relogio is
 	 CONTROLES: out std_logic_vector(3 downto 0);
 
     ACUMULADOR: out std_logic_vector(7 downto 0);
-    INSTRUCAO: out std_logic_vector(12 downto 0)
+    INSTRUCAO: out std_logic_vector(12 downto 0);
+    
+    ED_KEY0: out std_logic;
+    ED_KEY1: out std_logic;
+    
+    DB_MEM_KEY0: out std_logic;
+    DB_MEM_KEY1: out std_logic
   );
 end entity;
 
@@ -81,6 +87,12 @@ architecture arquitetura of relogio is
   signal saidaAndSW9: std_logic;
 
     -- key
+  signal edgeDetector_key0: std_logic;
+  signal edgeDetector_key1: std_logic;
+    
+  signal saidaDbMemKEY0: std_logic;
+  signal saidaDbMemKEY1: std_logic;
+  
   signal saidaAndKEY0: std_logic;
   signal saidaAndKEY1: std_logic;
   signal saidaAndKEY2: std_logic;
@@ -434,16 +446,40 @@ buffer3State_SW9 :  entity work.buffer3State_1porta
                              habilita => saidaAndSW9,
                              saida => Data_IN(0));
                              
--- ATRIBUIÇÕES 3STATE SW
+-- ATRIBUIÇÕES 3STATE KEY
+
+--DebouceMem_key0: work.edgeDetector(bordaSubida)
+   --     port map (clk => CLK, entrada => KEY(0), saida => edgeDetector_key0);
+		  
+--FFDebouceMem_key0: entity work.flipFlop  generic map (larguraDados => 1)
+  --             port map (DIN => '1', 
+    --                     DOUT => saidaDbMemKEY0, 
+      --                   ENABLE => '1', 
+        --                 CLK => edgeDetector_key0, 
+          --               RST => bloco7);
+								 
 buffer3State_KEY0 :   entity work.buffer3State_1porta
-                      port map(entrada => not(KEY(0)), 
+                      port map(entrada => KEY(0),
                                habilita => saidaAndKEY0, 
                                saida => Data_IN(0));
 
+
+DebouceMem_key1: work.edgeDetector(bordaSubida)
+      port map (clk => CLK, entrada => (not KEY(1)), saida => edgeDetector_key1);
+
+FFDebouceMem_key1: entity work.flipFlop  generic map (larguraDados => 1)
+      port map (DIN => '1', 
+                DOUT => saidaDbMemKEY1, 
+                ENABLE => '1', 
+                CLK => edgeDetector_key1, 
+                RST => bloco7);
+                                   
+
 buffer3State_KEY1 :   entity work.buffer3State_1porta
-                      port map(entrada => not(KEY(1)), 
+                      port map(entrada => NOT(saidaDbMemKEY1),
                                habilita => saidaAndKEY1, 
                                saida => Data_IN(0));
+
 
 buffer3State_KEY2 :   entity work.buffer3State_1porta
                       port map(entrada => not(KEY(2)), 
@@ -519,5 +555,10 @@ INSTRUCAO <= Instruction_IN;
 PC_OUT <= ROM_Address;
 CONTROLES <= Control;
 
+ED_KEY0<= edgeDetector_key0;
+ED_KEY1<= edgeDetector_key1;
+
+DB_MEM_KEY0<= saidaDbMemKEY0;
+DB_MEM_KEY1<= saidaDbMemKEY1;
 
 end architecture;
