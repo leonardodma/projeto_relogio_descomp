@@ -10,14 +10,14 @@ entity relogio is
             dadoROM: natural := 13;
 
             tamanhoRAM: natural := 6;
-            dadoRAM: natural := 8	
+            dadoRAM: natural := 8;
             
-           -- simulacao : boolean := FALSE -- para gravar na placa, altere de TRUE para FALSE
+            simulacao : boolean := FALSE -- para gravar na placa, altere de TRUE para FALSE
   );
   port   (
     CLOCK_50 : in std_logic;
     KEY: in std_logic_vector(3 downto 0);
-	 FPGA_RESET_N : in std_logic;
+	  FPGA_RESET_N : in std_logic;
     SW: in std_logic_vector(9 downto 0);
     PC_OUT: out std_logic_vector(larguraEnderecos-1 downto 0);
     LEDR  : out std_logic_vector(9 downto 0);
@@ -448,35 +448,35 @@ buffer3State_SW9 :  entity work.buffer3State_1porta
                              
 -- ATRIBUIÇÕES 3STATE KEY
 
---DebouceMem_key0: work.edgeDetector(bordaSubida)
-   --     port map (clk => CLK, entrada => KEY(0), saida => edgeDetector_key0);
+DebouceMem_key0: work.edgeDetector(bordaSubida)
+        port map (clk => CLK, entrada => KEY(0), saida => edgeDetector_key0);
 		  
---FFDebouceMem_key0: entity work.flipFlop  generic map (larguraDados => 1)
-  --             port map (DIN => '1', 
-    --                     DOUT => saidaDbMemKEY0, 
-      --                   ENABLE => '1', 
-        --                 CLK => edgeDetector_key0, 
-          --               RST => bloco7);
+FFDebouceMem_key0: entity work.flipFlop  generic map (larguraDados => 1)
+               port map (DIN => '1', 
+                         DOUT => saidaDbMemKEY0, 
+                         ENABLE => '1', 
+                         CLK => edgeDetector_key0, 
+                         RST => bloco7);
 								 
 buffer3State_KEY0 :   entity work.buffer3State_1porta
-                      port map(entrada => KEY(0),
+                      port map(entrada => saidaDbMemKEY0,
                                habilita => saidaAndKEY0, 
                                saida => Data_IN(0));
 
 
 DebouceMem_key1: work.edgeDetector(bordaSubida)
-      port map (clk => CLK, entrada => (not KEY(1)), saida => edgeDetector_key1);
+                 port map (clk => CLK, entrada => (not KEY(1)), saida => edgeDetector_key1);
 
 FFDebouceMem_key1: entity work.flipFlop  generic map (larguraDados => 1)
-      port map (DIN => '1', 
-                DOUT => saidaDbMemKEY1, 
-                ENABLE => '1', 
-                CLK => edgeDetector_key1, 
-                RST => bloco7);
+                  port map (DIN => '1', 
+                            DOUT => saidaDbMemKEY1, 
+                            ENABLE => '1', 
+                            CLK => edgeDetector_key1, 
+                            RST => bloco7);
                                    
 
 buffer3State_KEY1 :   entity work.buffer3State_1porta
-                      port map(entrada => NOT(saidaDbMemKEY1),
+                      port map(entrada => saidaDbMemKEY1,
                                habilita => saidaAndKEY1, 
                                saida => Data_IN(0));
 

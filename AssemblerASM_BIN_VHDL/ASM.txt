@@ -1,87 +1,109 @@
-FUNC_SETUP: LDI $0	            #Carrega o acumulador com o valor 0
-STA @288		                #Armazena o valor do acumulador em HEX0
-STA @289		                #Armazena o valor do acumulador em HEX1
-STA @290		                #Armazena o valor do acumulador em HEX2
-STA @291		                #Armazena o valor do acumulador em HEX3
-STA @292		                #Armazena o valor do acumulador em HEX4
-STA @293		                #Armazena o valor do acumulador em HEX5
-STA @256	                    #Armazena o valor do bit0 do acumulador no LDR0 ~ LEDR7
-STA @257	                    #Armazena o valor do bit0 do acumulador no LDR8
-STA @258	                    #Armazena o valor do bit0 do acumulador no LDR9
-STA unidade		                #Armazena o valor do acumulador em unidade (MEM[0])
-STA dezena		                #Armazena o valor do acumulador em dezena (MEM[1])
-STA centena		                #Armazena o valor do acumulador em centena (MEM[2])
-STA milhar
-STA dezena_milhar
-LDI $9                          #Carrega o acumulador com o valor 9
-STA limite_unid                 #Armazena o valor do acumulador em limite_unid (MEM[3])
-STA limite_dez                  #Armazena o valor do acumulador em limite_dez  (MEM[4])
-STA limite_cent                 #Armazena o valor do acumulador em limite_cent (MEM[5])
-LDI $0                          #Carrega o acumulador com o valor 0
-STA valor_zero                  #Armazena o valor do acumulador em valor_zero (MEM[6])
-LDI $1                          #Carrega o acumulador com o valor 1
-STA valor_um                    #Armazena o valor do acumulador em valor_um (MEM[7])
-LDI $10                         #Carrega o acumulador com o valor 10
-STA valor_dez                   #Armazena o valor do acumulador em valor_dez (MEM[8])
-FUNC_VERIFICA_KEY0: LDA @352
-CEQ valor_zero
-JEQ FUNC_VERIFICA_RESET
-JSR FUNC_INC_UNID
-FUNC_VERIFICA_RESET: LDA @356
-CEQ valor_zero
-JEQ FUNC_ATUALIZA_DISPLAY
-JMP @0
-FUNC_ATUALIZA_DISPLAY: LDA unidade                
-STA @288                  
-LDA dezena                
-STA @289 
-LDA centena                
-STA @290
-LDA milhar
-STA @291
-LDA dezena_milhar
-STA @292
-JMP FUNC_VERIFICA_KEY0
-FUNC_INC_UNID: STA @511
-LDA unidade                     #Armazena o valor unidade no acumulador     
-SOMA valor_um                   #Soma o valor do acumulador com valor_um e joga no acumulador                 
-CEQ valor_dez		            #Compara o valor do acumulador com valor_dez
-JEQ FUNC_INC_DEZENA             #Se for 0 incrementa DEZENA e zera a unidade, se não icrementa a unidade e retorna
-STA unidade 
-RET             
-FUNC_INC_DEZENA: LDI $0         #Armazena o valor 0 no acumulador
-STA unidade                     #Armazena o valor do acumulador em unidade
-LDA dezena                      #Armazena o valor dezena no acumulador 
-SOMA valor_um                   #Soma o valor do acumulador com valor_um e joga no acumulador
-CEQ valor_dez		            #Compara o valor do acumulador com valor_dez
-JEQ FUNC_INC_CENTENA            #Se for 0 incrementa CENTENA e zera a unidade, se não icrementa a dezena e retorna
-STA dezena
-RET
-FUNC_INC_CENTENA: LDI $0        #Armazena o valor 0 no acumulador
-STA dezena                      #Armazena o valor do acumulador em dezena 
-LDA centena                     #Armazena o valor centena no acumulador 
-SOMA valor_um                   #Soma o valor do acumulador com valor_um e joga no acumulador     
-CEQ valor_dez		            #Compara o valor do acumulador com valor_dez
-JEQ FUNC_INC_UNIDMILHAR            #Se for 0 incrementa UNIDMILHAR e zera a unidade, se não icrementa a centena e retorna
-STA centena
-RET
-FUNC_INC_UNIDMILHAR: LDI $0        #Armazena o valor 0 no acumulador
-STA centena                      #Armazena o valor do acumulador em centena 
-LDA milhar                     #Armazena o valor centena no acumulador 
-SOMA valor_um                   #Soma o valor do acumulador com valor_um e joga no acumulador   
-CEQ valor_dez		            #Compara o valor do acumulador com valor_dez
-JEQ FUNC_INC_DEZMILHAR            #Se for 0 incrementa UNIDMILHAR e zera a unidade, se não icrementa a centena e retorna
-STA milhar
-RET
-FUNC_INC_DEZMILHAR: LDI $0        #Armazena o valor 0 no acumulador
-STA milhar                      #Armazena o valor do acumulador em centena 
-LDA dezena_milhar                     #Armazena o valor centena no acumulador 
-SOMA valor_um                   #Soma o valor do acumulador com valor_um e joga no acumulador                              
-STA dezena_milhar
-RET
-FUNC_INC_CENMILHAR: LDI $0        #Armazena o valor 0 no acumulador
-STA dezena_milhar                      #Armazena o valor do acumulador em centena 
-LDA centena_milhar                     #Armazena o valor centena no acumulador 
-SOMA valor_um                   #Soma o valor do acumulador com valor_um e joga no acumulador                              
-STA centena_milhar
-RET
+FUNC_SETUP: LDI $0	                 #Carrega o acumulador com o valor 0
+STA @288		                     #Armazena o valor do acumulador em HEX0
+STA @289		                     #Armazena o valor do acumulador em HEX1
+STA @290		                     #Armazena o valor do acumulador em HEX2
+STA @291		                     #Armazena o valor do acumulador em HEX3
+STA @292		                     #Armazena o valor do acumulador em HEX4
+STA @293		                     #Armazena o valor do acumulador em HEX5
+STA @256	                         #Armazena o valor do bit0 do acumulador no LDR0 ~ LEDR7
+STA @257	                         #Armazena o valor do bit0 do acumulador no LDR8
+STA @258	                         #Armazena o valor do bit0 do acumulador no LDR9
+STA unidade		                     #Armazena o valor do acumulador em unidade (MEM[0])
+STA dezena		                     #Armazena o valor do acumulador em dezena (MEM[1])
+STA centena		                     #Armazena o valor do acumulador em centena (MEM[2])
+STA MILHAR                           #Armazena o valor do acumulador em milhar (MEM[9])
+STA DEZENA_MI                        #Armazena o valor do acumulador em centena de  (MEM[10])
+STA CENTENA_MI                       #Armazena o valor do acumulador em centena (MEM[11])
+LDI $9                               #Carrega o acumulador com o valor 9
+STA limite_unid                      #Armazena o valor do acumulador em limite_unid (MEM[3])
+STA limite_dez                       #Armazena o valor do acumulador em limite_dez  (MEM[4])
+STA limite_cent                      #Armazena o valor do acumulador em limite_cent (MEM[5])
+LDI $0                               #Carrega o acumulador com o valor 0
+STA valor_zero                       #Armazena o valor do acumulador em valor_zero (MEM[6])
+STA flag_overflow                    #Armazena o valor do acumulador em flag_overflow (MEM[12])
+LDI $1                               #Carrega o acumulador com o valor 1
+STA valor_um                         #Armazena o valor do acumulador em valor_um (MEM[7])
+LDI $10                              #Carrega o acumulador com o valor 10
+STA valor_dez                        #Armazena o valor do acumulador em valor_dez (MEM[8])
+FUNC_VERIFICA_KEY0: LDA @352         #Carrega o acumulador com o valor de key0
+CEQ valor_zero                       #Verifica se foi apertado
+JEQ FUNC_VERIFICA_RESET              #Se não foi apertado, verifica RESET
+LDA flag_overflow                    #Se foi apertado, verifica se ainda não houve overflow
+CEQ valor_um                         #Verifica se houve overflow
+JEQ FUNC_VERIFICA_RESET              #Se hove overflow, volta verifica o reset 
+JSR FUNC_INC_UNID                    #Se não houve, vai pra sub-rotina de incrementar a unidade
+FUNC_VERIFICA_RESET: LDA @356        #Armazena o valor do botão reset no acumulador
+CEQ valor_zero                       #Verifica se o RESET foi apertado
+JEQ FUNC_ATUALIZA_DISPLAY            #Se o botão reset não foi apertado, atualiza os displays 
+JMP FUNC_SETUP                       #Se foi apertado, volta pro inívio do código
+FUNC_ATUALIZA_DISPLAY: LDA unidade   #Coloca o valor da unidade no acumulador              
+STA @288                             #Armazena no HEX0
+LDA dezena                           #Coloca o valor da dezena no acumulador 
+STA @289                             #Armazena no HEX1
+LDA centena                          #Coloca o valor da centena no acumulador 
+STA @290                             #Armazena no HEX2
+LDA MILHAR                           #Coloca o valor de milh no acumulador
+STA @291                             #Armazena no HEX3
+LDA DEZENA_MI                        #Coloca o valor de dez de milhar no acumulador
+STA @292                             #Armazena no HEX4
+LDA CENTENA_MI                       #Coloca o valor de cent de milhar no acumulador
+STA @293                             #Armazena no HEX5
+JMP FUNC_VERIFICA_KEY0               #Volta a verificar se KEY0 está sendo apertado
+FUNC_INC_UNID: STA @511              #Armazena o valor do acumulador no endereço 511 (Utilizado para limpar o flipflop do debounce)
+LDA unidade                          #Armazena o valor unidade no acumulador     
+SOMA valor_um                        #Soma o valor do acumulador com valor_um e joga no acumulador                 
+CEQ valor_dez		                 #Compara o valor do acumulador com valor_dez
+JEQ FUNC_INC_DEZENA                  #Se for 0 incrementa DEZENA e zera a unidade, se não icrementa a unidade e retorna
+STA unidade                          #Armazena o valor do acumulador em unidade (MEM[0])
+RET                                  #Retorna sub-rotina
+FUNC_INC_DEZENA: LDI $0              #Armazena o valor 0 no acumulador
+STA unidade                          #Armazena o valor do acumulador em unidade
+LDA dezena                           #Armazena o valor dezena no acumulador 
+SOMA valor_um                        #Soma o valor do acumulador com valor_um e joga no acumulador
+CEQ valor_dez		                 #Compara o valor do acumulador com valor_dez
+JEQ FUNC_INC_CENTENA                 #Se for 0 incrementa CENTENA e zera a unidade, se não icrementa a dezena e retorna
+STA dezena                           #Armazena o valor do acumulador em dezena (MEM[1])
+RET                                  #Retorna sub-rotina
+FUNC_INC_CENTENA: LDI $0             #Armazena o valor 0 no acumulador
+STA dezena                           #Armazena o valor do acumulador em dezena 
+LDA centena                          #Armazena o valor centena no acumulador 
+SOMA valor_um                        #Soma o valor do acumulador com valor_um e joga no acumulador     
+CEQ valor_dez		                 #Compara o valor do acumulador com valor_dez
+JEQ FUNC_INC_UNID_MI                 #Se for 0 incrementa UNIDMILHAR e zera a unidade, se não icrementa a centena e retorna
+STA centena                          #Armazena o valor do acumulador em centena (MEM[2])
+RET                                  #Retorna sub-rotina
+FUNC_INC_UNID_MI: LDI $0             #Armazena o valor 0 no acumulador
+STA centena                          #Armazena o valor do acumulador em centena 
+LDA MILHAR                           #Armazena o valor centena no acumulador 
+SOMA valor_um                        #Soma o valor do acumulador com valor_um e joga no acumulador   
+CEQ valor_dez		                 #Compara o valor do acumulador com valor_dez
+JEQ FUNC_INC_DEZ_MI                  #Se for 0 incrementa UNIDMILHAR e zera a unidade, se não icrementa a centena e retorna
+STA MILHAR                           #Armazena o valor do acumulador em centena de  (MEM[9])
+RET                                  #Retorna sub-rotina
+FUNC_INC_DEZ_MI: LDI $0              #Armazena o valor 0 no acumulador
+STA MILHAR                           #Armazena o valor do acumulador em centena 
+LDA DEZENA_MI                        #Armazena o valor centena no acumulador 
+SOMA valor_um                        #Soma o valor do acumulador com valor_um e joga no acumulador     
+CEQ valor_dez		                 #Compara o valor do acumulador com valor_dez
+JEQ FUNC_INC_CEN_MI                  #Se for 0 incrementa UNIDMILHAR e zera a unidade, se não icrementa a centena e retorna
+STA DEZENA_MI                        #Armazena o valor do acumulador em centena (MEM[10])
+RET                                  #Retorna sub-rotina
+FUNC_INC_CEN_MI: LDI $0              #Armazena o valor 0 no acumulador
+STA DEZENA_MI                        #Armazena o valor do acumulador em centena 
+LDA CENTENA_MI                       #Armazena o valor centena no acumulador 
+SOMA valor_um                        #Soma o valor do acumulador com valor_um e joga no acumulador   
+CEQ valor_dez		                 #Compara o valor do acumulador com valor_dez
+JEQ FUNC_OVERFLOW                    #Se for 0 incrementa UNIDMILHAR e zera a unidade, se não icrementa a centena e retorna
+STA CENTENA_MI                       #Armazena o valor do acumulador em centena (MEM[11])
+RET                                  #Retorna sub-rotina
+FUNC_OVERFLOW: LDI $1                #Armazena o valor 1 no acumulador
+STA @258                             #Armazena o valor do bit0 do acumulador no LDR9 (ligar LED referente ao overflow)
+STA flag_overflow                    #Armazena o valor do acumulador na flag_overflow MEM([12])
+LDA limite_cent                      #Armazena o valor do limite no acumulador
+STA unidade                          #Armazena o valor do acumulador em unidade (MEM[0])
+STA dezena                           #Armazena o valor do acumulador em dezena (MEM[1])
+STA centena                          #Armazena o valor do acumulador em centena (MEM[2])
+STA MILHAR                           #Armazena o valor do acumulador em milhar (MEM[9])
+STA DEZENA_MI                        #Armazena o valor do acumulador em centena de  (MEM[10])
+STA CENTENA_MI                       #Armazena o valor do acumulador em centena (MEM[11])
+RET                                  #Retorna sub-rotina

@@ -27,9 +27,10 @@ mem = {
     "valor_zero": "@6",
     "valor_um": "@7",
     "valor_dez": "@8",
-    "milhar": "@9",
-    "dezena_milhar":"@10",
-    "centena":"@11"
+    "MILHAR": "@9",
+    "DEZENA_MI":"@10",
+    "CENTENA_MI":"@11",
+    "flag_overflow": "@12"
 }
 
 mem_keys = mem.keys()

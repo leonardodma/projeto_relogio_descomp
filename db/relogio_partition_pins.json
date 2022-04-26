@@ -400,7 +400,15 @@
 					"strict" : false
 				},
 				{
+					"name" : "ED_KEY0",
+					"strict" : false
+				},
+				{
 					"name" : "ED_KEY1",
+					"strict" : false
+				},
+				{
+					"name" : "DB_MEM_KEY0",
 					"strict" : false
 				},
 				{
@@ -412,6 +420,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "KEY[2]",
+					"strict" : false
+				},
+				{
 					"name" : "SW[9]",
 					"strict" : false
 				},
@@ -420,19 +432,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "KEY[2]",
-					"strict" : false
-				},
-				{
 					"name" : "SW[8]",
 					"strict" : false
 				},
 				{
 					"name" : "FPGA_RESET_N",
-					"strict" : false
-				},
-				{
-					"name" : "KEY[0]",
 					"strict" : false
 				},
 				{
@@ -461,6 +465,10 @@
 				},
 				{
 					"name" : "SW[7]",
+					"strict" : false
+				},
+				{
+					"name" : "KEY[0]",
 					"strict" : false
 				},
 				{

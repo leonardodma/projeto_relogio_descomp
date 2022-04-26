@@ -1,0 +1,35 @@
+Quartus Prime Archive log --	C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/relogio.qarlog
+
+Archive:	C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/relogio.qar
+Date:		Mon Apr 25 23:22:57 2022
+Quartus Prime		20.1.0 Build 711 06/05/2020 SJ Lite Edition
+
+	=========== Files Selected: ===========
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/AND_logic.vhd
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/DecoderAddress.vhd
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/DecoderInstrucution.vhd
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/ULASomaSub.vhd
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/Waveform.vwf
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/Waveform2.vwf
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/buffer3State_1porta.vhd
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/buffer3State_8portas.vhd
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/conversorHex7Seg.vhd
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/divisorGenerico.vhd
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/edgeDetector.vhd
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/flipFlop.vhd
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/memoriaRAM.vhd
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/memoriaROM.vhd
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/muxGenerico2x1.vhd
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/muxGenerico4x1.vhd
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/output_files/Waveform.vwf
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/processador.vhd
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/registradorGenerico.vhd
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/relogio.qpf
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/relogio.qsf
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/relogio.vhd
+C:/Users/Windows10/Desktop/Insper6S/DesComp/ProjetoRelogio/projeto_relogio_descomp/somaConstante.vhd
+c:/intelfpga_lite/20.1/quartus/bin64/assignment_defaults.qdf
+	======= Total: 24 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.
