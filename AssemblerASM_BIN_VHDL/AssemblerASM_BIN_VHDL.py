@@ -18,19 +18,32 @@ mne = {
 }
 
 mem = {
-    "unidade": "@0",
-    "dezena": "@1",
-    "centena": "@2",
-    "limite_unid": "@3",
-    "limite_dez": "@4",
-    "limite_cent": "@5",
-    "valor_zero": "@6",
-    "valor_um": "@7",
-    "valor_dez": "@8",
-    "MILHAR": "@9",
-    "DEZENA_MI":"@10",
-    "CENTENA_MI":"@11",
-    "flag_overflow": "@12"
+    "SEGUNDOS_UNIDADE": "@0",
+    "SEGUNDOS_DEZENA": "@1",
+    "MINUTOS_UNIDADE": "@2",
+    "MINUTOS_DEZENA": "@3",
+    "HORAS_UNIDADE": "@4",
+    "HORAS_DEZENA": "@5",
+    "VALOR_ZERO": "@6",
+    "VALOR_UM": "@7",
+    "VALOR_DOIS": "@8",
+    "VALOR_QUATRO": "@9",
+    "VALOR_SEIS": "@10",
+    "VALOR_DEZ": "@11",
+    "HEX0": "@288",
+    "HEX1": "@289",
+    "HEX2": "@290",
+    "HEX3": "@291",
+    "HEX4": "@292",
+    "HEX5": "@293",
+    "KEY0": "@352",
+    "KEY1": "@353",
+    "LED0_7": "@320",
+    "LED8": "@321",
+    "LED9": "@322",
+    "FPGA_RESET": "@356",
+    "LIMPA_KEY0": "@511",
+    "LIMPA_KEY1": "@510"
 }
 
 mem_keys = mem.keys()
@@ -38,7 +51,6 @@ mem_keys = mem.keys()
 # Converte o valor após o caractere arroba '@'
 # em um valor hexadecimal de 3 dígitos (9 bits)
 def converteArroba(line):
-    print(line)
     line = line.split('@')
     line[1] = bin(int(line[1]))[2:].upper().zfill(9)
     line = ''.join(line)
@@ -86,25 +98,26 @@ def trataMnemonico(line):
     return line
 
 
-def returnFuncsDict():
+def returnLabelsDict():
     cont = 0
-    dict_funcs = {}
+    dict_labels = {}
 
     file = open(assembly, "r")  # Abre o arquivo ASM
     replacement = ""
 
     for line in file:
-        if (line.startswith('FUNC_')):
-            func_name = line.split(":")[0]
-            dict_funcs[func_name] = bin(cont)[2:].upper().zfill(9)
-            line = line.replace(f"{func_name}: ", "")
+        if not line.isspace():
+            if (line.startswith('LABEL_')):
+                label_name = line.split(":")[0]
+                dict_labels[label_name] = bin(cont)[2:].upper().zfill(9)
+                line = line.replace(f"{label_name}: ", "")
 
-        for mem_word in mem_keys:
-            if mem_word in line:
-                line = line.replace(mem_word, mem[mem_word])
+            for mem_word in mem_keys:
+                if mem_word in line:
+                    line = line.replace(mem_word, mem[mem_word])
 
-        replacement = replacement + line
-        cont += 1
+            replacement = replacement + line
+            cont += 1
 
     file.close()
 
@@ -112,7 +125,7 @@ def returnFuncsDict():
     fout.write(replacement)
     fout.close()
 
-    return dict_funcs
+    return dict_labels
 
 
 with open("ASM_limpo.txt", "r") as f:  # Abre o arquivo ASM
@@ -120,7 +133,7 @@ with open("ASM_limpo.txt", "r") as f:  # Abre o arquivo ASM
 
 
 with open(destinoBIN, "w") as f:  # Abre o destino BIN
-    dict_funcs = returnFuncsDict()
+    dict_labels = returnLabelsDict()
 
     cont = 0  # Cria uma variável para contagem
 
@@ -128,41 +141,30 @@ with open(destinoBIN, "w") as f:  # Abre o destino BIN
         # Verifica se a linha começa com alguns caracteres invalidos ('\n' ou ' ' ou '#')
         if (line.startswith('\n') or line.startswith(' ') or line.startswith('#')):
             line = line.replace("\n", "")
-            #print("-- Sintaxe invalida" + ' na Linha: ' +
-            #      ' --> (' + line + ')')  # Print apenas para debug
+
         else:
-            # Exemplo de linha => 1. JSR @14 #comentario1
-            # Define o comentário da linha. Ex: #comentario1
             comentarioLine = defineComentario(line).replace("\n", "")
             instrucaoLine = defineInstrucao(line).replace("\n", "")
-
-            # Trata o mnemonico
             instrucaoLine = trataMnemonico(instrucaoLine)
 
-            # print(instrucaoLine)
-
             if '@' in instrucaoLine:  # Se encontrar o caractere arroba '@'
-                # converte o número após o caractere Ex(JSR @14): x"9" x"0E"
                 instrucaoLine = converteArroba(instrucaoLine)
 
             elif '$' in instrucaoLine:  # Se encontrar o caractere cifrao '$'
-                # converte o número após o caractere Ex(LDI $5): x"4" x"05"
                 instrucaoLine = converteCifrao(instrucaoLine)
 
-            elif "FUNC_" in instrucaoLine:
-                func_name = instrucaoLine[4:]
-                addr = dict_funcs[func_name]
-                instrucaoLine = instrucaoLine.replace(func_name, addr)
+            elif "LABEL_" in instrucaoLine:
+                label_name = instrucaoLine[4:]
+                addr = dict_labels[label_name]
+                instrucaoLine = instrucaoLine.replace(label_name, addr)
 
-            else:  # Senão, se a instrução nao possuir nenhum imediator, ou seja, nao conter '@' ou '$'
-                instrucaoLine = instrucaoLine.replace(
-                    "\n", "")  # Remove a quebra de linha
+            else:  # NOP, RET
+                instrucaoLine = instrucaoLine.replace("\n", "")  # Remove a quebra de linha
                 instrucaoLine = instrucaoLine + '000000000'
 
-            line = 'tmp(' + str(cont) + ') := "' + instrucaoLine + \
-                '";\t-- ' + comentarioLine + '\n'  # Formata para o arquivo BIN
+            line = 'tmp(' + str(cont) + ') := "' + instrucaoLine + '";\t-- ' + comentarioLine.strip() + '\n'  # Formata para o arquivo BIN
 
             cont += 1  # Incrementa a variável de contagem, utilizada para incrementar as posições de memória no VHDL
             f.write(line)  # Escreve no arquivo BIN.txt
 
-            # print(line,end = '') #Print apenas para debug
+            print(line,end = '') #Print apenas para debug
