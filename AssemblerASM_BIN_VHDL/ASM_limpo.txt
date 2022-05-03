@@ -46,7 +46,7 @@ LDA @4                               #Coloca o valor de @4 no acumulador
 STA @292                                        #Armazena no @292
 LDA @5                                #Coloca o valor de @5 no acumulador
 STA @293                                        #Armazena no @293
-JMP LABEL_VERIFICA_@352                         #Volta a verificar se @352 está sendo apertado
+JMP LABEL_VERIFICA_KEY0                         #Volta a verificar se @352 está sendo apertado
 LDI $0                            #Armazena o valor 0 no acumulador
 STA @511                                  #Armazena o valor do acumulador no endereço 511 (Utilizado para limpar o flipflop do debounce)
 LDA @0                            #Armazena o valor @0 no acumulador     

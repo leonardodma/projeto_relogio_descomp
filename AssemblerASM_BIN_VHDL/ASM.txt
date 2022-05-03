@@ -14,7 +14,6 @@ STA MINUTOS_UNIDADE		                        #Armazena o valor do acumulador em 
 STA MINUTOS_DEZENA                              #Armazena o valor do acumulador em (MEM[3])
 STA HORAS_UNIDADE                               #Armazena o valor do acumulador em (MEM[4])
 STA HORAS_DEZENA                                #Armazena o valor do acumulador em (MEM[5])
-LDI $0                                          #Carrega o acumulador com o valor 0
 STA VALOR_ZERO                                  #Armazena o valor do acumulador em (MEM[6])
 LDI $1                                          #Carrega o acumulador com o valor 1
 STA VALOR_UM                                    #Armazena o valor do acumulador em (MEM[7])
@@ -26,6 +25,13 @@ LDI $6                                          #Carrega o acumulador com o valo
 STA VALOR_SEIS                                  #Armazena o valor do acumulador em (MEM[10])
 LDI $10                                         #Carrega o acumulador com o valor 10
 STA VALOR_DEZ                                   #Armazena o valor do acumulador em (MEM[11])
+LDI $0                                          #Carrega o acumulador com o valor 0
+STA OVERFLOW_SU                                 #Armazena o valor do acumulador em (MEM[12])
+STA OVERFLOW_SD                                 #Armazena o valor do acumulador em (MEM[13])
+STA OVERFLOW_MU                                 #Armazena o valor do acumulador em (MEM[14])
+STA OVERFLOW_MD                                 #Armazena o valor do acumulador em (MEM[15])
+STA OVERFLOW_HU                                 #Armazena o valor do acumulador em (MEM[16])
+STA OVERFLOW_HD                                 #Armazena o valor do acumulador em (MEM[17])
 
 LABEL_VERIFICA_KEY0: LDA @352                   #Carrega o acumulador com o valor de key0
 CEQ VALOR_ZERO                                  #Verifica se foi apertado
@@ -52,7 +58,7 @@ STA HEX5                                        #Armazena no HEX5
 JMP LABEL_VERIFICA_KEY0                         #Volta a verificar se @352 está sendo apertado
 
 LABEL_INC_SU: LDI $0                            #Armazena o valor 0 no acumulador
-STA @511                                  #Armazena o valor do acumulador no endereço 511 (Utilizado para limpar o flipflop do debounce)
+STA @511                                        #Armazena o valor do acumulador no endereço 511 (Utilizado para limpar o flipflop do debounce)
 LDA SEGUNDOS_UNIDADE                            #Armazena o valor SEGUNDOS_UNIDADE no acumulador     
 SOMA VALOR_UM                                   #Soma o valor do acumulador com VALOR_UM e joga no acumulador                 
 CEQ VALOR_DEZ		                            #Compara o valor do acumulador com VALOR_DEZ
@@ -98,9 +104,18 @@ RET                                             #Retorna sub-rotina
 
 LABEL_INC_HD: LDI $0                            #Armazena o valor 0 no acumulador
 STA HORAS_UNIDADE                               #Armazena o valor do acumulador em MINUTOS_UNIDADE 
+LDA OVERFLOW_HD
+CEQ VALOR_UM
+JEQ LABEL_RETORNO                               #Se a flag OVERFLOW_HD estiver 1, já faz o retorno
 LDA HORAS_DEZENA                                #Armazena o valor MINUTOS_UNIDADE no acumulador 
 SOMA VALOR_UM                                   #Soma o valor do acumulador com VALOR_UM e joga no acumulador   
 CEQ VALOR_DOIS		                            #Compara o valor do acumulador com VALOR_DOIS
-JEQ LABEL_SETUP                                 #Se for 0 incrementa MINUTOS_DEZENA e zera SEGUNDOS_UNIDADE, se não icrementa a MINUTOS_UNIDADE e retorna
+JEQ LABEL_OVERFLOW_HD                           #Se for 0 incrementa MINUTOS_DEZENA e zera SEGUNDOS_UNIDADE, se não icrementa a MINUTOS_UNIDADE e retorna
 STA HORAS_DEZENA                                #Armazena o valor do acumulador em HORAS_DEZENA
 RET                                             #Retorna sub-rotina
+
+LABEL_OVERFLOW_HD: LDI $1                       #Armazena o valor 1 no acumulador
+STA OVERFLOW_HD                                 #Deixa 1 na flaga OVERFLOW_HD
+RET
+
+LABEL_RETORNO: RET

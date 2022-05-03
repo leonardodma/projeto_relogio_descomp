@@ -448,18 +448,18 @@ buffer3State_SW9 :  entity work.buffer3State_1porta
                              
 -- ATRIBUIÇÕES 3STATE KEY
 
-DebouceMem_key0: work.edgeDetector(bordaSubida)
-        port map (clk => CLK, entrada => KEY(0), saida => edgeDetector_key0);
+--DebouceMem_key0: work.edgeDetector(bordaSubida)
+--        port map (clk => CLK, entrada => KEY(0), saida => edgeDetector_key0);
 		  
-FFDebouceMem_key0: entity work.flipFlop  generic map (larguraDados => 1)
-               port map (DIN => '1', 
-                         DOUT => saidaDbMemKEY0, 
-                         ENABLE => '1', 
-                         CLK => edgeDetector_key0, 
-                         RST => bloco7);
+--FFDebouceMem_key0: entity work.flipFlop  generic map (larguraDados => 1)
+--               port map (DIN => '1', 
+--                         DOUT => saidaDbMemKEY0, 
+--                         ENABLE => '1', 
+--                         CLK => edgeDetector_key0, 
+--                         RST => bloco7);
 								 
 buffer3State_KEY0 :   entity work.buffer3State_1porta
-                      port map(entrada => saidaDbMemKEY0,
+                      port map(entrada => KEY(0),
                                habilita => saidaAndKEY0, 
                                saida => Data_IN(0));
 
