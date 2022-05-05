@@ -5,9 +5,9 @@ STA HEX2		                                #Armazena o valor do acumulador em HEX
 STA HEX3		                                #Armazena o valor do acumulador em HEX3
 STA HEX4		                                #Armazena o valor do acumulador em HEX4
 STA HEX5		                                #Armazena o valor do acumulador em HEX5
-STA LED0_7	                                    #Armazena o valor do bit0 do acumulador no LDR0 ~ LEDR7
-STA LED8	                                    #Armazena o valor do bit0 do acumulador no LDR8
-STA LED9	                                    #Armazena o valor do bit0 do acumulador no LDR9
+STA SW0_7	                                    #Armazena o valor do bit0 do acumulador no SW0 ~ 7
+STA SW8	                                        #Armazena o valor do bit0 do acumulador no SW8
+STA SW9	                                        #Armazena o valor do bit0 do acumulador no SW9
 STA SEGUNDOS_UNIDADE                            #Armazena o valor do acumulador em (MEM[0])
 STA SEGUNDOS_DEZENA		                        #Armazena o valor do acumulador em (MEM[1])
 STA MINUTOS_UNIDADE		                        #Armazena o valor do acumulador em (MEM[2])
@@ -32,11 +32,17 @@ STA OVERFLOW_MU                                 #Armazena o valor do acumulador 
 STA OVERFLOW_MD                                 #Armazena o valor do acumulador em (MEM[15])
 STA OVERFLOW_HU                                 #Armazena o valor do acumulador em (MEM[16])
 STA OVERFLOW_HD                                 #Armazena o valor do acumulador em (MEM[17])
+STA APERTOS_KEY1                                #Armazena o valor do acumulador em (MEM[18])
 
 LABEL_VERIFICA_KEY0: LDA @352                   #Carrega o acumulador com o valor de key0
 CEQ VALOR_ZERO                                  #Verifica se foi apertado
+JEQ LABEL_VERIFICA_KEY1                         #Se não foi apertado, verifica KEY1
+JSR LABEL_INC_SU                                #Se foi, vai pra sub-rotina de configurar o horário
+
+LABEL_VERIFICA_KEY1: LDA @353                   #Carrega o acumulador com o valor de key1
+CEQ VALOR_ZERO                                  #Verifica se foi apertado
 JEQ LABEL_VERIFICA_RESET                        #Se não foi apertado, verifica RESET
-JSR LABEL_INC_SU                                #Se foi, vai pra sub-rotina de incrementar os segundos
+JSR LABEL_CONFIGURA_HORARIO                     #Se foi, vai pra sub-rotina de incrementar os segundos
 
 LABEL_VERIFICA_RESET: LDA FPGA_RESET            #Armazena o valor do botão reset no acumulador
 CEQ VALOR_ZERO                                  #Verifica se o RESET foi apertado
@@ -125,5 +131,15 @@ STA OVERFLOW_HD                                 #Deixa 1 na flaga OVERFLOW_HD
 LDI $2
 STA HORAS_DEZENA 
 RET
+
+LABEL_CONFIGURA_HORARIO: LDA APERTOS_KEY1
+SOMA VALOR_UM
+STA APERTOS_KEY1
+LDA APERTOS_KEY1
+CEQ VALOR_TRES
+JEQ LABEL_RETORNO
+LDA SW0_7
+STA SEGUNDOS_UNIDADE
+RET                            
 
 LABEL_RETORNO: RET
