@@ -9,7 +9,7 @@ entity processador is
   port   (
     CLK: in std_logic;
     RST: in std_logic;
-    Instruction_IN: in std_logic_vector(12 downto 0);
+	 Instruction_IN: in std_logic_vector(14 downto 0);
     Data_IN: in std_logic_vector(7 downto 0);
     Data_OUT: out std_logic_vector(7 downto 0);
     Data_Address: out std_logic_vector(8 downto 0);
@@ -27,7 +27,7 @@ architecture arquitetura of processador is
   signal saida_MUX4x1 : std_logic_vector (8 downto 0);
   signal saida_ULA : std_logic_vector (7 downto 0);
   signal saida_regend_mux4x1 : std_logic_vector (8 downto 0);
-  signal REG1_ULA_A : std_logic_vector (7 downto 0);
+  signal BancoReg_ULA : std_logic_vector (7 downto 0);
   signal Entrada_Flag : std_logic;
   signal Saida_Flag : std_logic;
 
@@ -38,7 +38,7 @@ architecture arquitetura of processador is
   signal JSR : std_logic;
   signal JEQ : std_logic;
   signal SelMUX : std_logic;
-  signal Habilita_A : std_logic;
+  signal Habilita_BancoReg : std_logic;
   signal Operacao_ULA :std_logic_vector (1 downto 0);
   signal habFlag : std_logic;
   signal hab_leitura : std_logic;
@@ -55,8 +55,15 @@ MUX1 : entity work.muxGenerico2x1  generic map (larguraDados => larguraDados)
                 saida_MUX => saida_MUX);
 			    
                 
-REGA : entity work.registradorGenerico   generic map (larguraDados => larguraDados)
-       port map (DIN => saida_ULA, DOUT => REG1_ULA_A, ENABLE => Habilita_A, CLK => CLK, RST => RST);
+-- REGA : entity work.registradorGenerico   generic map (larguraDados => larguraDados)
+--        port map (DIN => saida_ULA, DOUT => REG1_ULA_A, ENABLE => Habilita_A, CLK => CLK, RST => RST);
+
+BancoRegs : entity work.bancoRegistradoresArqRegMem   generic map (larguraDados => larguraDados, larguraEndBancoRegs => (larguraEnderecos-7))
+port map (clk => CLK,
+          endereco => 	Instruction_IN(10 downto 9),
+          dadoEscrita => saida_ULA,
+          habilitaEscrita => Habilita_BancoReg,
+          saida  => BancoReg_ULA);
 
        
 PC : entity work.registradorGenerico   generic map (larguraDados => larguraEnderecos)
@@ -81,7 +88,7 @@ MUX4x1: entity work.muxGenerico4x1  generic map (larguraDados => larguraEndereco
 					  
                  
 ULA1 : entity work.ULASomaSub  generic map(larguraDados => larguraDados)
-       port map (entradaA => REG1_ULA_A, entradaB => saida_MUX, saida => saida_ULA, saidaNOR => Entrada_Flag, seletor => Operacao_ULA);
+       port map (entradaA => BancoReg_ULA, entradaB => saida_MUX, saida => saida_ULA, saidaNOR => Entrada_Flag, seletor => Operacao_ULA);
 		 
        
 flagIgual : entity work.flipFlop  generic map (larguraDados => 1)
@@ -89,7 +96,7 @@ flagIgual : entity work.flipFlop  generic map (larguraDados => 1)
 
                 
 decoder : entity work.DecoderInstruction
-          port map(opcode => Instruction_IN(12 downto 9),
+          port map(opcode => Instruction_IN(14 downto 11),
                    flagIgual => Saida_Flag,
                    saida => Sinais_Controle,
 						 saidaMux => SelMUX4x1);
@@ -102,7 +109,7 @@ RET <= Sinais_Controle(9);
 JSR <= Sinais_Controle(8);
 JEQ <= Sinais_Controle(7);
 SelMUX <= Sinais_Controle(6);
-Habilita_A <= Sinais_Controle(5);
+Habilita_BancoReg <= Sinais_Controle(5);
 Operacao_ULA <= Sinais_Controle(4 downto 3);
 habFlag <= Sinais_Controle(2);
 hab_leitura <= Sinais_Controle(1);
@@ -111,7 +118,7 @@ hab_escrita <= Sinais_Controle(0);
 
 -- Atribuido sinais de saída
 ROM_Address <= Endereco;
-Data_OUT <= REG1_ULA_A;
+Data_OUT <= BancoReg_ULA;
 Data_Address <= Instruction_IN(8 downto 0);
 Control(0) <= hab_escrita;
 Control(1) <= hab_leitura;

@@ -384,19 +384,19 @@
 					"strict" : false
 				},
 				{
-					"name" : "INSTRUCAO[9]",
-					"strict" : false
-				},
-				{
-					"name" : "INSTRUCAO[10]",
-					"strict" : false
-				},
-				{
 					"name" : "INSTRUCAO[11]",
 					"strict" : false
 				},
 				{
 					"name" : "INSTRUCAO[12]",
+					"strict" : false
+				},
+				{
+					"name" : "INSTRUCAO[13]",
+					"strict" : false
+				},
+				{
+					"name" : "INSTRUCAO[14]",
 					"strict" : false
 				},
 				{
@@ -408,15 +408,15 @@
 					"strict" : false
 				},
 				{
+					"name" : "KEY[2]",
+					"strict" : false
+				},
+				{
 					"name" : "KEY[3]",
 					"strict" : false
 				},
 				{
 					"name" : "SW[8]",
-					"strict" : false
-				},
-				{
-					"name" : "KEY[2]",
 					"strict" : false
 				},
 				{

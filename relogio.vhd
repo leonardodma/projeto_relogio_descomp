@@ -7,7 +7,7 @@ entity relogio is
             larguraEnderecos : natural := 9;
             
             tamanhoROM: natural := 9;
-            dadoROM: natural := 13;
+            dadoROM: natural := 15;
 
             tamanhoRAM: natural := 6;
             dadoRAM: natural := 8;
@@ -40,7 +40,7 @@ entity relogio is
 	  CONTROLES: out std_logic_vector(3 downto 0);
 
     ACUMULADOR: out std_logic_vector(7 downto 0);
-    INSTRUCAO: out std_logic_vector(12 downto 0)
+    INSTRUCAO: out std_logic_vector(14 downto 0)
     
   );
 end entity;
@@ -54,7 +54,7 @@ architecture arquitetura of relogio is
   signal RST: std_logic;
   
   -- Precessor signals
-  signal Instruction_IN: std_logic_vector(12 downto 0);
+  signal Instruction_IN: std_logic_vector(14 downto 0);
   signal Data_IN: std_logic_vector(7 downto 0);
   signal Data_OUT: std_logic_vector(7 downto 0);
   signal Data_Address: std_logic_vector(8 downto 0);

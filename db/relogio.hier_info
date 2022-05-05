@@ -128,6 +128,8 @@ INSTRUCAO[9] <= memoriarom:ROM_instrucao.Dado[9]
 INSTRUCAO[10] <= memoriarom:ROM_instrucao.Dado[10]
 INSTRUCAO[11] <= memoriarom:ROM_instrucao.Dado[11]
 INSTRUCAO[12] <= memoriarom:ROM_instrucao.Dado[12]
+INSTRUCAO[13] <= memoriarom:ROM_instrucao.Dado[13]
+INSTRUCAO[14] <= memoriarom:ROM_instrucao.Dado[14]
 
 
 |relogio|divisorGenerico:divisor_rapido
@@ -210,6 +212,8 @@ Dado[9] <= memROM.DATAOUT9
 Dado[10] <= memROM.DATAOUT10
 Dado[11] <= memROM.DATAOUT11
 Dado[12] <= memROM.DATAOUT12
+Dado[13] <= memROM.DATAOUT13
+Dado[14] <= memROM.DATAOUT14
 
 
 |relogio|memoriaRAM:MemoriaRAM
@@ -278,11 +282,10 @@ dado_out[7] <= dado_out[7].DB_MAX_OUTPUT_PORT_TYPE
 
 
 |relogio|processador:Processador
-CLK => registradorgenerico:REGA.CLK
+CLK => bancoregistradoresarqregmem:BancoRegs.clk
 CLK => registradorgenerico:PC.CLK
 CLK => registradorgenerico:reg_endretorno.CLK
 CLK => flipflop:flagIgual.CLK
-RST => registradorgenerico:REGA.RST
 RST => registradorgenerico:PC.RST
 RST => registradorgenerico:reg_endretorno.RST
 RST => flipflop:flagIgual.RST
@@ -312,10 +315,12 @@ Instruction_IN[7] => muxgenerico4x1:MUX4x1.entradaB_MUX[7]
 Instruction_IN[7] => Data_Address[7].DATAIN
 Instruction_IN[8] => muxgenerico4x1:MUX4x1.entradaB_MUX[8]
 Instruction_IN[8] => Data_Address[8].DATAIN
-Instruction_IN[9] => decoderinstruction:decoder.opcode[0]
-Instruction_IN[10] => decoderinstruction:decoder.opcode[1]
-Instruction_IN[11] => decoderinstruction:decoder.opcode[2]
-Instruction_IN[12] => decoderinstruction:decoder.opcode[3]
+Instruction_IN[9] => bancoregistradoresarqregmem:BancoRegs.endereco[0]
+Instruction_IN[10] => bancoregistradoresarqregmem:BancoRegs.endereco[1]
+Instruction_IN[11] => decoderinstruction:decoder.opcode[0]
+Instruction_IN[12] => decoderinstruction:decoder.opcode[1]
+Instruction_IN[13] => decoderinstruction:decoder.opcode[2]
+Instruction_IN[14] => decoderinstruction:decoder.opcode[3]
 Data_IN[0] => muxgenerico2x1:MUX1.entradaA_MUX[0]
 Data_IN[1] => muxgenerico2x1:MUX1.entradaA_MUX[1]
 Data_IN[2] => muxgenerico2x1:MUX1.entradaA_MUX[2]
@@ -324,14 +329,14 @@ Data_IN[4] => muxgenerico2x1:MUX1.entradaA_MUX[4]
 Data_IN[5] => muxgenerico2x1:MUX1.entradaA_MUX[5]
 Data_IN[6] => muxgenerico2x1:MUX1.entradaA_MUX[6]
 Data_IN[7] => muxgenerico2x1:MUX1.entradaA_MUX[7]
-Data_OUT[0] <= registradorgenerico:REGA.DOUT[0]
-Data_OUT[1] <= registradorgenerico:REGA.DOUT[1]
-Data_OUT[2] <= registradorgenerico:REGA.DOUT[2]
-Data_OUT[3] <= registradorgenerico:REGA.DOUT[3]
-Data_OUT[4] <= registradorgenerico:REGA.DOUT[4]
-Data_OUT[5] <= registradorgenerico:REGA.DOUT[5]
-Data_OUT[6] <= registradorgenerico:REGA.DOUT[6]
-Data_OUT[7] <= registradorgenerico:REGA.DOUT[7]
+Data_OUT[0] <= bancoregistradoresarqregmem:BancoRegs.saida[0]
+Data_OUT[1] <= bancoregistradoresarqregmem:BancoRegs.saida[1]
+Data_OUT[2] <= bancoregistradoresarqregmem:BancoRegs.saida[2]
+Data_OUT[3] <= bancoregistradoresarqregmem:BancoRegs.saida[3]
+Data_OUT[4] <= bancoregistradoresarqregmem:BancoRegs.saida[4]
+Data_OUT[5] <= bancoregistradoresarqregmem:BancoRegs.saida[5]
+Data_OUT[6] <= bancoregistradoresarqregmem:BancoRegs.saida[6]
+Data_OUT[7] <= bancoregistradoresarqregmem:BancoRegs.saida[7]
 Data_Address[0] <= Instruction_IN[0].DB_MAX_OUTPUT_PORT_TYPE
 Data_Address[1] <= Instruction_IN[1].DB_MAX_OUTPUT_PORT_TYPE
 Data_Address[2] <= Instruction_IN[2].DB_MAX_OUTPUT_PORT_TYPE
@@ -391,47 +396,51 @@ saida_MUX[6] <= saida_MUX.DB_MAX_OUTPUT_PORT_TYPE
 saida_MUX[7] <= saida_MUX.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|relogio|processador:Processador|registradorGenerico:REGA
-DIN[0] => DOUT[0]~reg0.DATAIN
-DIN[1] => DOUT[1]~reg0.DATAIN
-DIN[2] => DOUT[2]~reg0.DATAIN
-DIN[3] => DOUT[3]~reg0.DATAIN
-DIN[4] => DOUT[4]~reg0.DATAIN
-DIN[5] => DOUT[5]~reg0.DATAIN
-DIN[6] => DOUT[6]~reg0.DATAIN
-DIN[7] => DOUT[7]~reg0.DATAIN
-DOUT[0] <= DOUT[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-DOUT[1] <= DOUT[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-DOUT[2] <= DOUT[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-DOUT[3] <= DOUT[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-DOUT[4] <= DOUT[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-DOUT[5] <= DOUT[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-DOUT[6] <= DOUT[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-DOUT[7] <= DOUT[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-ENABLE => DOUT[7]~reg0.ENA
-ENABLE => DOUT[6]~reg0.ENA
-ENABLE => DOUT[5]~reg0.ENA
-ENABLE => DOUT[4]~reg0.ENA
-ENABLE => DOUT[3]~reg0.ENA
-ENABLE => DOUT[2]~reg0.ENA
-ENABLE => DOUT[1]~reg0.ENA
-ENABLE => DOUT[0]~reg0.ENA
-CLK => DOUT[0]~reg0.CLK
-CLK => DOUT[1]~reg0.CLK
-CLK => DOUT[2]~reg0.CLK
-CLK => DOUT[3]~reg0.CLK
-CLK => DOUT[4]~reg0.CLK
-CLK => DOUT[5]~reg0.CLK
-CLK => DOUT[6]~reg0.CLK
-CLK => DOUT[7]~reg0.CLK
-RST => DOUT[0]~reg0.ACLR
-RST => DOUT[1]~reg0.ACLR
-RST => DOUT[2]~reg0.ACLR
-RST => DOUT[3]~reg0.ACLR
-RST => DOUT[4]~reg0.ACLR
-RST => DOUT[5]~reg0.ACLR
-RST => DOUT[6]~reg0.ACLR
-RST => DOUT[7]~reg0.ACLR
+|relogio|processador:Processador|bancoRegistradoresArqRegMem:BancoRegs
+clk => registrador~10.CLK
+clk => registrador~0.CLK
+clk => registrador~1.CLK
+clk => registrador~2.CLK
+clk => registrador~3.CLK
+clk => registrador~4.CLK
+clk => registrador~5.CLK
+clk => registrador~6.CLK
+clk => registrador~7.CLK
+clk => registrador~8.CLK
+clk => registrador~9.CLK
+clk => registrador.CLK0
+endereco[0] => registrador~1.DATAIN
+endereco[0] => registrador.WADDR
+endereco[0] => registrador.RADDR
+endereco[1] => registrador~0.DATAIN
+endereco[1] => registrador.WADDR1
+endereco[1] => registrador.RADDR1
+dadoEscrita[0] => registrador~9.DATAIN
+dadoEscrita[0] => registrador.DATAIN
+dadoEscrita[1] => registrador~8.DATAIN
+dadoEscrita[1] => registrador.DATAIN1
+dadoEscrita[2] => registrador~7.DATAIN
+dadoEscrita[2] => registrador.DATAIN2
+dadoEscrita[3] => registrador~6.DATAIN
+dadoEscrita[3] => registrador.DATAIN3
+dadoEscrita[4] => registrador~5.DATAIN
+dadoEscrita[4] => registrador.DATAIN4
+dadoEscrita[5] => registrador~4.DATAIN
+dadoEscrita[5] => registrador.DATAIN5
+dadoEscrita[6] => registrador~3.DATAIN
+dadoEscrita[6] => registrador.DATAIN6
+dadoEscrita[7] => registrador~2.DATAIN
+dadoEscrita[7] => registrador.DATAIN7
+habilitaEscrita => registrador~10.DATAIN
+habilitaEscrita => registrador.WE
+saida[0] <= registrador.DATAOUT
+saida[1] <= registrador.DATAOUT1
+saida[2] <= registrador.DATAOUT2
+saida[3] <= registrador.DATAOUT3
+saida[4] <= registrador.DATAOUT4
+saida[5] <= registrador.DATAOUT5
+saida[6] <= registrador.DATAOUT6
+saida[7] <= registrador.DATAOUT7
 
 
 |relogio|processador:Processador|registradorGenerico:PC
