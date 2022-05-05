@@ -130,8 +130,8 @@ STA @0
 STA @288 
 LDA @353
 CEQ @6
-JEQ LABEL_CONFIGURA_SU                                    
-JSR LABEL_APAGA_KEY1
+JEQ LABEL_CONFIGURA_SU
+STA @510                                    
 LDI $2
 STA @256
 LDA @320
@@ -139,8 +139,8 @@ STA @1
 STA @289 
 LDA @353
 CEQ @6
-JEQ LABEL_CONFIGURA_SD                                    
-JSR LABEL_APAGA_KEY1
+JEQ LABEL_CONFIGURA_SD
+STA @510                                    
 LDI $4
 STA @256
 LDA @320
@@ -148,8 +148,8 @@ STA @2
 STA @290 
 LDA @353
 CEQ @6
-JEQ LABEL_CONFIGURA_MU                                    
-JSR LABEL_APAGA_KEY1
+JEQ LABEL_CONFIGURA_MU
+STA @510                                    
 LDI $8
 STA @256
 LDA @320
@@ -157,8 +157,8 @@ STA @3
 STA @291 
 LDA @353
 CEQ @6
-JEQ LABEL_CONFIGURA_MD                                    
-JSR LABEL_APAGA_KEY1
+JEQ LABEL_CONFIGURA_MD
+STA @510                                    
 LDI $16
 STA @256
 LDA @320
@@ -166,8 +166,8 @@ STA @4
 STA @292 
 LDA @353
 CEQ @6
-JEQ LABEL_CONFIGURA_HU                                    
-JSR LABEL_APAGA_KEY1
+JEQ LABEL_CONFIGURA_HU    
+STA @510                               
 LDI $32
 STA @256
 LDA @320
@@ -176,10 +176,8 @@ STA @293
 LDA @353
 CEQ @6
 JEQ LABEL_CONFIGURA_HD
-JMP LABEL_VERIFICA_RESET
 LDI $0
 STA @256
-STA @510
-NOP
+JMP LABEL_VERIFICA_RESET
 RET
 RET

@@ -29,12 +29,7 @@ STA VALOR_SEIS                                  #Armazena o valor do acumulador 
 LDI $10                                         #Carrega o acumulador com o valor 10
 STA VALOR_DEZ                                   #Armazena o valor do acumulador em (MEM[11])
 LDI $0                                          #Carrega o acumulador com o valor 0
-STA OVERFLOW_SU                                 #Armazena o valor do acumulador em (MEM[12])
-STA OVERFLOW_SD                                 #Armazena o valor do acumulador em (MEM[13])
-STA OVERFLOW_MU                                 #Armazena o valor do acumulador em (MEM[14])
-STA OVERFLOW_MD                                 #Armazena o valor do acumulador em (MEM[15])
-STA OVERFLOW_HU                                 #Armazena o valor do acumulador em (MEM[16])
-STA OVERFLOW_HD                                 #Armazena o valor do acumulador em (MEM[17])
+STA OVERFLOW_HD                                 #Armazena o valor do acumulador em (MEM[12])
 
 LABEL_VERIFICA_KEY0: LDA @352                   #Carrega o acumulador com o valor de key0
 CEQ VALOR_ZERO                                  #Verifica se foi apertado
@@ -135,7 +130,6 @@ LDI $2
 STA HORAS_DEZENA 
 RET
 
-
 LABEL_CONFIGURA_SU: LDI $1
 STA LED0_7
 LDA SW0_7
@@ -143,8 +137,8 @@ STA SEGUNDOS_UNIDADE
 STA HEX0 
 LDA @353
 CEQ VALOR_ZERO
-JEQ LABEL_CONFIGURA_SU                                    
-JSR LABEL_APAGA_KEY1
+JEQ LABEL_CONFIGURA_SU
+STA LIMPA_KEY1                                    
 
 LABEL_CONFIGURA_SD: LDI $2
 STA LED0_7
@@ -153,8 +147,8 @@ STA SEGUNDOS_DEZENA
 STA HEX1 
 LDA @353
 CEQ VALOR_ZERO
-JEQ LABEL_CONFIGURA_SD                                    
-JSR LABEL_APAGA_KEY1
+JEQ LABEL_CONFIGURA_SD
+STA LIMPA_KEY1                                    
 
 LABEL_CONFIGURA_MU: LDI $4
 STA LED0_7
@@ -163,8 +157,8 @@ STA MINUTOS_UNIDADE
 STA HEX2 
 LDA @353
 CEQ VALOR_ZERO
-JEQ LABEL_CONFIGURA_MU                                    
-JSR LABEL_APAGA_KEY1
+JEQ LABEL_CONFIGURA_MU
+STA LIMPA_KEY1                                    
 
 LABEL_CONFIGURA_MD: LDI $8
 STA LED0_7
@@ -173,8 +167,8 @@ STA MINUTOS_DEZENA
 STA HEX3 
 LDA @353
 CEQ VALOR_ZERO
-JEQ LABEL_CONFIGURA_MD                                    
-JSR LABEL_APAGA_KEY1
+JEQ LABEL_CONFIGURA_MD
+STA LIMPA_KEY1                                    
 
 LABEL_CONFIGURA_HU: LDI $16
 STA LED0_7
@@ -183,8 +177,8 @@ STA HORAS_UNIDADE
 STA HEX4 
 LDA @353
 CEQ VALOR_ZERO
-JEQ LABEL_CONFIGURA_HU                                    
-JSR LABEL_APAGA_KEY1
+JEQ LABEL_CONFIGURA_HU    
+STA LIMPA_KEY1                               
 
 LABEL_CONFIGURA_HD: LDI $32
 STA LED0_7
@@ -194,12 +188,9 @@ STA HEX5
 LDA @353
 CEQ VALOR_ZERO
 JEQ LABEL_CONFIGURA_HD
-JMP LABEL_VERIFICA_RESET
 LDI $0
 STA LED0_7
-
-LABEL_APAGA_KEY1: STA LIMPA_KEY1
-NOP
+JMP LABEL_VERIFICA_RESET
 RET
 
 LABEL_RETORNO: RET
