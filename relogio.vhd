@@ -91,7 +91,7 @@ architecture arquitetura of relogio is
   signal edgeDetector_key1: std_logic;
   signal edgeDetector_key2: std_logic;
   
-  signal saidaDbMemKEY0: std_logic;
+  signal saidaffKEY0: std_logic;
   signal saidaDbMemKEY1: std_logic;
   signal saidaDbMemKEY2: std_logic;
 
@@ -160,10 +160,10 @@ begin
 
 --CLK <= CLOCK_50;
 
-divisor_rapido : entity work.divisorGenerico  generic map (divisor => 500)
+divisor_rapido : entity work.divisorGenerico  generic map (divisor => 25000)
                  port map (clk => CLOCK_50, saida_clk => CLK_Rapido);
 			 
-divisor_segundo : entity work.divisorGenerico  generic map (divisor => 250000)
+divisor_segundo : entity work.divisorGenerico  generic map (divisor => 25000000)
                   port map (clk => CLOCK_50, saida_clk => CLK_S);
 			 
 			 
@@ -187,13 +187,13 @@ MemoriaRAM : entity work.memoriaRAM   generic map (dataWidth => dadoRAM, addrWid
                        habilita => bloco0, 
                        dado_in => Data_OUT, 
                        dado_out => Data_IN, 
-                       clk => CLK);
+                       clk => CLOCK_50);
 
 
 -- PROCESSADOR (AULA 05)                       
 Processador: entity work.processador generic map (larguraDados => larguraDados, larguraEnderecos => larguraEnderecos)
              port map (
-              CLK => CLK,
+              CLK => CLOCK_50,
               RST => RST,
               Instruction_IN => Instruction_IN,
               Data_IN => Data_IN,
@@ -340,63 +340,63 @@ flipFlopLed9 : entity work.flipFlop  generic map (larguraDados => 1)
                port map (DIN => Data_OUT(0), 
                          DOUT => saidaFlipFlopLed9, 
                          ENABLE => saidaAndLed9, 
-                         CLK => CLK, 
+                         CLK => CLOCK_50, 
                          RST => RST);
 
 flipFlopLed8 : entity work.flipFlop  generic map (larguraDados => 1)
                port map (DIN => Data_OUT(0), 
                          DOUT => saidaFlipFlopLed8, 
                          ENABLE => saidaAndLed8, 
-                         CLK => CLK, 
+                         CLK => CLOCK_50, 
                          RST => RST);
 
 RegistradorLedR: entity work.registradorGenerico generic map (larguraDados => larguraDados)
                  port map (DIN => Data_OUT, 
                            DOUT => saidaRegistradorLedR, 
                            ENABLE => saidaAndLedR, 
-                           CLK => CLK, 
+                           CLK => CLOCK_50, 
                            RST => RST);
                                     
 RegistradorHEX0: entity work.registradorGenerico generic map (larguraDados => 4)
                  port map (DIN => Data_OUT(3 downto 0), 
                            DOUT => saidaRegistradorHEX0, 
                            ENABLE => saidaAndHEX0, 
-                           CLK => CLK, 
+                           CLK => CLOCK_50, 
                            RST => RST);
 
 RegistradorHEX1: entity work.registradorGenerico generic map (larguraDados => 4)
                  port map (DIN => Data_OUT(3 downto 0), 
                            DOUT => saidaRegistradorHEX1, 
                            ENABLE => saidaAndHEX1, 
-                           CLK => CLK, 
+                           CLK => CLOCK_50, 
                            RST => RST);
                            
 RegistradorHEX2: entity work.registradorGenerico generic map (larguraDados => 4)
                  port map (DIN => Data_OUT(3 downto 0), 
                            DOUT => saidaRegistradorHEX2, 
                            ENABLE => saidaAndHEX2, 
-                           CLK => CLK, 
+                           CLK => CLOCK_50, 
                            RST => RST);
 
 RegistradorHEX3: entity work.registradorGenerico generic map (larguraDados => 4)
                  port map (DIN => Data_OUT(3 downto 0), 
                            DOUT => saidaRegistradorHEX3, 
                            ENABLE => saidaAndHEX3, 
-                           CLK => CLK, 
+                           CLK => CLOCK_50, 
                            RST => RST);
 
 RegistradorHEX4: entity work.registradorGenerico generic map (larguraDados => 4)
                  port map (DIN => Data_OUT(3 downto 0), 
                            DOUT => saidaRegistradorHEX4, 
                            ENABLE => saidaAndHEX4, 
-                           CLK => CLK, 
+                           CLK => CLOCK_50, 
                            RST => RST);
 
 RegistradorHEX5: entity work.registradorGenerico generic map (larguraDados => 4)
                  port map (DIN => Data_OUT(3 downto 0), 
                            DOUT => saidaRegistradorHEX5, 
                            ENABLE => saidaAndHEX5, 
-                           CLK => CLK, 
+                           CLK => CLOCK_50, 
                            RST => RST);
 
 
@@ -465,20 +465,20 @@ buffer3State_SW9 :  entity work.buffer3State_1porta
 --DebouceMem_key0: work.edgeDetector(bordaSubida)
 --        port map (clk => CLK, entrada => KEY(0), saida => edgeDetector_key0);
 		  
---FFDebouceMem_key0: entity work.flipFlop  generic map (larguraDados => 1)
---               port map (DIN => '1', 
---                         DOUT => saidaDbMemKEY0, 
---                         ENABLE => '1', 
---                         CLK => edgeDetector_key0, 
---                         RST => bloco7);
+FFDebouceMem_key0: entity work.flipFlop  generic map (larguraDados => 1)
+               port map (DIN => '1', 
+                         DOUT => saidaffKEY0, 
+                         ENABLE => '1', 
+                         CLK => CLK, 
+                         RST => bloco7);
 								 
 buffer3State_KEY0 :   entity work.buffer3State_1porta
-                      port map(entrada => KEY(0),
+                      port map(entrada => saidaffKEY0,
                                habilita => saidaAndKEY0, 
                                saida => Data_IN(0));
 
 DebouceMem_key1: entity work.edgeDetector(bordaSubida)
-                 port map (clk => CLK, entrada => (not KEY(1)), saida => edgeDetector_key1);
+                 port map (clk => CLOCK_50, entrada => (not KEY(1)), saida => edgeDetector_key1);
 
 FFDebouceMem_key1: entity work.flipFlop  generic map (larguraDados => 1)
                   port map (DIN => '1', 
