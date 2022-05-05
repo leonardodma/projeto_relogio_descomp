@@ -116,10 +116,6 @@ INSTRUCAO[9] <= memoriarom:ROM_instrucao.Dado[9]
 INSTRUCAO[10] <= memoriarom:ROM_instrucao.Dado[10]
 INSTRUCAO[11] <= memoriarom:ROM_instrucao.Dado[11]
 INSTRUCAO[12] <= memoriarom:ROM_instrucao.Dado[12]
-ED_KEY0 <= ED_KEY0.DB_MAX_OUTPUT_PORT_TYPE
-ED_KEY1 <= edgedetector:DebouceMem_key1.saida
-DB_MEM_KEY0 <= comb.DB_MAX_OUTPUT_PORT_TYPE
-DB_MEM_KEY1 <= flipflop:FFDebouceMem_key1.DOUT
 
 
 |relogio|divisorGenerico:divisor_rapido

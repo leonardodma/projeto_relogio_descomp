@@ -8,6 +8,9 @@ STA @293		                                #Armazena o valor do acumulador em @29
 STA @320	                                    #Armazena o valor do bit0 do acumulador no SW0 ~ 7
 STA @321	                                        #Armazena o valor do bit0 do acumulador no @321
 STA @322	                                        #Armazena o valor do bit0 do acumulador no @322
+STA @256
+STA @257
+STA @258
 STA @0                            #Armazena o valor do acumulador em (MEM[0])
 STA @1		                        #Armazena o valor do acumulador em (MEM[1])
 STA @2		                        #Armazena o valor do acumulador em (MEM[2])
@@ -32,7 +35,6 @@ STA @14                                 #Armazena o valor do acumulador em (MEM[
 STA @15                                 #Armazena o valor do acumulador em (MEM[15])
 STA @16                                 #Armazena o valor do acumulador em (MEM[16])
 STA @17                                 #Armazena o valor do acumulador em (MEM[17])
-STA @18                                #Armazena o valor do acumulador em (MEM[18])
 LDA @352                   #Carrega o acumulador com o valor de key0
 CEQ @6                                  #Verifica se foi apertado
 JEQ LABEL_VERIFICA_KEY1                         #Se não foi apertado, verifica KEY1
@@ -120,22 +122,9 @@ STA @17                                 #Deixa 1 na flaga @17
 LDI $2
 STA @5 
 RET
-LDA @354                    #Carrega o acumulador com o valor de key2
-CEQ @6                                  #Verifica se foi apertado
-JEQ LABEL_VERIFICA_SAIDA_SU                     #Se não foi, verifica se o key1 foi apartado para configurar a dezena dos segundos
-LDA @0                            #Armazena o valor @0 no acumulador     
-SOMA @7
-CEQ @11
-JEQ LABEL_ZERA_SU
-STA @0
-JMP LABEL_ATUALIZA_HEX_SU
-LDI $0
-STA @0
-LDA @0
-STA @288
-LDA @353               #Carrega o acumulador com o valor de key1     
-CEQ @7
-JEQ LABEL_CONFIGURA_SD
-JMP LABEL_CONFIGURA_SU
+LDI $1
+STA @258
+STA @257
+RET
 RET
 RET

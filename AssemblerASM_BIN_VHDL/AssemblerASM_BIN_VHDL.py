@@ -36,7 +36,6 @@ mem = {
     "OVERFLOW_MD": "@15",
     "OVERFLOW_HU": "@16",
     "OVERFLOW_HD": "@17",
-    "APERTOS_KEY1": "@18",
     "HEX0": "@288",
     "HEX1": "@289",
     "HEX2": "@290",
@@ -46,6 +45,9 @@ mem = {
     "SW0_7": "@320",
     "SW8": "@321",
     "SW9": "@322",
+    "LED0_7":"@256",
+    "LED8":"@257",
+    "LED9":"@258",
     "FPGA_RESET": "@356",
     "LIMPA_KEY0": "@511",
     "LIMPA_KEY1": "@510"

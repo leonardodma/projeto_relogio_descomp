@@ -400,14 +400,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "ED_KEY1",
-					"strict" : false
-				},
-				{
-					"name" : "DB_MEM_KEY1",
-					"strict" : false
-				},
-				{
 					"name" : "SW[0]",
 					"strict" : false
 				},
@@ -420,15 +412,15 @@
 					"strict" : false
 				},
 				{
+					"name" : "SW[9]",
+					"strict" : false
+				},
+				{
 					"name" : "KEY[3]",
 					"strict" : false
 				},
 				{
 					"name" : "SW[8]",
-					"strict" : false
-				},
-				{
-					"name" : "SW[9]",
 					"strict" : false
 				},
 				{
@@ -464,11 +456,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "KEY[1]",
+					"name" : "CLOCK_50",
 					"strict" : false
 				},
 				{
-					"name" : "CLOCK_50",
+					"name" : "KEY[1]",
 					"strict" : false
 				}
 			]

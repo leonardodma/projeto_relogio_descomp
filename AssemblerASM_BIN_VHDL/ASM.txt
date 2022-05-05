@@ -8,6 +8,9 @@ STA HEX5		                                #Armazena o valor do acumulador em HEX
 STA SW0_7	                                    #Armazena o valor do bit0 do acumulador no SW0 ~ 7
 STA SW8	                                        #Armazena o valor do bit0 do acumulador no SW8
 STA SW9	                                        #Armazena o valor do bit0 do acumulador no SW9
+STA LED0_7
+STA LED8
+STA LED9
 STA SEGUNDOS_UNIDADE                            #Armazena o valor do acumulador em (MEM[0])
 STA SEGUNDOS_DEZENA		                        #Armazena o valor do acumulador em (MEM[1])
 STA MINUTOS_UNIDADE		                        #Armazena o valor do acumulador em (MEM[2])
@@ -32,7 +35,6 @@ STA OVERFLOW_MU                                 #Armazena o valor do acumulador 
 STA OVERFLOW_MD                                 #Armazena o valor do acumulador em (MEM[15])
 STA OVERFLOW_HU                                 #Armazena o valor do acumulador em (MEM[16])
 STA OVERFLOW_HD                                 #Armazena o valor do acumulador em (MEM[17])
-STA APERTOS_KEY1                                #Armazena o valor do acumulador em (MEM[18])
 
 LABEL_VERIFICA_KEY0: LDA @352                   #Carrega o acumulador com o valor de key0
 CEQ VALOR_ZERO                                  #Verifica se foi apertado
@@ -132,23 +134,13 @@ LDI $2
 STA HORAS_DEZENA 
 RET
 
-LABEL_CONFIGURA_SU: LDA @354                    #Carrega o acumulador com o valor de key2
-CEQ VALOR_ZERO                                  #Verifica se foi apertado
-JEQ LABEL_VERIFICA_SAIDA_SU                     #Se não foi, verifica se o key1 foi apartado para configurar a dezena dos segundos
-LDA SEGUNDOS_UNIDADE                            #Armazena o valor SEGUNDOS_UNIDADE no acumulador     
-SOMA VALOR_UM
-CEQ VALOR_DEZ
-JEQ LABEL_ZERA_SU
-STA SEGUNDOS_UNIDADE
-JMP LABEL_ATUALIZA_HEX_SU
-LABEL_ZERA_SU: LDI $0
-STA SEGUNDOS_UNIDADE
-LABEL_ATUALIZA_HEX_SU: LDA SEGUNDOS_UNIDADE
-STA HEX0
-LABEL_VERIFICA_SAIDA_SU: LDA @353               #Carrega o acumulador com o valor de key1     
-CEQ VALOR_UM
-JEQ LABEL_CONFIGURA_SD
-JMP LABEL_CONFIGURA_SU
+LABEL_CONFIGURA_SU: LDI $0
+STA LIMPA_KEY1
+LDI $1
+STA LED9
+STA LED8
+LDA SW0_7
+RET
 
 LABEL_CONFIGURA_SD: RET
 
