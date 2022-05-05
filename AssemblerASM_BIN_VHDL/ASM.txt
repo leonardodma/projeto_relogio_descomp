@@ -44,6 +44,7 @@ JSR LABEL_INC_SU                                #Se foi, vai pra sub-rotina de c
 LABEL_VERIFICA_KEY1: LDA @353                   #Carrega o acumulador com o valor de key1
 CEQ VALOR_ZERO                                  #Verifica se foi apertado
 JEQ LABEL_VERIFICA_RESET                        #Se não foi apertado, verifica RESET
+STA LIMPA_KEY1
 JSR LABEL_CONFIGURA_SU                          #Se foi, vai pra sub-rotina de incrementar os segundos
 
 LABEL_VERIFICA_RESET: LDA FPGA_RESET            #Armazena o valor do botão reset no acumulador
@@ -134,6 +135,7 @@ LDI $2
 STA HORAS_DEZENA 
 RET
 
+
 LABEL_CONFIGURA_SU: LDI $1
 STA LED0_7
 LDA SW0_7
@@ -142,7 +144,7 @@ STA HEX0
 LDA @353
 CEQ VALOR_ZERO
 JEQ LABEL_CONFIGURA_SU                                    
-JSR LABEL_LIMPA_KEY1
+JSR LABEL_APAGA_KEY1
 
 LABEL_CONFIGURA_SD: LDI $2
 STA LED0_7
@@ -152,7 +154,7 @@ STA HEX1
 LDA @353
 CEQ VALOR_ZERO
 JEQ LABEL_CONFIGURA_SD                                    
-JSR LABEL_LIMPA_KEY1
+JSR LABEL_APAGA_KEY1
 
 LABEL_CONFIGURA_MU: LDI $4
 STA LED0_7
@@ -162,7 +164,7 @@ STA HEX2
 LDA @353
 CEQ VALOR_ZERO
 JEQ LABEL_CONFIGURA_MU                                    
-JSR LABEL_LIMPA_KEY1
+JSR LABEL_APAGA_KEY1
 
 LABEL_CONFIGURA_MD: LDI $8
 STA LED0_7
@@ -172,7 +174,7 @@ STA HEX3
 LDA @353
 CEQ VALOR_ZERO
 JEQ LABEL_CONFIGURA_MD                                    
-JSR LABEL_LIMPA_KEY1
+JSR LABEL_APAGA_KEY1
 
 LABEL_CONFIGURA_HU: LDI $16
 STA LED0_7
@@ -182,7 +184,7 @@ STA HEX4
 LDA @353
 CEQ VALOR_ZERO
 JEQ LABEL_CONFIGURA_HU                                    
-JSR LABEL_LIMPA_KEY1
+JSR LABEL_APAGA_KEY1
 
 LABEL_CONFIGURA_HD: LDI $32
 STA LED0_7
@@ -191,12 +193,13 @@ STA HORAS_DEZENA
 STA HEX5 
 LDA @353
 CEQ VALOR_ZERO
-JEQ LABEL_CONFIGURA_HD                                    
-RET
-
-LABEL_LIMPA_KEY1: LDI $0
-STA LIMPA_KEY1
+JEQ LABEL_CONFIGURA_HD
+JMP LABEL_VERIFICA_RESET
+LDI $0
 STA LED0_7
+
+LABEL_APAGA_KEY1: STA LIMPA_KEY1
+NOP
 RET
 
 LABEL_RETORNO: RET
