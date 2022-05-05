@@ -8,7 +8,7 @@ STA HEX5		                                #Armazena o valor do acumulador em HEX
 STA LED0_7	                                    #Armazena o valor do bit0 do acumulador no LDR0 ~ LEDR7
 STA LED8	                                    #Armazena o valor do bit0 do acumulador no LDR8
 STA LED9	                                    #Armazena o valor do bit0 do acumulador no LDR9
-STA SEGUNDOS_UNIDADE                              #Armazena o valor do acumulador em (MEM[0])
+STA SEGUNDOS_UNIDADE                            #Armazena o valor do acumulador em (MEM[0])
 STA SEGUNDOS_DEZENA		                        #Armazena o valor do acumulador em (MEM[1])
 STA MINUTOS_UNIDADE		                        #Armazena o valor do acumulador em (MEM[2])
 STA MINUTOS_DEZENA                              #Armazena o valor do acumulador em (MEM[3])
@@ -19,8 +19,8 @@ LDI $1                                          #Carrega o acumulador com o valo
 STA VALOR_UM                                    #Armazena o valor do acumulador em (MEM[7])
 LDI $2                                          #Carrega o acumulador com o valor 2
 STA VALOR_DOIS                                  #Armazena o valor do acumulador em (MEM[8])
-LDI $4                                          #Carrega o acumulador com o valor 4
-STA VALOR_QUATRO                                #Armazena o valor do acumulador em (MEM[9])
+LDI $3                                          #Carrega o acumulador com o valor 3
+STA VALOR_TRES                                  #Armazena o valor do acumulador em (MEM[9])
 LDI $6                                          #Carrega o acumulador com o valor 6
 STA VALOR_SEIS                                  #Armazena o valor do acumulador em (MEM[10])
 LDI $10                                         #Carrega o acumulador com o valor 10
@@ -95,7 +95,13 @@ RET                                             #Retorna sub-rotina
 
 LABEL_INC_HU: LDI $0                            #Armazena o valor 0 no acumulador
 STA MINUTOS_DEZENA                              #Armazena o valor do acumulador em MINUTOS_DEZENA 
-LDA HORAS_UNIDADE                               #Armazena o valor HORAS_UNIDADE no acumulador 
+LDA OVERFLOW_HD                                 #Armazena o valor OVERFLOW_HD no acumulador
+CEQ VALOR_ZERO                                  #Compara OVERFLOW_HD com o valor zero 
+JEQ LABEL_INCREMENTA_HU                         #Se for OVERFLOW_HD for zero, continua incrementando
+LDA HORAS_UNIDADE                               #Se não for zero, verifica overflow da HORAS_UNIDADE
+CEQ VALOR_TRES
+JEQ LABEL_SETUP
+LABEL_INCREMENTA_HU: LDA HORAS_UNIDADE          #Armazena o valor HORAS_UNIDADE no acumulador 
 SOMA VALOR_UM                                   #Soma o valor do acumulador com VALOR_UM e joga no acumulador     
 CEQ VALOR_DEZ		                            #Compara o valor do acumulador com VALOR_DEZ
 JEQ LABEL_INC_HD                                #Se for 0 incrementa MINUTOS_DEZENA e zera HORAS_UNIDADE, se não icrementa a MINUTOS_UNIDADE e retorna
@@ -110,12 +116,14 @@ JEQ LABEL_RETORNO                               #Se a flag OVERFLOW_HD estiver 1
 LDA HORAS_DEZENA                                #Armazena o valor MINUTOS_UNIDADE no acumulador 
 SOMA VALOR_UM                                   #Soma o valor do acumulador com VALOR_UM e joga no acumulador   
 CEQ VALOR_DOIS		                            #Compara o valor do acumulador com VALOR_DOIS
-JEQ LABEL_OVERFLOW_HD                           #Se for 0 incrementa MINUTOS_DEZENA e zera SEGUNDOS_UNIDADE, se não icrementa a MINUTOS_UNIDADE e retorna
+JEQ LABEL_OF_HD                                 #Se for 0 incrementa MINUTOS_DEZENA e zera SEGUNDOS_UNIDADE, se não icrementa a MINUTOS_UNIDADE e retorna
 STA HORAS_DEZENA                                #Armazena o valor do acumulador em HORAS_DEZENA
 RET                                             #Retorna sub-rotina
 
-LABEL_OVERFLOW_HD: LDI $1                       #Armazena o valor 1 no acumulador
+LABEL_OF_HD: LDI $1                             #Armazena o valor 1 no acumulador
 STA OVERFLOW_HD                                 #Deixa 1 na flaga OVERFLOW_HD
+LDI $2
+STA HORAS_DEZENA 
 RET
 
 LABEL_RETORNO: RET

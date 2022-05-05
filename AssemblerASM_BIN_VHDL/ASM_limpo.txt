@@ -8,24 +8,30 @@ STA @293		                                #Armazena o valor do acumulador em @29
 STA @320	                                    #Armazena o valor do bit0 do acumulador no LDR0 ~ LEDR7
 STA @321	                                    #Armazena o valor do bit0 do acumulador no LDR8
 STA @322	                                    #Armazena o valor do bit0 do acumulador no LDR9
-STA @0                              #Armazena o valor do acumulador em (MEM[0])
+STA @0                            #Armazena o valor do acumulador em (MEM[0])
 STA @1		                        #Armazena o valor do acumulador em (MEM[1])
 STA @2		                        #Armazena o valor do acumulador em (MEM[2])
 STA @3                              #Armazena o valor do acumulador em (MEM[3])
 STA @4                               #Armazena o valor do acumulador em (MEM[4])
 STA @5                                #Armazena o valor do acumulador em (MEM[5])
-LDI $0                                          #Carrega o acumulador com o valor 0
 STA @6                                  #Armazena o valor do acumulador em (MEM[6])
 LDI $1                                          #Carrega o acumulador com o valor 1
 STA @7                                    #Armazena o valor do acumulador em (MEM[7])
 LDI $2                                          #Carrega o acumulador com o valor 2
 STA @8                                  #Armazena o valor do acumulador em (MEM[8])
-LDI $4                                          #Carrega o acumulador com o valor 4
-STA @9                                #Armazena o valor do acumulador em (MEM[9])
+LDI $3                                          #Carrega o acumulador com o valor 3
+STA @9                                  #Armazena o valor do acumulador em (MEM[9])
 LDI $6                                          #Carrega o acumulador com o valor 6
 STA @10                                  #Armazena o valor do acumulador em (MEM[10])
 LDI $10                                         #Carrega o acumulador com o valor 10
 STA @11                                   #Armazena o valor do acumulador em (MEM[11])
+LDI $0                                          #Carrega o acumulador com o valor 0
+STA @12                                 #Armazena o valor do acumulador em (MEM[12])
+STA @13                                 #Armazena o valor do acumulador em (MEM[13])
+STA @14                                 #Armazena o valor do acumulador em (MEM[14])
+STA @15                                 #Armazena o valor do acumulador em (MEM[15])
+STA @16                                 #Armazena o valor do acumulador em (MEM[16])
+STA @17                                 #Armazena o valor do acumulador em (MEM[17])
 LDA @352                   #Carrega o acumulador com o valor de key0
 CEQ @6                                  #Verifica se foi apertado
 JEQ LABEL_VERIFICA_RESET                        #Se não foi apertado, verifica RESET
@@ -48,7 +54,7 @@ LDA @5                                #Coloca o valor de @5 no acumulador
 STA @293                                        #Armazena no @293
 JMP LABEL_VERIFICA_KEY0                         #Volta a verificar se @352 está sendo apertado
 LDI $0                            #Armazena o valor 0 no acumulador
-STA @511                                  #Armazena o valor do acumulador no endereço 511 (Utilizado para limpar o flipflop do debounce)
+STA @511                                        #Armazena o valor do acumulador no endereço 511 (Utilizado para limpar o flipflop do debounce)
 LDA @0                            #Armazena o valor @0 no acumulador     
 SOMA @7                                   #Soma o valor do acumulador com @7 e joga no acumulador                 
 CEQ @11		                            #Compara o valor do acumulador com @11
@@ -81,7 +87,13 @@ STA @3                              #Armazena o valor do acumulador em @3
 RET                                             #Retorna sub-rotina
 LDI $0                            #Armazena o valor 0 no acumulador
 STA @3                              #Armazena o valor do acumulador em @3 
-LDA @4                               #Armazena o valor @4 no acumulador 
+LDA @17                                 #Armazena o valor @17 no acumulador
+CEQ @6                                  #Compara @17 com o valor zero 
+JEQ LABEL_INCREMENTA_HU                         #Se for @17 for zero, continua incrementando
+LDA @4                               #Se não for zero, verifica overflow da @4
+CEQ @9
+JEQ LABEL_SETUP
+LDA @4          #Armazena o valor @4 no acumulador 
 SOMA @7                                   #Soma o valor do acumulador com @7 e joga no acumulador     
 CEQ @11		                            #Compara o valor do acumulador com @11
 JEQ LABEL_INC_HD                                #Se for 0 incrementa @3 e zera @4, se não icrementa a @2 e retorna
@@ -89,9 +101,18 @@ STA @4                               #Armazena o valor do acumulador em @4
 RET                                             #Retorna sub-rotina
 LDI $0                            #Armazena o valor 0 no acumulador
 STA @4                               #Armazena o valor do acumulador em @2 
+LDA @17
+CEQ @7
+JEQ LABEL_RETORNO                               #Se a flag @17 estiver 1, já faz o retorno
 LDA @5                                #Armazena o valor @2 no acumulador 
 SOMA @7                                   #Soma o valor do acumulador com @7 e joga no acumulador   
 CEQ @8		                            #Compara o valor do acumulador com @8
-JEQ LABEL_SETUP                                 #Se for 0 incrementa @3 e zera @0, se não icrementa a @2 e retorna
+JEQ LABEL_OF_HD                                 #Se for 0 incrementa @3 e zera @0, se não icrementa a @2 e retorna
 STA @5                                #Armazena o valor do acumulador em @5
 RET                                             #Retorna sub-rotina
+LDI $1                             #Armazena o valor 1 no acumulador
+STA @17                                 #Deixa 1 na flaga @17
+LDI $2
+STA @5 
+RET
+RET

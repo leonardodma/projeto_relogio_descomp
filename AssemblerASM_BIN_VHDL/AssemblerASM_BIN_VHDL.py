@@ -27,7 +27,7 @@ mem = {
     "VALOR_ZERO": "@6",
     "VALOR_UM": "@7",
     "VALOR_DOIS": "@8",
-    "VALOR_QUATRO": "@9",
+    "VALOR_TRES": "@9",
     "VALOR_SEIS": "@10",
     "VALOR_DEZ": "@11",
     "OVERFLOW_SU": "@12",

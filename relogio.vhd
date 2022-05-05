@@ -11,13 +11,16 @@ entity relogio is
 
             tamanhoRAM: natural := 6;
             dadoRAM: natural := 8;
+				
+				    --divisor_s : natural := 10000000;
+				    --divisor_rapido: natural := 500;
             
             simulacao : boolean := FALSE -- para gravar na placa, altere de TRUE para FALSE
   );
   port   (
     CLOCK_50 : in std_logic;
     KEY: in std_logic_vector(3 downto 0);
-	  FPGA_RESET_N : in std_logic;
+	 FPGA_RESET_N : in std_logic;
     SW: in std_logic_vector(9 downto 0);
     PC_OUT: out std_logic_vector(larguraEnderecos-1 downto 0);
     LEDR  : out std_logic_vector(9 downto 0);
@@ -51,6 +54,8 @@ end entity;
 architecture arquitetura of relogio is
 
   signal CLK : std_logic;
+  signal CLK_Rapido : std_logic;
+  signal CLK_S : std_logic;
   signal RST: std_logic;
   
   -- Precessor signals
@@ -156,8 +161,19 @@ begin
 
 
 --CLK <= CLOCK_50;
-divisor : entity work.divisorGenerico
-            port map (clk => CLOCK_50, saida_clk => CLK);
+
+divisor_rapido : entity work.divisorGenerico  generic map (divisor => 500)
+                 port map (clk => CLOCK_50, saida_clk => CLK_Rapido);
+			 
+divisor_segundo : entity work.divisorGenerico  generic map (divisor => 250000)
+                  port map (clk => CLOCK_50, saida_clk => CLK_S);
+			 
+			 
+MUX_CLOCK : entity work.muxGenerico2x1Bin
+				port map(entradaA_MUX => CLK_Rapido,
+							entradaB_MUX => CLK_S,
+							seletor_MUX => SW(9),
+							saida_MUX => CLK);
 
 -- MEMÓRIA ROM
 ROM_instrucao : entity work.memoriaROM   generic map (dataWidth => dadoROM, addrWidth => tamanhoROM)
