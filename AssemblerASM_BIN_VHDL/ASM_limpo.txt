@@ -40,7 +40,7 @@ JSR LABEL_INC_SU                                #Se foi, vai pra sub-rotina de c
 LDA @353                   #Carrega o acumulador com o valor de key1
 CEQ @6                                  #Verifica se foi apertado
 JEQ LABEL_VERIFICA_RESET                        #Se não foi apertado, verifica RESET
-JSR LABEL_CONFIGURA_HORARIO                     #Se foi, vai pra sub-rotina de incrementar os segundos
+JSR LABEL_CONFIGURA_SU                     #Se foi, vai pra sub-rotina de incrementar os segundos
 LDA @356            #Armazena o valor do botão reset no acumulador
 CEQ @6                                  #Verifica se o RESET foi apertado
 JEQ LABEL_ATUALIZA_DISPLAY                      #Se o botão reset não foi apertado, atualiza os displays 
@@ -120,13 +120,22 @@ STA @17                                 #Deixa 1 na flaga @17
 LDI $2
 STA @5 
 RET
-LDA @18
+LDA @354                    #Carrega o acumulador com o valor de key2
+CEQ @6                                  #Verifica se foi apertado
+JEQ LABEL_VERIFICA_SAIDA_SU                     #Se não foi, verifica se o key1 foi apartado para configurar a dezena dos segundos
+LDA @0                            #Armazena o valor @0 no acumulador     
 SOMA @7
-STA @18
-LDA @18
-CEQ @9
-JEQ LABEL_RETORNO
-LDA @320
+CEQ @11
+JEQ LABEL_ZERA_SU
 STA @0
-RET                            
+JMP LABEL_ATUALIZA_HEX_SU
+LDI $0
+STA @0
+LDA @0
+STA @288
+LDA @353               #Carrega o acumulador com o valor de key1     
+CEQ @7
+JEQ LABEL_CONFIGURA_SD
+JMP LABEL_CONFIGURA_SU
+RET
 RET

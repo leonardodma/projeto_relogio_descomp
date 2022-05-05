@@ -42,7 +42,7 @@ JSR LABEL_INC_SU                                #Se foi, vai pra sub-rotina de c
 LABEL_VERIFICA_KEY1: LDA @353                   #Carrega o acumulador com o valor de key1
 CEQ VALOR_ZERO                                  #Verifica se foi apertado
 JEQ LABEL_VERIFICA_RESET                        #Se não foi apertado, verifica RESET
-JSR LABEL_CONFIGURA_HORARIO                     #Se foi, vai pra sub-rotina de incrementar os segundos
+JSR LABEL_CONFIGURA_SU                     #Se foi, vai pra sub-rotina de incrementar os segundos
 
 LABEL_VERIFICA_RESET: LDA FPGA_RESET            #Armazena o valor do botão reset no acumulador
 CEQ VALOR_ZERO                                  #Verifica se o RESET foi apertado
@@ -132,14 +132,24 @@ LDI $2
 STA HORAS_DEZENA 
 RET
 
-LABEL_CONFIGURA_HORARIO: LDA APERTOS_KEY1
+LABEL_CONFIGURA_SU: LDA @354                    #Carrega o acumulador com o valor de key2
+CEQ VALOR_ZERO                                  #Verifica se foi apertado
+JEQ LABEL_VERIFICA_SAIDA_SU                     #Se não foi, verifica se o key1 foi apartado para configurar a dezena dos segundos
+LDA SEGUNDOS_UNIDADE                            #Armazena o valor SEGUNDOS_UNIDADE no acumulador     
 SOMA VALOR_UM
-STA APERTOS_KEY1
-LDA APERTOS_KEY1
-CEQ VALOR_TRES
-JEQ LABEL_RETORNO
-LDA SW0_7
+CEQ VALOR_DEZ
+JEQ LABEL_ZERA_SU
 STA SEGUNDOS_UNIDADE
-RET                            
+JMP LABEL_ATUALIZA_HEX_SU
+LABEL_ZERA_SU: LDI $0
+STA SEGUNDOS_UNIDADE
+LABEL_ATUALIZA_HEX_SU: LDA SEGUNDOS_UNIDADE
+STA HEX0
+LABEL_VERIFICA_SAIDA_SU: LDA @353               #Carrega o acumulador com o valor de key1     
+CEQ VALOR_UM
+JEQ LABEL_CONFIGURA_SD
+JMP LABEL_CONFIGURA_SU
+
+LABEL_CONFIGURA_SD: RET
 
 LABEL_RETORNO: RET
