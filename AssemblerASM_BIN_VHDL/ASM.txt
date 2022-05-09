@@ -5,12 +5,12 @@ STA R1, HEX2		                                #Armazena o valor do R1 em HEX2
 STA R1, HEX3		                                #Armazena o valor do R1 em HEX3
 STA R1, HEX4		                                #Armazena o valor do R1 em HEX4
 STA R1, HEX5		                                #Armazena o valor do R1 em HEX5
-STA R1, SW0_7	                                    #Armazena o valor em SW0 ~ 7
-STA R1, SW8	                                        #Armazena o valor do bit0 do R1 no SW8
-STA R1, SW9	                                        #Armazena o valor do bit0 do R1 no SW9
 STA R1, LED0_7
 STA R1, LED8
 STA R1, LED9
+STA R1, SW0_7
+STA R1, SW8
+STA R1, SW9
 STA R1, SEGUNDOS_UNIDADE                            #Armazena o valor do R1 em (MEM[0])
 STA R1, SEGUNDOS_DEZENA		                        #Armazena o valor do R1 em (MEM[1])
 STA R1, MINUTOS_UNIDADE		                        #Armazena o valor do R1 em (MEM[2])
@@ -30,6 +30,10 @@ LDI R1, $10                                         #Carrega o R1 com o valor 10
 STA R1, VALOR_DEZ                                   #Armazena o valor do R1 em (MEM[11])
 LDI R1, $0                                          #Carrega o R1 com o valor 0
 STA R1, OVERFLOW_HD                                 #Armazena o valor do R1 em (MEM[12])
+STA R1, FLAG_PM		                                #Armazena o valor do R1 em (MEM[13])
+STA R1, FLAG_CONVERTE
+LDI R1, $128
+STA R1, VALOR_128
 
 LABEL_VERIFICA_KEY0: LDA R1, KEY0                   #Carrega o R1 com o valor de key0
 CEQ R1, VALOR_ZERO                                  #Verifica se foi apertado
@@ -38,31 +42,51 @@ JSR LABEL_INC_SU                                    #Se foi, vai pra sub-rotina 
 
 LABEL_VERIFICA_KEY1: LDA R1, KEY1                   #Carrega o R1 com o valor de key1
 CEQ R1, VALOR_ZERO                                  #Verifica se foi apertado
-JEQ LABEL_VERIFICA_RESET                            #Se não foi apertado, verifica RESET
+JEQ LABEL_VERIFICA_PM                               #Se não foi apertado, verifica RESET
 STA R1, LIMPA_KEY1
 JSR LABEL_CONFIGURA_SU                              #Se foi, vai pra sub-rotina de incrementar os segundos
+
+LABEL_VERIFICA_PM: LDA R1, FLAG_PM
+CEQ R1, VALOR_UM
+JEQ LABEL_VERIFICA_SW0_7
+JSR LABEL_HAB_FLAG_PM
+
+LABEL_VERIFICA_SW0_7: LDA R1, SW0_7
+STA R1, LED0_7
+CEQ R1, VALOR_128
+JEQ LABEL_HAB_CONVERSAO
+LDI R1, $0
+STA R1, FLAG_CONVERTE
+STA R1, LED9
 
 LABEL_VERIFICA_RESET: LDA R1, FPGA_RESET            #Armazena o valor do botão reset no R1
 CEQ R1, VALOR_ZERO                                  #Verifica se o RESET foi apertado
 JEQ LABEL_ATUALIZA_DISPLAY                          #Se o botão reset não foi apertado, atualiza os displays 
 JMP LABEL_SETUP                                     #Se foi apertado, volta pro inívio do código
 
-LABEL_ATUALIZA_DISPLAY: LDA R2, SEGUNDOS_UNIDADE    #Coloca o valor da SEGUNDOS_UNIDADE no R2              
-STA R2, HEX0                                        #Armazena no HEX0
-LDA R2, SEGUNDOS_DEZENA                             #Coloca o valor da SEGUNDOS_DEZENA no R2 
-STA R2, HEX1                                        #Armazena no HEX1
-LDA R2, MINUTOS_UNIDADE                             #Coloca o valor da MINUTOS_UNIDADE no R2 
-STA R2, HEX2                                        #Armazena no HEX2
-LDA R2, MINUTOS_DEZENA                              #Coloca o valor de MINUTOS_DEZENA no R2
-STA R2, HEX3                                        #Armazena no HEX3
-LDA R2, HORAS_UNIDADE                               #Coloca o valor de HORAS_UNIDADE no R2
-STA R2, HEX4                                        #Armazena no HEX4
-LDA R2, HORAS_DEZENA                                #Coloca o valor de HORAS_DEZENA no R2
-STA R2, HEX5                                        #Armazena no HEX5
+LABEL_ATUALIZA_DISPLAY: LDA R1, SEGUNDOS_UNIDADE    #Coloca o valor da SEGUNDOS_UNIDADE no R1              
+STA R1, HEX0                                        #Armazena no HEX0
+LDA R1, SEGUNDOS_DEZENA                             #Coloca o valor da SEGUNDOS_DEZENA no R1 
+STA R1, HEX1                                        #Armazena no HEX1
+LDA R1, MINUTOS_UNIDADE                             #Coloca o valor da MINUTOS_UNIDADE no R1 
+STA R1, HEX2                                        #Armazena no HEX2
+LDA R1, MINUTOS_DEZENA                              #Coloca o valor de MINUTOS_DEZENA no R1
+STA R1, HEX3                                        #Armazena no HEX3
+LDA R1, HORAS_UNIDADE                               #Coloca o valor de HORAS_UNIDADE no R1
+LDA R2, FLAG_CONVERTE
+CEQ R2, VALOR_ZERO
+JEQ R2, LABEL_ATUALIZA_HEX4
+SUB R1, VALOR_DOIS
+LABEL_ATUALIZA_HEX4: STA R1, HEX4                   #Armazena no HEX4
+LDA R1, HORAS_DEZENA                                #Coloca o valor de HORAS_DEZENA no R1
+CEQ R2, VALOR_ZERO
+JEQ R2, LABEL_ATUALIZA_HEX5
+SUB R1, VALOR_UM
+LABEL_ATUALIZA_HEX5: STA R1, HEX5                   #Armazena no HEX5
 JMP LABEL_VERIFICA_KEY0                             #Volta a verificar se KEY0 está sendo apertado
 
 LABEL_INC_SU: LDI R1, $0                            #Armazena o valor 0 no R1
-STA R1, @511                                        #Armazena o valor do R1 no endereço 511 (Utilizado para limpar o flipflop do debounce)
+STA R1, LIMPA_KEY1                                        #Armazena o valor do R1 no endereço 511 (Utilizado para limpar o flipflop do debounce)
 LDA R1, SEGUNDOS_UNIDADE                            #Armazena o valor SEGUNDOS_UNIDADE no R1     
 SOMA R1, VALOR_UM                                   #Soma o valor do R1 com VALOR_UM e joga no R1                 
 CEQ R1, VALOR_DEZ		                            #Compara o valor do R1 com VALOR_DEZ
@@ -190,6 +214,26 @@ CEQ R1, VALOR_ZERO
 JEQ LABEL_CONFIGURA_HD
 LDI R1, $0
 STA R1, LED0_7
+RET
+
+LABEL_HAB_FLAG_PM: LDA R1, HORAS_UNIDADE
+CEQ VALOR_TRES
+JEQ LABEL_CONFERE_HD_PM
+RET
+LABEL_CONFERE_HD_PM: LDA R1, HORAS_DEZENA
+CEQ VALOR_UM
+JEQ LABEL_SAIDA_AM
+RET
+LABEL_SAIDA_AM: LDI R1, $1
+STA R1, FLAG_PM
+RET
+
+LABEL_HAB_CONVERSAO: LDA R1, FLAG_PM
+CEQ R1, VALOR_ZERO
+JEQ LABEL_VERIFICA_RESET
+LDI R1, $1
+STA R1, FLAG_CONVERTE
+STA R1, LED9
 JMP LABEL_VERIFICA_RESET
 
 LABEL_RETORNO: RET
