@@ -110,7 +110,7 @@ def trataMnemonico(line):
     
     line = "".join(line)
 
-    print(line)
+    #print(line)
     return line
 
 
@@ -138,8 +138,9 @@ def main():
                     instrucaoLine = converteCifrao(instrucaoLine)
 
                 else:  # NOP, RET
+                    print(instrucaoLine)
                     instrucaoLine = instrucaoLine.replace("\n", "")  # Remove a quebra de linha
-                    instrucaoLine = instrucaoLine + '00000000000'
+                    instrucaoLine = instrucaoLine + '000000000'
 
                 line = 'tmp(' + str(cont) + ') := "' + instrucaoLine + '";\t-- ' + comentarioLine.strip() + '\n'  # Formata para o arquivo BIN
 

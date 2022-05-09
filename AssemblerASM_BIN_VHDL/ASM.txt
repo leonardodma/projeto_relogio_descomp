@@ -1,130 +1,130 @@
-LABEL_SETUP: LDI R1, $0                             #Carrega o acumulador com o valor 0
-STA R1, HEX0		                                #Armazena o valor do acumulador em HEX0
-STA R1, HEX1		                                #Armazena o valor do acumulador em HEX1
-STA R1, HEX2		                                #Armazena o valor do acumulador em HEX2
-STA R1, HEX3		                                #Armazena o valor do acumulador em HEX3
-STA R1, HEX4		                                #Armazena o valor do acumulador em HEX4
-STA R1, HEX5		                                #Armazena o valor do acumulador em HEX5
-STA R1, SW0_7	                                    #Armazena o valor do bit0 do acumulador no SW0 ~ 7
-STA R1, SW8	                                        #Armazena o valor do bit0 do acumulador no SW8
-STA R1, SW9	                                        #Armazena o valor do bit0 do acumulador no SW9
+LABEL_SETUP: LDI R1, $0                             #Carrega o R1 com o valor 0
+STA R1, HEX0		                                #Armazena o valor do R1 em HEX0
+STA R1, HEX1		                                #Armazena o valor do R1 em HEX1
+STA R1, HEX2		                                #Armazena o valor do R1 em HEX2
+STA R1, HEX3		                                #Armazena o valor do R1 em HEX3
+STA R1, HEX4		                                #Armazena o valor do R1 em HEX4
+STA R1, HEX5		                                #Armazena o valor do R1 em HEX5
+STA R1, SW0_7	                                    #Armazena o valor em SW0 ~ 7
+STA R1, SW8	                                        #Armazena o valor do bit0 do R1 no SW8
+STA R1, SW9	                                        #Armazena o valor do bit0 do R1 no SW9
 STA R1, LED0_7
 STA R1, LED8
 STA R1, LED9
-STA R1, SEGUNDOS_UNIDADE                            #Armazena o valor do acumulador em (MEM[0])
-STA R1, SEGUNDOS_DEZENA		                        #Armazena o valor do acumulador em (MEM[1])
-STA R1, MINUTOS_UNIDADE		                        #Armazena o valor do acumulador em (MEM[2])
-STA R1, MINUTOS_DEZENA                              #Armazena o valor do acumulador em (MEM[3])
-STA R1, HORAS_UNIDADE                               #Armazena o valor do acumulador em (MEM[4])
-STA R1, HORAS_DEZENA                                #Armazena o valor do acumulador em (MEM[5])
-STA R1, VALOR_ZERO                                  #Armazena o valor do acumulador em (MEM[6])
-LDI R1, $1                                          #Carrega o acumulador com o valor 1
-STA R1, VALOR_UM                                    #Armazena o valor do acumulador em (MEM[7])
-LDI R1, $2                                          #Carrega o acumulador com o valor 2
-STA R1, VALOR_DOIS                                  #Armazena o valor do acumulador em (MEM[8])
-LDI R1, $3                                          #Carrega o acumulador com o valor 3
-STA R1, VALOR_TRES                                  #Armazena o valor do acumulador em (MEM[9])
-LDI R1, $6                                          #Carrega o acumulador com o valor 6
-STA R1, VALOR_SEIS                                  #Armazena o valor do acumulador em (MEM[10])
-LDI R1, $10                                         #Carrega o acumulador com o valor 10
-STA R1, VALOR_DEZ                                   #Armazena o valor do acumulador em (MEM[11])
-LDI R1, $0                                          #Carrega o acumulador com o valor 0
-STA R1, OVERFLOW_HD                                 #Armazena o valor do acumulador em (MEM[12])
+STA R1, SEGUNDOS_UNIDADE                            #Armazena o valor do R1 em (MEM[0])
+STA R1, SEGUNDOS_DEZENA		                        #Armazena o valor do R1 em (MEM[1])
+STA R1, MINUTOS_UNIDADE		                        #Armazena o valor do R1 em (MEM[2])
+STA R1, MINUTOS_DEZENA                              #Armazena o valor do R1 em (MEM[3])
+STA R1, HORAS_UNIDADE                               #Armazena o valor do R1 em (MEM[4])
+STA R1, HORAS_DEZENA                                #Armazena o valor do R1 em (MEM[5])
+STA R1, VALOR_ZERO                                  #Armazena o valor do R1 em (MEM[6])
+LDI R1, $1                                          #Carrega o R1 com o valor 1
+STA R1, VALOR_UM                                    #Armazena o valor do R1 em (MEM[7])
+LDI R1, $2                                          #Carrega o R1 com o valor 2
+STA R1, VALOR_DOIS                                  #Armazena o valor do R1 em (MEM[8])
+LDI R1, $3                                          #Carrega o R1 com o valor 3
+STA R1, VALOR_TRES                                  #Armazena o valor do R1 em (MEM[9])
+LDI R1, $6                                          #Carrega o R1 com o valor 6
+STA R1, VALOR_SEIS                                  #Armazena o valor do R1 em (MEM[10])
+LDI R1, $10                                         #Carrega o R1 com o valor 10
+STA R1, VALOR_DEZ                                   #Armazena o valor do R1 em (MEM[11])
+LDI R1, $0                                          #Carrega o R1 com o valor 0
+STA R1, OVERFLOW_HD                                 #Armazena o valor do R1 em (MEM[12])
 
-LABEL_VERIFICA_KEY0: LDA R1, KEY0                   #Carrega o acumulador com o valor de key0
+LABEL_VERIFICA_KEY0: LDA R1, KEY0                   #Carrega o R1 com o valor de key0
 CEQ R1, VALOR_ZERO                                  #Verifica se foi apertado
 JEQ LABEL_VERIFICA_KEY1                             #Se não foi apertado, verifica KEY1
 JSR LABEL_INC_SU                                    #Se foi, vai pra sub-rotina de configurar o horário
 
-LABEL_VERIFICA_KEY1: LDA R1, KEY1                   #Carrega o acumulador com o valor de key1
+LABEL_VERIFICA_KEY1: LDA R1, KEY1                   #Carrega o R1 com o valor de key1
 CEQ R1, VALOR_ZERO                                  #Verifica se foi apertado
 JEQ LABEL_VERIFICA_RESET                            #Se não foi apertado, verifica RESET
 STA R1, LIMPA_KEY1
 JSR LABEL_CONFIGURA_SU                              #Se foi, vai pra sub-rotina de incrementar os segundos
 
-LABEL_VERIFICA_RESET: LDA R1, FPGA_RESET            #Armazena o valor do botão reset no acumulador
+LABEL_VERIFICA_RESET: LDA R1, FPGA_RESET            #Armazena o valor do botão reset no R1
 CEQ R1, VALOR_ZERO                                  #Verifica se o RESET foi apertado
 JEQ LABEL_ATUALIZA_DISPLAY                          #Se o botão reset não foi apertado, atualiza os displays 
 JMP LABEL_SETUP                                     #Se foi apertado, volta pro inívio do código
 
-LABEL_ATUALIZA_DISPLAY: LDA R1, SEGUNDOS_UNIDADE    #Coloca o valor da SEGUNDOS_UNIDADE no acumulador              
-STA R1, HEX0                                        #Armazena no HEX0
-LDA R1, SEGUNDOS_DEZENA                             #Coloca o valor da SEGUNDOS_DEZENA no acumulador 
-STA R1, HEX1                                        #Armazena no HEX1
-LDA R1, MINUTOS_UNIDADE                             #Coloca o valor da MINUTOS_UNIDADE no acumulador 
-STA R1, HEX2                                        #Armazena no HEX2
-LDA R1, MINUTOS_DEZENA                              #Coloca o valor de MINUTOS_DEZENA no acumulador
-STA R1, HEX3                                        #Armazena no HEX3
-LDA R1, HORAS_UNIDADE                               #Coloca o valor de HORAS_UNIDADE no acumulador
-STA R1, HEX4                                        #Armazena no HEX4
-LDA R1, HORAS_DEZENA                                #Coloca o valor de HORAS_DEZENA no acumulador
-STA R1, HEX5                                        #Armazena no HEX5
+LABEL_ATUALIZA_DISPLAY: LDA R2, SEGUNDOS_UNIDADE    #Coloca o valor da SEGUNDOS_UNIDADE no R2              
+STA R2, HEX0                                        #Armazena no HEX0
+LDA R2, SEGUNDOS_DEZENA                             #Coloca o valor da SEGUNDOS_DEZENA no R2 
+STA R2, HEX1                                        #Armazena no HEX1
+LDA R2, MINUTOS_UNIDADE                             #Coloca o valor da MINUTOS_UNIDADE no R2 
+STA R2, HEX2                                        #Armazena no HEX2
+LDA R2, MINUTOS_DEZENA                              #Coloca o valor de MINUTOS_DEZENA no R2
+STA R2, HEX3                                        #Armazena no HEX3
+LDA R2, HORAS_UNIDADE                               #Coloca o valor de HORAS_UNIDADE no R2
+STA R2, HEX4                                        #Armazena no HEX4
+LDA R2, HORAS_DEZENA                                #Coloca o valor de HORAS_DEZENA no R2
+STA R2, HEX5                                        #Armazena no HEX5
 JMP LABEL_VERIFICA_KEY0                             #Volta a verificar se KEY0 está sendo apertado
 
-LABEL_INC_SU: LDI R1, $0                            #Armazena o valor 0 no acumulador
-STA R1, @511                                        #Armazena o valor do acumulador no endereço 511 (Utilizado para limpar o flipflop do debounce)
-LDA R1, SEGUNDOS_UNIDADE                            #Armazena o valor SEGUNDOS_UNIDADE no acumulador     
-SOMA R1, VALOR_UM                                   #Soma o valor do acumulador com VALOR_UM e joga no acumulador                 
-CEQ R1, VALOR_DEZ		                            #Compara o valor do acumulador com VALOR_DEZ
+LABEL_INC_SU: LDI R1, $0                            #Armazena o valor 0 no R1
+STA R1, @511                                        #Armazena o valor do R1 no endereço 511 (Utilizado para limpar o flipflop do debounce)
+LDA R1, SEGUNDOS_UNIDADE                            #Armazena o valor SEGUNDOS_UNIDADE no R1     
+SOMA R1, VALOR_UM                                   #Soma o valor do R1 com VALOR_UM e joga no R1                 
+CEQ R1, VALOR_DEZ		                            #Compara o valor do R1 com VALOR_DEZ
 JEQ R1, LABEL_INC_SD                                #Se for 0 incrementa SEGUNDOS_DEZENA e zera SEGUNDOS_UNIDADE, se não icrementa SEGUNDOS_UNIDADE e retorna
-STA R1, SEGUNDOS_UNIDADE                            #Armazena o valor do acumulador em SEGUNDOS_UNIDADE
+STA R1, SEGUNDOS_UNIDADE                            #Armazena o valor do R1 em SEGUNDOS_UNIDADE
 RET                                                 #Retorna sub-rotina
 
-LABEL_INC_SD: LDI R1, $0                            #Armazena o valor 0 no acumulador
-STA R1, SEGUNDOS_UNIDADE                            #Armazena o valor do acumulador em SEGUNDOS_UNIDADE
-LDA R1, SEGUNDOS_DEZENA                             #Armazena o valor SEGUNDOS_DEZENA no acumulador 
-SOMA R1, VALOR_UM                                   #Soma o valor do acumulador com VALOR_UM e joga no acumulador
-CEQ R1, VALOR_SEIS		                            #Compara o valor do acumulador com VALOR_SEIS
+LABEL_INC_SD: LDI R1, $0                            #Armazena o valor 0 no R1
+STA R1, SEGUNDOS_UNIDADE                            #Armazena o valor do R1 em SEGUNDOS_UNIDADE
+LDA R1, SEGUNDOS_DEZENA                             #Armazena o valor SEGUNDOS_DEZENA no R1 
+SOMA R1, VALOR_UM                                   #Soma o valor do R1 com VALOR_UM e joga no R1
+CEQ R1, VALOR_SEIS		                            #Compara o valor do R1 com VALOR_SEIS
 JEQ LABEL_INC_MU                                    #Se for 0 incrementa MINUTOS_UNIDADE e zera SEGUNDOS_DEZENA, se não icrementa SEGUNDOS_DEZENA e retorna
-STA R1, SEGUNDOS_DEZENA                             #Armazena o valor do acumulador em SEGUNDOS_DEZENA
+STA R1, SEGUNDOS_DEZENA                             #Armazena o valor do R1 em SEGUNDOS_DEZENA
 RET                                                 #Retorna sub-rotina
 
-LABEL_INC_MU: LDI R1, $0                            #Armazena o valor 0 no acumulador
-STA R1, SEGUNDOS_DEZENA                             #Armazena o valor do acumulador em SEGUNDOS_DEZENA 
-LDA R1, MINUTOS_UNIDADE                             #Armazena o valor MINUTOS_UNIDADE no acumulador 
-SOMA R1, VALOR_UM                                   #Soma o valor do acumulador com VALOR_UM e joga no acumulador     
-CEQ R1, VALOR_DEZ		                            #Compara o valor do acumulador com VALOR_DEZ
+LABEL_INC_MU: LDI R1, $0                            #Armazena o valor 0 no R1
+STA R1, SEGUNDOS_DEZENA                             #Armazena o valor do R1 em SEGUNDOS_DEZENA 
+LDA R1, MINUTOS_UNIDADE                             #Armazena o valor MINUTOS_UNIDADE no R1 
+SOMA R1, VALOR_UM                                   #Soma o valor do R1 com VALOR_UM e joga no R1     
+CEQ R1, VALOR_DEZ		                            #Compara o valor do R1 com VALOR_DEZ
 JEQ LABEL_INC_MD                                    #Se for 0 incrementa MINUTOS_DEZENA e zera MINUTOS_UNIDADE, se não icrementa MINUTOS_UNIDADE e retorna
-STA R1, MINUTOS_UNIDADE                             #Armazena o valor do acumulador em MINUTOS_UNIDADE
+STA R1, MINUTOS_UNIDADE                             #Armazena o valor do R1 em MINUTOS_UNIDADE
 RET                                                 #Retorna sub-rotina
 
-LABEL_INC_MD: LDI R1, $0                            #Armazena o valor 0 no acumulador
-STA R1, MINUTOS_UNIDADE                             #Armazena o valor do acumulador em MINUTOS_UNIDADE 
-LDA R1, MINUTOS_DEZENA                              #Armazena o valor MINUTOS_DEZENA no acumulador 
-SOMA R1, VALOR_UM                                   #Soma o valor do acumulador com VALOR_UM e joga no acumulador   
-CEQ R1, VALOR_SEIS		                            #Compara o valor do acumulador com VALOR_SEIS
+LABEL_INC_MD: LDI R1, $0                            #Armazena o valor 0 no R1
+STA R1, MINUTOS_UNIDADE                             #Armazena o valor do R1 em MINUTOS_UNIDADE 
+LDA R1, MINUTOS_DEZENA                              #Armazena o valor MINUTOS_DEZENA no R1 
+SOMA R1, VALOR_UM                                   #Soma o valor do R1 com VALOR_UM e joga no R1   
+CEQ R1, VALOR_SEIS		                            #Compara o valor do R1 com VALOR_SEIS
 JEQ LABEL_INC_HU                                    #Se for 0 incrementa HORAS_UNIDADE e zera MINUTOS_DEZENA, se não icrementa MINUTOS_DEZENA e retorna
-STA R1, MINUTOS_DEZENA                              #Armazena o valor do acumulador em MINUTOS_DEZENA
+STA R1, MINUTOS_DEZENA                              #Armazena o valor do R1 em MINUTOS_DEZENA
 RET                                                 #Retorna sub-rotina
 
-LABEL_INC_HU: LDI R1, $0                            #Armazena o valor 0 no acumulador
-STA R1, MINUTOS_DEZENA                              #Armazena o valor do acumulador em MINUTOS_DEZENA 
-LDA R1, OVERFLOW_HD                                 #Armazena o valor OVERFLOW_HD no acumulador
+LABEL_INC_HU: LDI R1, $0                            #Armazena o valor 0 no R1
+STA R1, MINUTOS_DEZENA                              #Armazena o valor do R1 em MINUTOS_DEZENA 
+LDA R1, OVERFLOW_HD                                 #Armazena o valor OVERFLOW_HD no R1
 CEQ R1, VALOR_ZERO                                  #Compara OVERFLOW_HD com o valor zero 
 JEQ LABEL_INCREMENTA_HU                             #Se for OVERFLOW_HD for zero, continua incrementando
 LDA R1, HORAS_UNIDADE                               #Se não for zero, verifica overflow da HORAS_UNIDADE
 CEQ R1, VALOR_TRES
 JEQ LABEL_SETUP
-LABEL_INCREMENTA_HU: LDA R1, HORAS_UNIDADE          #Armazena o valor HORAS_UNIDADE no acumulador 
-SOMA R1, VALOR_UM                                   #Soma o valor do acumulador com VALOR_UM e joga no acumulador     
-CEQ R1, VALOR_DEZ		                            #Compara o valor do acumulador com VALOR_DEZ
+LABEL_INCREMENTA_HU: LDA R1, HORAS_UNIDADE          #Armazena o valor HORAS_UNIDADE no R1 
+SOMA R1, VALOR_UM                                   #Soma o valor do R1 com VALOR_UM e joga no R1     
+CEQ R1, VALOR_DEZ		                            #Compara o valor do R1 com VALOR_DEZ
 JEQ LABEL_INC_HD                                    #Se for 0 incrementa MINUTOS_DEZENA e zera HORAS_UNIDADE, se não icrementa a MINUTOS_UNIDADE e retorna
-STA R1, HORAS_UNIDADE                               #Armazena o valor do acumulador em HORAS_UNIDADE
+STA R1, HORAS_UNIDADE                               #Armazena o valor do R1 em HORAS_UNIDADE
 RET                                                 #Retorna sub-rotina
 
-LABEL_INC_HD: LDI R1, $0                            #Armazena o valor 0 no acumulador
-STA R1, HORAS_UNIDADE                               #Armazena o valor do acumulador em MINUTOS_UNIDADE 
+LABEL_INC_HD: LDI R1, $0                            #Armazena o valor 0 no R1
+STA R1, HORAS_UNIDADE                               #Armazena o valor do R1 em MINUTOS_UNIDADE 
 LDA R1, OVERFLOW_HD
 CEQ R1, VALOR_UM
 JEQ LABEL_RETORNO                                   #Se a flag OVERFLOW_HD estiver 1, já faz o retorno
-LDA R1, HORAS_DEZENA                                #Armazena o valor MINUTOS_UNIDADE no acumulador 
-SOMA R1, VALOR_UM                                   #Soma o valor do acumulador com VALOR_UM e joga no acumulador   
-CEQ R1, VALOR_DOIS		                            #Compara o valor do acumulador com VALOR_DOIS
+LDA R1, HORAS_DEZENA                                #Armazena o valor MINUTOS_UNIDADE no R1 
+SOMA R1, VALOR_UM                                   #Soma o valor do R1 com VALOR_UM e joga no R1   
+CEQ R1, VALOR_DOIS		                            #Compara o valor do R1 com VALOR_DOIS
 JEQ LABEL_OF_HD                                     #Se for 0 incrementa MINUTOS_DEZENA e zera SEGUNDOS_UNIDADE, se não icrementa a MINUTOS_UNIDADE e retorna
-STA R1, HORAS_DEZENA                                #Armazena o valor do acumulador em HORAS_DEZENA
+STA R1, HORAS_DEZENA                                #Armazena o valor do R1 em HORAS_DEZENA
 RET                                                 #Retorna sub-rotina
 
-LABEL_OF_HD: LDI R1, $1                             #Armazena o valor 1 no acumulador
+LABEL_OF_HD: LDI R1, $1                             #Armazena o valor 1 no R1
 STA R1, OVERFLOW_HD                                 #Deixa 1 na flaga OVERFLOW_HD
 LDI R1, $2
 STA R1, HORAS_DEZENA 

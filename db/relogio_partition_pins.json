@@ -384,6 +384,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "INSTRUCAO[9]",
+					"strict" : false
+				},
+				{
 					"name" : "INSTRUCAO[11]",
 					"strict" : false
 				},
